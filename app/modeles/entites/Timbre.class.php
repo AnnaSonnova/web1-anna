@@ -2,7 +2,7 @@
 
 class Timbre
 {
-  private $timbre_id=0;
+  private $timbre_id;
   private $timbre_nom;
   private $timbre_date;
   private $timbre_couleur;
