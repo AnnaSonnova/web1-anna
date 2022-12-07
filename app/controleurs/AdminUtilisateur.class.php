@@ -8,7 +8,9 @@ class AdminUtilisateur extends Admin {
 
   protected $methodes = [
     'l'           => ['nom'    =>'listerUtilisateurs',  'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
-    'a'           => ['nom'    =>'ajouterUtilisateur',   'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
+    'a'           => ['nom'    =>'ajouterUtilisateur'
+    // ,   'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]
+  ],
     'm'           => ['nom'    =>'modifierUtilisateur',  'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
     's'           => ['nom'    =>'supprimerUtilisateur', 'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
     'd'           => ['nom'    =>'deconnecter'],
