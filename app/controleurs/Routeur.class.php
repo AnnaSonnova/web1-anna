@@ -11,6 +11,7 @@ class Routeur {
   // uri,             classe,     méthode
   // ------------------------------------
     ["admin",         "Admin",    "gererEntite"],
+    ["creer",         "AdminUtilisateur",    "ajouterUtilisateur"],
     
     ["",              "Frontend", "listerTimbres"],
     // ["prochainement", "Frontend", "listerProchainement"],

@@ -170,7 +170,9 @@ class RequetesSQL extends RequetesPDO {
    * @return int|string clé primaire de la ligne ajoutée, message d'erreur sinon
    */ 
   public function ajouterTimbre($champs) {
-    
+    echo 'isi';
+
+    print_r($champs);
     $this->sql = '
       INSERT INTO timbre SET
       timbre_nom   = :timbre_nom,
@@ -190,18 +192,19 @@ class RequetesSQL extends RequetesPDO {
    * @param array $champs tableau des champs de timbre 
    * @return boolean|string true si modifié, message d'erreur sinon
    */ 
-  public function modifi($champs) {
-    $utilisateur = $this->controlerCourriel(
-      ['utilisateur_courriel' => $champs['utilisateur_courriel'], 'utilisateur_id' => $champs['utilisateur_id']]);
-    if ($utilisateur !== false)
-      return Utilisateur::ERR_COURRIEL_EXISTANT;
+  public function modifierTimbre($champs) {
+    
     $this->sql = '
-      UPDATE utilisateur SET
-      utilisateur_nom      = :utilisateur_nom,
-      utilisateur_prenom   = :utilisateur_prenom,
-      utilisateur_courriel = :utilisateur_courriel,
-      utilisateur_profil   = :utilisateur_profil
-      WHERE utilisateur_id = :utilisateur_id';
+      UPDATE timbre SET
+      timbre_nom   = :timbre_nom,
+      timbre_date   = :timbre_date,
+      timbre_couleur   = :timbre_couleur,
+      timbre_tirage   = :timbre_tirage,
+      timbre_description   = :timbre_description,
+      timbre_prix_plancher = :timbre_prix_plancher,
+      timbre_dimension      = :timbre_dimension,
+      timbre_pays_id   = :timbre_pays_id,
+      timbre_enchere_id = :timbre_enchere_id';
     return $this->CUDLigne($champs);
   }
 
