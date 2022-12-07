@@ -2,7 +2,7 @@
 
 class Timbre
 {
-  private $timbre_id;
+  private $timbre_id=0;
   private $timbre_nom;
   private $timbre_date;
   private $timbre_couleur;
@@ -61,7 +61,7 @@ public function getErreurs()              { return $this->erreurs; }
     if (!preg_match($regExp, $timbre_nom)) {
       $this->erreurs['timbre_nom'] = 'Au moins un caractère.';
     }
-    $this->timbre_nom = mb_strtoupper($timbre_nom);
+    $this->timbre_nom = $timbre_nom;
     return $this;
   }
 

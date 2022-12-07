@@ -5,9 +5,7 @@
   <p style="line-height: 1.5; opacity: 0.9;">Nous avons le plaisir de vous transmettre votre identifiant de connexion et votre mot de passe pour accéder à l'administration de notre site Le Méliès.</p>
   {% endif %}
 
-  {% if oUtilisateur.utilisateur_profil == constant('utilisateur::PROFIL_UTILISATEUR')  %}
-  <p style="line-height: 1.5; opacity: 0.9;">Nous avons le plaisir de vous transmettre votre identifiant de connexion et votre mot de passe sur notre site Le Méliès.</p>
-  {% endif %}
+  
 
   <p style="line-height: 1.5; opacity: 0.9;">Identifiant: <strong style="color: #f9bc64;">{{ oUtilisateur.utilisateur_courriel }}</strong></p>
   <p style="line-height: 1.5; opacity: 0.9;">Mot de passe: <strong style="color: #f9bc64;">{{ oUtilisateur.utilisateur_mdp }}</strong></p>

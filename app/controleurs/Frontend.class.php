@@ -17,7 +17,8 @@ class Frontend extends Routeur {
    */
   public function __construct() {
     // $this->timbre_id = $_GET['timbre_id'] ?? null;
-    $this->timbre_id = $_GET['timbre_id'] ?? null;  
+    $this->timbre_id = $_GET['timbre_id'] ?? null;
+    // $this->oUser = $_SESSION['oUser'] ?? null;  
     $this->oRequetesSQL = new RequetesSQL;
   }
 

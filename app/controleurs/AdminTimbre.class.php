@@ -51,9 +51,19 @@ class AdminTimbre extends Admin {
       $oTimbre = new Timbre($timbre);
       
       //var_dump("isi"); exit;
-       $erreurs = $oTimbre->erreurs;
-      if (count($erreurs) === 0){
+      //  $erreurs = $oTimbre->erreurs;
+      // if (count($erreurs) === 0){
+        print_r($_POST);
         $timbre_id=$this->oRequetesSQL->ajouterTimbre([
+          // 'timbre_nom'      => $_POST['timbre_nom'],
+          // 'timbre_date'      => $_POST['timbre_date'],
+          // 'timbre_couleur'      => $_POST['timbre_couleur'],
+          // 'timbre_tirage'      => $_POST['timbre_tirage'],
+          // 'timbre_description'      => $_POST['timbre_description'],
+          // 'timbre_prix_plancher'      => $_POST['timbre_prix_plancher'],
+          // 'timbre_dimension'      => $_POST['timbre_dimension'],
+          // 'timbre_pays_id'      => $_POST['timbre_pays_id'],
+          // 'timbre_enchere_id'      => $_POST['timbre_enchere_id']
           'timbre_nom'      => $oTimbre->timbre_nom,
           'timbre_date'   => $oTimbre->timbre_date,
           'timbre_couleur' => $oTimbre->timbre_couleur,
@@ -64,7 +74,7 @@ class AdminTimbre extends Admin {
           'timbre_pays_id'   => $oTimbre->timbre_pays_id,
           'timbre_enchere_id' => $oTimbre->timbre_enchere_id
         ]);
-        if ( $timbre_id  > 0) { // test de la clé de l'utilisateur ajouté
+        if ( $timbre_id  > 0) { // test de la clé de timbre ajouté
           $this->messageRetourAction = "Ajout de l'utilisateur numéro $timbre_id  effectué.";
         } else {
           $this->classRetour = "erreur";
@@ -72,7 +82,7 @@ class AdminTimbre extends Admin {
         }
         $this->listerTimbres(); // retour sur la page de liste des timbres
         exit;
-      }
+      // }
     
      
     }
