@@ -64,15 +64,15 @@ class AdminTimbre extends Admin {
           // 'timbre_dimension'      => $_POST['timbre_dimension'],
           // 'timbre_pays_id'      => $_POST['timbre_pays_id'],
           // 'timbre_enchere_id'      => $_POST['timbre_enchere_id']
-          'timbre_nom'      => $oTimbre->timbre_nom,
-          'timbre_date'   => $oTimbre->timbre_date,
-          'timbre_couleur' => $oTimbre->timbre_couleur,
-          'timbre_tirage'      => $oTimbre->timbre_tirage,
-          'timbre_description'   => $oTimbre->timbre_description,
-          'timbre_prix_plancher'   => $oTimbre->timbre_prix_plancher,
-          'timbre_dimension'   => $oTimbre->timbre_dimension,
-          'timbre_pays_id'   => $oTimbre->timbre_pays_id,
-          'timbre_enchere_id' => $oTimbre->timbre_enchere_id
+          'timbre_nom'      => $oTimbre->getTimbre_nom() ,
+          'timbre_date'   => $oTimbre->getTimbre_date(),
+          'timbre_couleur' => $oTimbre->getTimbre_couleur(),
+          'timbre_tirage'      => $oTimbre->getTimbre_tirage(),
+          'timbre_description'   => $oTimbre->getTimbre_description(),
+          'timbre_prix_plancher'   => $oTimbre->getTimbre_prix_plancher(),
+          'timbre_dimension'   => $oTimbre->getTimbre_dimension(),
+          'timbre_pays_id'   => $oTimbre->getTimbre_pays_id(),
+          'timbre_enchere_id' => $oTimbre->getTimbre_pays_id()
         ]);
         if ( $timbre_id  > 0) { // test de la clé de timbre ajouté
           $this->messageRetourAction = "Ajout de l'utilisateur numéro $timbre_id  effectué.";
