@@ -185,6 +185,26 @@ class RequetesSQL extends RequetesPDO {
     return $this->CUDLigne($champs);
   }
 
+  /**
+   * Modifier timbre
+   * @param array $champs tableau des champs de timbre 
+   * @return boolean|string true si modifié, message d'erreur sinon
+   */ 
+  public function modifi($champs) {
+    $utilisateur = $this->controlerCourriel(
+      ['utilisateur_courriel' => $champs['utilisateur_courriel'], 'utilisateur_id' => $champs['utilisateur_id']]);
+    if ($utilisateur !== false)
+      return Utilisateur::ERR_COURRIEL_EXISTANT;
+    $this->sql = '
+      UPDATE utilisateur SET
+      utilisateur_nom      = :utilisateur_nom,
+      utilisateur_prenom   = :utilisateur_prenom,
+      utilisateur_courriel = :utilisateur_courriel,
+      utilisateur_profil   = :utilisateur_profil
+      WHERE utilisateur_id = :utilisateur_id';
+    return $this->CUDLigne($champs);
+  }
+
 
   /* GESTION DES PAYS 
      ================== */
