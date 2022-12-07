@@ -49,21 +49,13 @@ class AdminTimbre extends Admin {
     if (count($_POST) !== 0){
       $timbre = $_POST;
       $oTimbre = new Timbre($timbre);
-      
+      print_r($oTimbre);
       //var_dump("isi"); exit;
-       $erreurs = $oTimbre->erreurs;
+       $erreurs = $oTimbre->getErreurs();
       if (count($erreurs) === 0){
-        print_r($_POST);
+        //print_r($_POST);
         $timbre_id=$this->oRequetesSQL->ajouterTimbre([
-          // 'timbre_nom'      => $_POST['timbre_nom'],
-          // 'timbre_date'      => $_POST['timbre_date'],
-          // 'timbre_couleur'      => $_POST['timbre_couleur'],
-          // 'timbre_tirage'      => $_POST['timbre_tirage'],
-          // 'timbre_description'      => $_POST['timbre_description'],
-          // 'timbre_prix_plancher'      => $_POST['timbre_prix_plancher'],
-          // 'timbre_dimension'      => $_POST['timbre_dimension'],
-          // 'timbre_pays_id'      => $_POST['timbre_pays_id'],
-          // 'timbre_enchere_id'      => $_POST['timbre_enchere_id']
+         
           'timbre_nom'      => $oTimbre->getTimbre_nom() ,
           'timbre_date'   => $oTimbre->getTimbre_date(),
           'timbre_couleur' => $oTimbre->getTimbre_couleur(),
@@ -103,21 +95,23 @@ class AdminTimbre extends Admin {
    * Modifier un timbre
    */
   public function modifierTimbre() {
+    $timbre = [];
+    $erreurs     = [];
     if (count($_POST) !== 0){
       $timbre = $_POST;
       $oTimbre = new Timbre($timbre);
-      $erreurs = $oTimbre->erreurs;
+      $erreurs = $oTimbre->getErreurs();
       if (count($erreurs) === 0) {
         $retour = $this->oRequetesSQL->modifierTimbre([
-          'timbre_nom'      => $oTimbre->timbre_nom,
-          'timbre_date'   => $oTimbre->timbre_date,
-          'timbre_couleur' => $oTimbre->timbre_couleur,
-          'timbre_tirage'      => $oTimbre->timbre_tirage,
-          'timbre_description'   => $oTimbre->timbre_description,
-          'timbre_prix_plancher'   => $oTimbre->timbre_prix_plancher,
-          'timbre_dimension'   => $oTimbre->timbre_dimension,
-          'timbre_pays_id'   => $oTimbre->timbre_pays_id,
-          'timbre_enchere_id' => $oTimbre->timbre_enchere_id
+          'timbre_nom'      => $oTimbre->getTimbre_nom() ,
+          'timbre_date'   => $oTimbre->getTimbre_date(),
+          'timbre_couleur' => $oTimbre->getTimbre_couleur(),
+          'timbre_tirage'      => $oTimbre->getTimbre_tirage(),
+          'timbre_description'   => $oTimbre->getTimbre_description(),
+          'timbre_prix_plancher'   => $oTimbre->getTimbre_prix_plancher(),
+          'timbre_dimension'   => $oTimbre->getTimbre_dimension(),
+          'timbre_pays_id'   => $oTimbre->getTimbre_pays_id(),
+          'timbre_enchere_id' => $oTimbre->getTimbre_pays_id()
         ]);
         
           if ($retour === true)  {
@@ -136,13 +130,13 @@ class AdminTimbre extends Admin {
       'vAdminTimbreModifier',
       [
         'oUtilConn'   => self::$oUtilConn,
-        'titre'       => "Modifier timbre numéro $this->utilisateur_id",
-        'utilisateur' => $utilisateur,
+        'titre'       => "Modifier timbre numéro $this->timbre_id",
+        'timbre' => $timbre,
         'erreurs'     => $erreurs
       ],
       'gabarit-admin');
 
-    throw new Exception("Développement en cours.");
+    
   }
   
   /**

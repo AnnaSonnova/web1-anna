@@ -1,6 +1,6 @@
 <?php
 
-class Timbre
+class Timbre extends Entite
 {
   private $timbre_id;
   private $timbre_nom;

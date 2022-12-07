@@ -4,7 +4,7 @@
  * Classe Entité dont hérite toutes les classes des entités de la base de données
  *
  */
-abstract class Entite
+abstract class Entite 
 {
   /**
    * Constructeur de la classe
