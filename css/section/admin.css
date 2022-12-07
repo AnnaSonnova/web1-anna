@@ -1,8 +1,23 @@
+.admin ul,li,p{
+  font-size: 16px;
+}
+
 #page {
   display: grid;
   grid-template-columns: min-content auto;
   color: black;
   background: white;
+}
+
+.a_admin{
+  text-decoration: none;
+  color: cornflowerblue;
+  padding: 5px;
+  font-size: 20px;
+  
+}
+.a_admin:hover{
+  color:rgb(0, 73, 207);
 }
 
 .dr {
@@ -17,6 +32,122 @@
 .fait {
   color: mediumseagreen; 
 }
+
+.admin_nav{
+  margin-top: 10px;
+}
+
+.admin_header{
+  box-sizing: border-box;
+  width: 200px;
+  padding: 20px;
+  background-color: #eee;
+}
+
+.admin_header.invisible {
+  padding: 20px 0;
+  width: 0px;
+}
+
+header #puce {
+  position: fixed;
+  top: 20px;
+  left: 175px;
+  box-sizing: border-box;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color:cornflowerblue;
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+
+header #puce.invisible {
+  left: -25px;
+  transform: rotate(0deg);
+} 
+
+header #puce #triangle {
+  position: absolute;
+  top: 15px;
+  left: 25px; 
+  width: 0; 
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 12px solid #FFF;
+}
+
+.messageRetourAction {
+  margin-bottom: 10px;
+}
+#filtrer {
+  display: inline-block;
+  margin-left: 40px;
+}
+
+/* tableaux des listes (grid layout)
+     ================================= */
+
+  
+
+     .g {
+      display: grid;
+      grid-gap: 3px;
+    }
+    .g.timbres {
+      grid-template-columns: repeat(11,[col] 2fr);
+    }
+    .g.utilisateurs {
+      grid-template-columns: repeat(5, max-content);
+    }
+  
+    .g.pays {
+      grid-template-columns: repeat(2, [col] 1fr);
+    }
+    .l {
+      display: contents;
+    }
+    .l:nth-of-type(2n) .c {
+      background-color: #eee;
+    }
+    .l:nth-of-type(2n+1) .c {
+      background-color: #ddd;
+    }
+    .t {
+      text-align: center;
+      font-weight: bold;
+      border: 2px solid cornflowerblue;
+    }
+    .t img {
+      width: 10px;
+      margin: 0;
+      cursor: pointer;
+    }
+    .t img:first-of-type {
+      margin-left: 10px;
+    }
+    .t img:hover {
+      transform: scale(1.3);
+    }
+    .t, .c {
+      box-sizing: border-box;
+      padding: 5px 20px;
+      line-height: 32px;
+      border-radius: 3px;
+    }
+    .c a, .c span  {
+      margin: 0 5px;
+    }
+    .c span {
+      color: cornflowerblue;
+      cursor: pointer;
+    }
+    .c span:hover {
+      color:rgb(0, 73, 207);
+    }
+  
+
 
 /* formulaires 
        =========== */

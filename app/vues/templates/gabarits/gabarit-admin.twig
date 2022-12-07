@@ -4,42 +4,42 @@
   <meta charset="UTF-8">
   <meta name="robots" content="noindex, nofollow">
   <title>{{ titre }}</title>
-  <link rel="stylesheet" type="text/css" href="css/admin.css?v=1.1">
+  <link rel="stylesheet" type="text/css" href="css/main.css?v=1.1">
   <script type="module" src="js/admin.js"></script>
 </head>
 
-<body>
+<body class="admin">
   <div class="header-top">
             <span class="logo ">
-                <img class="logo__img" src="./img/logo6.webp" alt="logo">
+                <img class="logo__img" src="./images/logo6.webp" alt="logo">
             </span>
 
             
   </div>
   <div id="page">
-    <header>
+    <header class="admin_header">
      
       <div id="puce"><div id="triangle"></div></div>
       <p>
         {{ oUtilConn.utilisateur_prenom }} {{ oUtilConn.utilisateur_nom }}
-        <a href="admin?entite=utilisateur&action=d">Déconnecter</a>
+        <a href="admin?entite=utilisateur&action=d" class="a_admin">Déconnecter</a>
       </p>
-      <nav>
-        <ul>
+      <nav class="admin_nav">
+        <ul >
           {% if oUtilConn.utilisateur_profil == constant('Utilisateur::PROFIL_ADMINISTRATEUR') or oUtilConn.utilisateur_profil == constant('Utilisateur::PROFIL_MEMBRE') %}
           <li>
             <hr>
-            <a href="admin">Timbres</a>
+            <a href="admin" class="a_admin">Timbres</a>
           </li>
           <li>
-            <a href="admin?entite=pays">Pays</a>
+            <a href="admin?entite=pays" class="a_admin">Pays</a>
           </li>
           
           {% endif %}
           {% if oUtilConn.utilisateur_profil == constant('Utilisateur::PROFIL_ADMINISTRATEUR') %}
           <li>
             <hr>
-            <a href="admin?entite=utilisateur">Utilisateurs</a>
+            <a href="admin?entite=utilisateur" class="a_admin">Utilisateurs</a>
           </li>
           {% endif %}
         </ul>
@@ -59,7 +59,7 @@
                 
                 <div class="grid-item">
                     <div class=" fullwidth logo-footer">
-                        <span class="span-img"><img class="logo__img" src="./img/logo6.webp" alt="logo"></span>
+                        <span class="span-img"><img class="logo__img" src="./images/logo6.webp" alt="logo"></span>
                     </div>
                 </div>
                 
