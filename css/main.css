@@ -1,0 +1,154 @@
+/* ---------------Importation de fichiers CSS ---------------- */
+	/* -------------------- Sections -------------------- */
+   @import "./section/navigation.css";
+   @import "./section/header.css";
+   @import "./section/footer.css"; 
+   @import "./section/aside.css";
+   @import "./section/catalogue.css";
+   @import "./section/hero.css";
+   @import "./section/form.css";
+
+   /* -------------------- Element -------------------- */
+   /* @import "./element/input.css"; */
+   @import "./element/button.css";
+   @import "./element/search-box.css";
+   @import "./element/logo.css";
+
+   /*------------Composants------------*/
+   @import "./composant/card.css";
+   @import "./composant/fiche.css";
+   @import "./composant/card-acceuil.css";
+   @import "./composant/flex-card.css";
+   @import "./composant/grid.css";
+
+
+
+
+   :root {
+    /* couleurs */
+    --darkred: #340203ec;
+    --red: #6c0303;
+    --medred: #953234;
+    --lred: #74393b;
+    --xlred:#c86060;
+    
+    --darkgold: #a3793e;
+    --gold: #a3925f;
+    --medgold: #d6c38b;
+    --lgold: #d8d0b6;
+   
+
+    --dblue: #0c091c;
+    --white: #ededed;
+    --beige:#f3ebd8;
+
+    /* tailles caracteres */
+    --XXL: 2.5rem;
+    --XL: 1.8rem;
+    --L: 1.5rem;
+    --M: 1rem;
+    --S: 0.8rem;
+    --XS: 0.7rem;
+
+}
+
+
+* {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 1.25;
+}
+h1, h2, h3, h4, small {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+nav ul {
+	list-style-type: none;	
+}
+main{
+    display: flex;
+    flex-direction: row;    
+}
+.acceuil{
+    display: flex;
+    flex-direction: column;
+}
+main h2, h4{
+    padding: 15px;
+    text-align: center;
+    font-size: 25px;
+    font-family: "HK Grotesk", "sans-serif";
+    letter-spacing: 0.7px;
+    font-weight: 700;    
+}
+
+
+
+.img-right-of-text{
+	display: flex;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 40px;
+}
+
+.img-right-of-text {
+	background-color: #E9E5D6;
+}
+
+.img-right-of-text__content{
+	align-self: center;
+	padding: 40px 20px;
+    max-width: 500px;
+    max-height: 800px;
+    margin-right:auto ;
+    margin-left: auto;
+}
+.img-right-of-text__content a{
+    max-width: 50px;
+    margin-top: 20px;
+}
+
+.img-right-of-text__content h3
+ {
+	max-width: 50ch;
+	padding-bottom: 30px;
+}
+
+.img-right-of-text__content p
+{
+	max-width: 70ch;
+	
+}
+
+.img-right{
+	object-fit: cover;
+	width: 30vw;
+    opacity: 85%;
+}
+
+.favorit {
+    color: var(--darkgold);
+    font-size: var(--L);
+ }
+
+
+
+
+
+
+@media screen and (max-width: 800px){
+
+    .img-right-of-text
+	{
+		flex-direction: column;
+	}
+
+		
+}

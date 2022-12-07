@@ -1,0 +1,21 @@
+/* ----------Recherche-----------*/
+
+.search-box {
+    position: relative;
+}
+
+.search {
+    background-color: var(--lgold);
+    width: 100%;
+    font-size: var(--M);
+    padding: 8px ;
+    border: 1px solid ;
+    margin-bottom: 20px;
+    border: 2px solid var(--gold);
+}
+
+
+
+
+
+

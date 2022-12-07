@@ -7,7 +7,7 @@
 class AdminPays extends Admin {
 
   protected $methodes = [
-    'l' => ['nom'    => 'listerPays', 'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR, Utilisateur::PROFIL_EDITEUR]]
+    'l' => ['nom'    => 'listerPays', 'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR, Utilisateur::PROFIL_MEMBRE]]
   ];
 
   /**
@@ -24,11 +24,16 @@ class AdminPays extends Admin {
    * Lister les payss
    */
   public function listerPays() {
+     $pays = $this->oRequetesSQL->getPays('admin');
+
     (new Vue)->generer(
       'vAdminPays',
       [
         'oUtilConn' => self::$oUtilConn,
         'titre'     => 'Gestion des pays',
+         'pays'               => $pays,
+         'classRetour'         => $this->classRetour,  
+         'messageRetourAction' => $this->messageRetourAction 
       ],
       'gabarit-admin');
   }

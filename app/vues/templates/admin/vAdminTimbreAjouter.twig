@@ -1,0 +1,54 @@
+<section>
+  <h1>{{ titre|upper }}</h1>
+  
+  <form method="POST" action="admin?entite=timbre&action=a">
+
+    <label>Titre</label>
+    <input name="timbre_nom" value="{{ timbre.timbre_nom }}">
+    <span>&nbsp;{{ erreurs.timbre_nom }}</span>
+
+    <label>Date</label>
+    <input name="timbre_date" value="{{ timbre.timbre_date }}">
+    <span>&nbsp;{{ erreurs.timbre_date }}</span>
+
+    <label>Couleur</label>
+    <input name="timbre_couleur" value="{{ timbre.timbre_couleur }}">
+    <span>&nbsp; {{ erreurs.timbre_couleur }}</span>
+
+    <label>Tirage</label>
+    <input name="timbre_tirage" value="{{ timbre.timbre_tirage }}">
+    <span>&nbsp; {{ erreurs.timbre_tirage }}</span>
+
+    <label>Description</label>
+    <input name="timbre_description" value="{{ timbre.timbre_description }}">
+    <span>&nbsp; {{ erreurs.timbre_description }}</span>
+
+    <label>Prix Plancher</label>
+    <input name="timbre_prix_plancher" value="{{ timbre.timbre_prix_plancher }}">
+    <span>&nbsp; {{ erreurs.timbre_prix_plancher }}</span>
+
+    <label>Dimension</label>
+    <input name="timbre_dimension" value="{{ timbre.timbre_dimension }}">
+    <span>&nbsp; {{ erreurs.timbre_dimension }}</span>
+
+    <label>Pays</label>
+    <input name="timbre_pays_id" value="{{ timbre.timbre_pays_id }}">
+    <span>&nbsp; {{ erreurs.timbre_pays_id }}</span>
+
+    <label>Enchere debut</label>
+    <input name="timbre_enchere_id" value="{{ timbre.timbre_enchere_id }}">
+    <span>&nbsp; {{ erreurs.timbre_enchere_id }}</span>
+
+    {# <label>Enchere fin</label>
+    <input name="enchere_date_fin" value="{{ timbre.enchere_date_fin }}">
+    <span>&nbsp; {{ erreurs.enchere_date_fin }}</span> #}
+
+    
+    
+    
+
+  
+    <input type="submit" value="Envoyer">
+</form>
+  </div>
+</section>

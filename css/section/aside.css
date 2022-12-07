@@ -1,0 +1,83 @@
+
+main aside {
+    display: flex;
+    flex-direction: column;
+    margin: 4em 1em 2em 1em ;
+}
+
+.sidebar {
+    justify-content: center;
+    align-items: center;
+    line-height: 2em;
+    font-family: 'Roboto', "Helvetica Neue", Arial, sans-serif;
+}
+
+.filter_wrapper {
+    position:relative;
+    padding: 0.75rem 0.75rem;
+    max-width: 250px;
+    min-height: 100%;
+    
+    color: rgba(0, 0, 0, 0.87);
+    background-color:  rgba(216, 208, 182, 0.3);
+    box-shadow: 0 5px 15px #00000017;
+}
+
+.filter_wrapper h2 {
+    margin-bottom: 2rem;
+    padding: 0.75rem 0.75rem;
+    text-align: center;
+    cursor: default;
+    color:var(--dblue);
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: var(--M);
+}
+
+.title-filter{
+    
+    font-size: var(--M);
+    margin-top: 10px;     
+}
+
+.filter-form>*{
+    padding-left: 15px;
+}
+.filtre div {
+    display: flex;
+    flex-direction: column;
+}
+
+.filtre div span{
+    text-align:end;
+}
+
+.filtre [data-js-actif='1']{
+    border: 1px solid #CCC;
+}
+.filtre .choixFiltre{
+    list-style-type: none;
+    padding: 4px;
+}
+
+.filtre .choixFiltre:hover{
+    background-color: rgba(200,200,200,0.5);
+}
+
+.liste-categorie{
+    flex-direction: column;
+}
+
+.box-filter, .box-filter-multiple{
+    min-width: 150px;
+    border-color: antiquewhite;
+    padding-left: 30px;
+}
+
+.box-filter-multiple{
+    height: 100px; 
+}
+
+
+

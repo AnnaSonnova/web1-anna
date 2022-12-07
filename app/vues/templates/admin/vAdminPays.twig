@@ -1,4 +1,22 @@
+<script>history.pushState({}, '', 'admin?entite=pays')</script>
+<script type="module" src="js/filtrer.js"></script>
 <section>
   <h1>{{ titre|upper }}</h1>
-  <p>Développement en cours.</p>
+  
+  <input id="filtrer" data-filtre="filtreUtilisateurs" value="" placeholder="Filtrage des lignes contenant cette chaîne">
+  <a href="admin?entite=pays&action=a">Ajouter un pays</a>
+  <p class="messageRetourAction {{ classRetour }}">{{ messageRetourAction|raw }}&nbsp;</p>   
+  <div class="g pays">
+    <div class="t">Id         <img src="images/i-asc.svg"><img src="images/i-desc-a.svg"></div>
+    <div class="t">Nom<img src="images/i-asc.svg"><img src="images/i-desc.svg"></div>
+   
+  {% for pays in pays %}
+    <div class="l">
+      <div class="c dr">{{ pays.pays_id }}</div>
+      <div class="c   ">{{ pays.pays_nom }}, </div>
+     
+    </div>
+  {% endfor %} 
+  </div>
 </section>
+{{ include("admin/modaleSuppression.twig") }}

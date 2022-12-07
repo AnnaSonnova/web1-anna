@@ -1,0 +1,149 @@
+.footer {
+    background-color: var(--red);
+}
+
+.footer h2 {
+    color:var(--medgold);
+    font-family: Baskerville,serif;
+    font-size: var(--L);
+    line-height: 32px;
+    margin-bottom: 20px;
+}
+
+.footer-container {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 100%;
+}
+.footer__nav {
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--darkred);
+    border-bottom: 1px solid #f8f7f5;
+    gap: 30px;
+}
+
+.span-img{
+    margin-top: 40px;
+    overflow: hidden;
+    margin-bottom: -20px;
+}
+
+
+
+.footer__link {
+    display: block;
+    margin: 0 20px;
+    font-family: 'Spectral SC', serif;
+    font-size: var(--M);
+    text-decoration: none;
+    color: var(--lgold); 
+}
+
+.footer__cols {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+
+ 
+.fullwidth {
+    min-width: 100%;
+}
+
+
+
+.footer p {
+    font-size: 14px;
+    font-weight: 100;
+    color: var(--white);
+}
+
+.social {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.social__link {
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+img {
+    display: inline-block;
+    max-width: 100%;
+}
+
+.footer__sub-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 0;
+}
+
+.footer__sub-nav-item {
+    display: block;
+    margin: 0 20px;
+    text-decoration: underline;
+    color: #fff;
+}
+
+.footer__sub-nav-item {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.footer .footer__copyright {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--lgold);
+    padding-bottom: 20px;  
+}
+
+.footer__sub-nav-item {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.footer .button{
+    border: 0.5px solid var(--darkgold);
+    background-color: var(--lgold);
+    color: var(--red);
+}
+.footer .button:hover{
+    background-color: var(--red);
+    color: var(--lgold);
+}
+
+@media screen and (max-width: 1023px){
+    .footer__link {
+        margin: 10px 10px 0;
+    }
+   
+    .footer__sub-nav-item {
+        margin: 0 10px;
+    }
+}
+
+@media screen and (max-width: 959px){
+    .footer__nav {
+        padding: 0;
+    }
+    .footer__cols {
+        
+        flex-wrap: wrap;
+    }
+    
+    .span-img{
+        display: none;
+    }
+}
+
+
+
+

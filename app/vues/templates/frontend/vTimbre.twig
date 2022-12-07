@@ -1,0 +1,83 @@
+<main class="ficheproduct">
+   <div class="hero">
+            <img class="bannier" src="./img/img-stamp/banner5.webp" alt="image orignal">
+        
+        
+        <div class="text-over-image">
+            <h1>Bienvenue sur Enchères Stampee</h1>
+            
+            <a href="#" class="button"> Voir les enchères</a>
+        </div>
+    </div>
+        <div>
+            <nav class="nav-fiche">
+                <a href="#"><span>&#x23F4; Precedan</span></a>
+                <a href="/git/web1-anna/">Revenir au catalogue</a>
+                <a href="#">Suivant &#x23F5;</a>
+            </nav>   
+        </div>
+        <div>
+
+            <!-- <main class="main-fiche"> -->
+            <article class="fiche">
+                
+                    <div class="grid_img">
+                        <picture class="fiche-image">
+                            <img src="./img/img-stamp/Stamp_UK_Penny_Red_pl148.jpg" alt="Stamp_UK_Penny_Red">
+                        </picture>
+                            
+                        <div class="fiche__img-grid">
+                            <picture class="card-image ">
+                                <img src="./img/img-stamp/penny_black.jpg" alt="penny_black">  
+                            </picture>
+                            <picture class="card-image ">
+                                <img src="./img/img-stamp/unnamed.png" alt="unnamed">  
+                            </picture>
+                            <picture class="card-image ">
+                                <img src="./img/img-stamp/Stamp_UK_Penny_Red_pl148.jpg" alt="Stamp_UK_Penny_Red"> 
+                            </picture>    
+                        </div>
+                    </div>    
+                        
+                    <div class="fiche__info">
+                        <h2>{{ timbre.timbre_nom }} ({{ timbre.timbre_date }})</h2>
+                        <div class="fiche-info__titre">
+                            <div  class="fiche-info__general" >
+                                <h3>Lot # <Span>{{ timbre.timbre_id }}</Span></h3>
+                            </div>    
+                        </div>
+                        <div class="fiche__description " >
+                            <h3>Description</h3>
+                            <p> {{ timbre.timbre_description }} 
+                            </p>
+                            <div class="fiche__description-info">
+                                <p>Pays d'origin: <span>{{ timbre.pays_nom }}</span></p> 
+                                <p>Certificat: <span>oui</span> </p>
+                                <p>Tirage: <span>{{ timbre.timbre_tirage }}</span> </p>
+                                <p>Dimensions: <span>{{ timbre.timbre_dimension }}</span> </p>
+                                <p>Condition: <span>Bonne</span> </p>
+                            </div>            
+                        </div>  
+                        <div class="fiche-info__actuel card-main">
+                            <div>
+                                <p>Date de début: <span>{{ timbre.enchere_date_debut }}</span></p>
+                                <p>Date de fin: <span>{{ timbre.enchere_date_fin }}</span></p>
+                                <p> &#x23F1;Reste: <span> 10j 12:00:33</span></p>    
+                            </div>
+                            <div >
+                                <p>Depart: <span>{{ timbre.timbre_prix_plancher }}</span> </p>
+                                <p>Actuel: <span>1200$</span> </p>
+                                <p>Quantité de mises: <span>2</span></p>
+                            </div>
+                        </div>    
+                        <div class="card-button fiche__card-button">
+                            <button class="btn"><a  href="/web1-ch/admin">Miser</button>        
+                            <button class="btn">Suivre</button>
+                        </div> 
+                    </div>             
+                
+            </article>
+        </div>
+        
+    
+  </main>

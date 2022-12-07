@@ -9,8 +9,16 @@
 </head>
 
 <body>
+  <div class="header-top">
+            <span class="logo ">
+                <img class="logo__img" src="./img/logo6.webp" alt="logo">
+            </span>
+
+            
+  </div>
   <div id="page">
     <header>
+     
       <div id="puce"><div id="triangle"></div></div>
       <p>
         {{ oUtilConn.utilisateur_prenom }} {{ oUtilConn.utilisateur_nom }}
@@ -18,29 +26,15 @@
       </p>
       <nav>
         <ul>
-          {% if oUtilConn.utilisateur_profil == constant('Utilisateur::PROFIL_ADMINISTRATEUR') or oUtilConn.utilisateur_profil == constant('Utilisateur::PROFIL_EDITEUR') %}
+          {% if oUtilConn.utilisateur_profil == constant('Utilisateur::PROFIL_ADMINISTRATEUR') or oUtilConn.utilisateur_profil == constant('Utilisateur::PROFIL_MEMBRE') %}
           <li>
             <hr>
-            <a href="admin">Films</a>
-          </li>
-          <li>
-            <a href="admin?entite=genre">Genres</a>
-          </li>
-          <li>
-            <a href="admin?entite=realisateur">Réalisateurs</a>
-          </li>
-          <li>
-            <a href="admin?entite=acteur">Acteurs</a>
+            <a href="admin">Timbres</a>
           </li>
           <li>
             <a href="admin?entite=pays">Pays</a>
           </li>
-          <li>
-            <a href="admin?entite=seance">Séances</a>
-          </li>
-          <li>
-            <a href="admin?entite=salle">Salles</a>
-          </li>
+          
           {% endif %}
           {% if oUtilConn.utilisateur_profil == constant('Utilisateur::PROFIL_ADMINISTRATEUR') %}
           <li>
@@ -56,6 +50,34 @@
     {{ include(templateMain) }}
 
     </main>
-  </div>
+    </div>
+    <footer  class="footer">
+        
+        <div class="footer-container">
+    
+            <div class="grid  footer__cols">
+                
+                <div class="grid-item">
+                    <div class=" fullwidth logo-footer">
+                        <span class="span-img"><img class="logo__img" src="./img/logo6.webp" alt="logo"></span>
+                    </div>
+                </div>
+                
+            </div>
+    
+            
+    
+            <div class="footer__sub-nav">
+                <a class="footer__sub-nav-item"  href="#">CONDITION GÉNÉRAL DE L'ACHETEUR</a>
+                <a class="footer__sub-nav-item" href="#">CONDITION GÉNÉRAL DU VENDEUR</a>
+               
+            </div>
+    
+            <p class="footer__copyright">&copy; 2022 Enchères Stampee. Tous les droit réservés.</p>
+        </div>
+        
+        
+    </footer>
+  
 </body>
 </html>

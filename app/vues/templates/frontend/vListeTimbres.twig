@@ -1,0 +1,62 @@
+<main>
+    {# <section>
+      <h1>{{ titre|upper }}</h1>
+      <div>
+        {% for timbre in timbres %}
+        <div>
+          <a href="timbre?timbre_id={{timbre.timbre_id }}"></a>
+          <p class="legende">{{ timbre.timbre_nom }} {{timbre.timbre_date}} </p>
+        </div>
+        {% else %}
+        <div>Aucun timbre.</div>
+        {% endfor %}
+      </div>
+    </section> #}
+
+    <section class="catalogue">
+            <h2>{{ titre|upper }}</h2>
+            <div class="btn_container">
+                <button class="btn_view" data-js-list-btn><i class="fa fa-th-list" aria-hidden="true"></i> Liste</button>
+                <button class="btn_view active" data-js-grid-btn><i class="fa fa-th-large" aria-hidden="true"></i> Grille</button>
+            </div>
+            <!-- Cartes -->
+            <div class="grid">
+             {% for timbre in timbres %}
+                <article class="card">
+                    <header class="header-card">
+                        <picture class="card-image ">
+                            <img src="./img/img-stamp/Stamp_UK_Penny_Red_pl148.jpg" alt="stamp_Penny_red">
+                        </picture>
+                        <picture class="modal"><img src="./img/img-stamp/Stamp_UK_Penny_Red_pl148.jpg" alt=""></picture>
+                        <div class="card-info">
+                            <div class="card-info__titre">
+                                <div  class="card-info__principal" >
+                                    <h3 >Lot: <a href="timbre?timbre_id={{timbre.timbre_id }}">{{timbre.timbre_id }}</a></h3>
+                                    <a class="social__link favorit"  href="#">&#9819;</a>
+                                </div>
+                                <h3>{{ timbre.timbre_nom }}   ({{timbre.timbre_date}})</h3>
+                                <span>{{ timbre.pays_nom }}</span>
+                            </div>
+                            <div class="card-info__actuel">
+                                <p><small>Temps restant:</small>10j 12:00:33</p>  
+                            </div>    
+                        </div>       
+                    </header>
+                    <div class="card-main">
+                        <p><small>Depart:</small>{{ timbre.timbre_prix_plancher }}</p>
+                        <p><small>Actuel:</small>1200$</p>
+                       
+                    </div>
+                    <div class="card-button">
+                        <a  href="ficheproduit.html" class="btn">Detail</a>
+                        <button class="btn">Miser</button> 
+                        
+                    </div>
+                      <!-- <p>  «Penny rouge» ayant perforation, lettres aux quatre coins et numéro de plaque 148</p>  -->
+                </article>
+                 {% else %}
+        <div>Aucun timbre.</div>
+        {% endfor %}
+                
+ </main>   
+  

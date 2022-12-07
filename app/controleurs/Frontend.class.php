@@ -7,7 +7,8 @@
 
 class Frontend extends Routeur {
 
-  private $film_id;
+  // private $timbre_id;
+  private $timbre_id;
   
   /**
    * Constructeur qui initialise des propriétés à partir du query string
@@ -15,75 +16,73 @@ class Frontend extends Routeur {
    * 
    */
   public function __construct() {
-    $this->film_id = $_GET['film_id'] ?? null; 
+    // $this->timbre_id = $_GET['timbre_id'] ?? null;
+    $this->timbre_id = $_GET['timbre_id'] ?? null;  
     $this->oRequetesSQL = new RequetesSQL;
   }
 
 
-  /**
-   * Lister les films à l'affiche
-   * 
-   */  
-  public function listerAlaffiche() {
-    $films = $this->oRequetesSQL->getFilms('enSalle');
-    (new Vue)->generer("vListeFilms",
-            array(
-              'titre'  => "À l'affiche",
-              'films' => $films
-            ),
-            "gabarit-frontend");
+  // /**
+  //  * Lister les timbres à l'affiche
+  //  * 
+  //  */  
+  // public function listerAlaffiche() {
+  //   $timbres = $this->oRequetesSQL->gettimbres('enSalle');
+  //   (new Vue)->generer("vListetimbres",
+  //           array(
+  //             'titre'  => "À l'affiche",
+  //             'timbres' => $timbres
+  //           ),
+  //           "gabarit-frontend");
+  // }
+
+  public function listerTimbres(){
+    //echo "lister timbres" ; 
+    $timbres =$this->oRequetesSQL->getTimbres();
+    $titre = "Catalogue d'enchères";
+    $donnees = ["titre" => $titre, "timbres"=> $timbres];
+    (new Vue)->generer("vListeTimbres", $donnees, "gabarit-frontend");
   }
 
-  /**
-   * Lister les films diffusés prochainement
-   * 
-   */  
-  public function listerProchainement() {
-    $films = $this->oRequetesSQL->getFilms('prochainement');
-    (new Vue)->generer("vListeFilms",
-            array(
-              'titre'  => "Prochainement",
-              'films' => $films
-            ),
-            "gabarit-frontend");
-  }
+  // /**
+  //  * Lister les timbres diffusés prochainement
+  //  * 
+  //  */  
+  // public function listerProchainement() {
+  //   $timbres = $this->oRequetesSQL->gettimbres('prochainement');
+  //   (new Vue)->generer("vListetimbres",
+  //           array(
+  //             'titre'  => "Prochainement",
+  //             'timbres' => $timbres
+  //           ),
+  //           "gabarit-frontend");
+  // }
 
   /**
-   * Voir les informations d'un film
+   * Voir les informations d'une timbre
    * 
    */  
-  public function voirFilm() {
-    $film = false;
-    if (!is_null($this->film_id)) {
-      $film = $this->oRequetesSQL->getFilm($this->film_id);
-      $realisateurs = $this->oRequetesSQL->getRealisateursFilm($this->film_id);
-      $pays         = $this->oRequetesSQL->getPaysFilm($this->film_id);
-      $acteurs      = $this->oRequetesSQL->getActeursFilm($this->film_id);
+ 
 
-      // si affichage avec vFilm2.twig
-      // =============================
-      // $seances      = $this->oRequetesSQL->getSeancesFilm($this->film_id); 
-
-      // si affichage avec vFilm.twig
-      // ============================
-      $seancesTemp  = $this->oRequetesSQL->getSeancesFilm($this->film_id);
-      $seances = [];
-      foreach ($seancesTemp as $seance) {
-        $seances[$seance['seance_date']]['jour']     = $seance['seance_jour'];
-        $seances[$seance['seance_date']]['heures'][] = $seance['seance_heure'];
-      }
+  public function voirTimbre(){
+    //echo "voir timbre" ; 
+    $timbre = false;
+    if (!is_null($this->timbre_id)) {
+      
+      $timbre         = $this->oRequetesSQL->getTimbre($this->timbre_id);
+      // $realisateurs = $this->oRequetesSQL->getRealisateurstimbre($this->timbre_id);
+      // $pays         = $this->oRequetesSQL->getPaystimbre($this->timbre_id);
+      // $acteurs      = $this->oRequetesSQL->getActeurstimbre($this->timbre_id);
+      // $seancesTemp  = $this->oRequetesSQL->getSeancestimbre($this->timbre_id);
+      // $seances = [];
+      // foreach ($seancesTemp as $seance) {
+      //   $seances[$seance['seance_date']]['jour']     = $seance['seance_jour'];
+      //   $seances[$seance['seance_date']]['heures'][] = $seance['seance_heure'];
+      // }
     }
-    if (!$film) throw new Exception("Film inexistant.");
-
-    (new Vue)->generer("vFilm",
-            array(
-              'titre'        => $film['film_titre'],
-              'film'         => $film,
-              'realisateurs' => $realisateurs,
-              'pays'         => $pays,
-              'acteurs'      => $acteurs,
-              'seances'      => $seances
-            ),
-            "gabarit-frontend");
-  }
+    if (!$timbre) throw new Exception("Timbre inexistant.");
+    $nom = $timbre['timbre_nom'];
+    $donnees = ["nom" => $nom, "timbre"=> $timbre];
+    (new Vue)->generer("vTimbre", $donnees, "gabarit-frontend");
+}
 }

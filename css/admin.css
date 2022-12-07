@@ -134,10 +134,14 @@ main {
     grid-gap: 3px;
   }
   .g.films {
-    grid-template-columns: repeat(10, max-content);
+    grid-template-columns: repeat(11, max-content);
   }
   .g.utilisateurs {
     grid-template-columns: repeat(5, max-content);
+  }
+
+  .g.pays {
+    grid-template-columns: repeat(2, max-content);
   }
   .l {
     display: contents;

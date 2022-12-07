@@ -7,7 +7,9 @@
 class Admin extends Routeur {
 
   protected $utilisateur_id;
-  protected $film_id;
+  // protected $timbre_id;
+  protected $timbre_id;
+   //protected $pays_id;
 
   protected static $entite;
   protected static $action;
@@ -21,7 +23,9 @@ class Admin extends Routeur {
    * 
    */
   public function __construct() {
-    self::$entite = $_GET['entite'] ?? 'film';
+    self::$entite = $_GET['entite'] ?? 'timbre';
+    // self::$entite = $_GET['entite'] ?? 'pays';
+     self::$entite = $_GET['entite'] ?? 'timbre';
     self::$action = $_GET['action'] ?? 'l';
   }
 

@@ -1,0 +1,99 @@
+
+header .header-top, .header-bottom{
+    padding-left: 2em;
+    padding-right: 2em;
+    color: var(--lgold);
+    font-family: 'Spectral SC', serif;
+    display: flex;
+    gap: 20px;
+}
+.header-top {
+    justify-content: space-between;
+    background-color: var(--red);
+}
+
+.header-titre {
+    padding: 3em 0em;
+    display: flex;
+    height: 90%;
+    align-items: center;
+    align-self: center;
+}
+
+.header-titre h1 {
+    font-size: 40px;
+    font-family: 'Spectral SC', serif;
+    font-weight: 300;
+    padding-top: 5px;
+}
+
+.header-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border: 0;
+    flex-direction: column;
+    padding-top: 2em;
+}
+
+.header-button div a {
+    text-decoration: none;
+    color: var(--lgold);
+    gap: 5px;
+}
+
+.header-button div a i {
+    padding: 2px 8px 0 0;
+}
+
+.header-button div a:hover {
+    color: #ffffff;
+}
+
+.medaillon-image-login{
+    flex-shrink: 0;
+    width: 30px;
+}
+
+.medaillon-image{
+    flex-shrink: 0;
+    width: 40px;
+    max-height: 40px;
+    margin-bottom:  -0.5em; ;
+}
+
+
+
+@media (min-width: 320px) and (max-width: 450px){
+    .header-top {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 980px){
+    .header-top {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+        padding-left: 0.6em;
+        padding-right: 0.6em;
+    }
+    
+    .header-titre h1 {
+        display: none;
+    }
+    .header-button {
+        padding-top: 3em;
+        margin-top: -10px;
+    }
+    .header-button div a {
+        padding-left: 0;
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+    
+    
+}
+

@@ -11,14 +11,14 @@ class Routeur {
   // uri,             classe,     méthode
   // ------------------------------------
     ["admin",         "Admin",    "gererEntite"],
-    ["",              "Frontend", "listerAlaffiche"],
-    ["prochainement", "Frontend", "listerProchainement"],
-    ["film",          "Frontend", "voirFilm"]
+    ["",              "Frontend", "listerTimbres"],
+    // ["prochainement", "Frontend", "listerProchainement"],
+    ["timbre",          "Frontend", "voirTimbre"]
   ];
 
   protected $oRequetesSQL; // objet RequetesSQL utilisé par tous les contrôleurs
 
-  // const BASE_URI = '/31B/TP3/'; // dossier racine du site par rapport au dossier racine d'Apache 
+  
   const BASE_URI = '/git/web1-anna/'; // pour le PHP Server de Visual Studio Code
 
   const ERROR_FORBIDDEN = "HTTP 403";

@@ -1,0 +1,44 @@
+<script>history.pushState({}, '', 'admin?entite=timbre')</script>
+<script type="module" src="js/filtrer.js"></script>
+<section>
+  <h1>{{ titre|upper }}</h1>
+  <input id="filtrer" data-filtre="filtreFilms" value="" placeholder="Filtrage des lignes contenant cette chaîne">
+  <a href="admin?entite=timbre&action=a">Ajouter une timbre</a>
+  <p class="messageRetourAction {{ classRetour }}">{{ messageRetourAction }}&nbsp;</p>   
+  <div class="g films">
+    <div class="t">Id      <img src="images/i-asc.svg"><img src="images/i-desc-a.svg"></div>
+    <div class="t">Titre   <img src="images/i-asc.svg"><img src="images/i-desc.svg"></div>
+    <div class="t">Date  <img src="images/i-asc.svg"><img src="images/i-desc.svg"></div>
+    <div class="t">Couleur   <img src="images/i-asc.svg"><img src="images/i-desc.svg"></div>
+    <div class="t">Tirage   <img src="images/i-asc.svg"><img src="images/i-desc.svg"></div>
+    <div class="t">Description  <img src="images/i-asc.svg"><img src="images/i-desc.svg"></div>
+    <div class="t">Prix Plancher<img src="images/i-asc.svg"><img src="images/i-desc.svg"></div>
+    <div class="t">Dimension <img src="images/i-asc.svg"><img src="images/i-desc.svg"></div>
+    <div class="t">Pays <img src="images/i-asc.svg"><img src="images/i-desc.svg"></div>
+    <div class="t">date debut <img src="images/i-asc.svg"><img src="images/i-desc.svg"></div>
+    
+    <div class="t">Actions</div>
+  {% for timbre in timbres %}
+    <div class="l">
+      <div class="c dr">{{ timbre.timbre_id }}</div>
+      <div class="c   ">{{ timbre.timbre_nom }}</div>
+      <div class="c mi">{{ timbre.timbre_date }}</div>
+      <div class="c dr">{{ timbre.timbre_couleur }}</div>
+      <div class="c   ">{{ timbre.timbre_tirage }}</div>
+      <div class="c   ">{{ timbre.timbre_description }}</div>
+      <div class="c dr">{{ timbre.timbre_prix_plancher }}</div>
+      <div class="c dr">{{ timbre.timbre_dimension }}</div>
+      <div class="c dr">{{ timbre.pays_nom }}</div>
+      <div class="c dr">{{ timbre.enchere_date_debut }}</div>
+      
+      <div class="c   ">
+        <a href="admin?entite=timbre&action=m&timbre_id={{ timbre.timbre_id }}">modifier</a>
+        {# {% if not film.nb_realisateurs and not film.nb_acteurs and not film.nb_pays %} #}
+        <span class="confirmer" data-href="admin?entite=timbre&action=s&timbre_id={{ timbre.timbre_id }}">supprimer</span>
+        {# {% endif %} #}
+      </div>
+    </div>
+  {% endfor %} 
+  </div>
+</section>
+{{ include("admin/modaleSuppression.twig") }}

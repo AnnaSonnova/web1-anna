@@ -1,0 +1,41 @@
+.vedette{
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.vedette__boutton{
+    margin-right: auto;
+    margin-left: auto;
+    background-color: var(--lgold);
+    color: var(--dblue);
+}
+.grid-acceuil{
+    display: grid;
+    gap:20px;
+    grid-template-columns: repeat(4,[col] 1fr);    
+}
+.vedette h2{
+    color: #0d0440da;
+}
+@media (min-width: 650px) and (max-width: 1200px) {
+    .grid-acceuil{
+        grid-template-columns: repeat(2,[col] 1fr);
+        
+    }
+    .vedette{
+        margin-left: auto;
+        margin-right: auto; 
+    }
+}
+@media (min-width: 320px) and (max-width: 650px){
+    .grid-acceuil{
+        grid-template-columns: repeat(1,[col] 1fr);
+        
+    }
+    .vedette{
+        margin-left: auto;
+        margin-right: auto; 
+    }
+}

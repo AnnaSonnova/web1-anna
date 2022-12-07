@@ -1,0 +1,39 @@
+.logo {
+    padding: 2em 1em;
+    display: flex;
+    height: 100%;
+}
+
+.logo__img {
+    flex-shrink: 0;
+    width: 150px;
+    opacity: 0.9;
+}
+
+.logo__img:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.span-img>.logo__img{
+    max-width: 100%;
+}
+
+.logo-footer{
+    margin-top: 40px;
+}
+
+
+@media (max-width: 980px){
+
+    .logo {
+       
+        padding-top: 1em;
+        z-index: 2;
+    }
+    .logo__img {
+        max-width: 120px;
+        position: absolute;
+        left: 0px;
+    }
+}

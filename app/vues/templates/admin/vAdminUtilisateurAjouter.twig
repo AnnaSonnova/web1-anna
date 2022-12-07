@@ -18,8 +18,8 @@
 
     <label>Profil</label>
     <select name="utilisateur_profil">
-      <option value="{{ constant('utilisateur::PROFIL_UTILISATEUR')    }}" {{ utilisateur.utilisateur_profil == constant('utilisateur::PROFIL_UTILISATEUR')    ? 'selected' : '' }}>Utilisateur</option>
-      <option value="{{ constant('utilisateur::PROFIL_EDITEUR')        }}" {{ utilisateur.utilisateur_profil == constant('utilisateur::PROFIL_EDITEUR')        ? 'selected' : '' }}>Editeur</option>
+      
+      <option value="{{ constant('utilisateur::PROFIL_MEMBRE')        }}" {{ utilisateur.utilisateur_profil == constant('utilisateur::PROFIL_MEMBRE')        ? 'selected' : '' }}>Membre</option>
       <option value="{{ constant('utilisateur::PROFIL_ADMINISTRATEUR') }}" {{ utilisateur.utilisateur_profil == constant('utilisateur::PROFIL_ADMINISTRATEUR') ? 'selected' : '' }}>Administrateur</option>
     </select>
     <span>&nbsp;{{ erreurs.utilisateur_profil }}</span>

@@ -1,0 +1,36 @@
+/*---grid dans card---*/
+.grid{
+    display: grid;
+    gap:5px;
+    grid-template-columns: repeat(3,[col] 1fr);    
+}
+
+@media (min-width: 650px) and (max-width: 1100px) {
+    .grid{
+        grid-template-columns: repeat(2,[col] 1fr);
+        
+    }
+}
+@media (min-width: 320px) and (max-width: 650px){
+    .grid{
+        grid-template-columns: repeat(1,[col] 1fr);
+        
+    }
+}
+/*---grid dans footer---*/
+.grid-item {
+    text-align: center;
+    padding: 0 60px;
+    box-sizing: border-box;
+}
+
+.grid-item p {
+    margin: 10px 0;
+}
+
+@media screen and (max-width: 950px){
+    .grid-item {
+        
+        flex: 1 0 33%;
+    } 
+}

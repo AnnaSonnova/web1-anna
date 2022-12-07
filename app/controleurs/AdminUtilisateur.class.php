@@ -30,9 +30,12 @@ class AdminUtilisateur extends Admin {
    */
   public function connecter() {
     $this->oRequetesSQL = new RequetesSQL;
+    
     $messageErreurConnexion = ""; 
     if (count($_POST) !== 0) {
+      
       $u = $this->oRequetesSQL->connecter($_POST);
+      
       if ($u !== false) {
         $_SESSION['oUtilConn'] = new Utilisateur($u);
         parent::gererEntite();

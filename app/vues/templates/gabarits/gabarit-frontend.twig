@@ -2,25 +2,152 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="author" content="Anna Chumbaieva">
   <title>{{ titre }}</title>
-  <link rel="stylesheet" type="text/css" href="css/frontend.css?v=1.2">
+  <link rel="stylesheet" type="text/css" href="css/main.css?v=1.2">
   <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <header>
-    <div id="logo">Le Méliès</div>
-    <nav>
-      <ul>
-        <li><a href=".">À l'affiche</a></li>
-        <li><a href="prochainement">Prochainement</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
+  <header >
+        <div class="header-top">
+            <span class="logo ">
+                <img class="logo__img" src="./img/logo6.webp" alt="logo">
+            </span>
+
+            <div class="header-titre">
+                <h1>Enchères Stampee</h1>
+            </div>
+            <div class="header-button">
+
+                <div  class="button-profile">
+                    <div >
+                        <a  href="/git/web1-anna/admin"> <img class="medaillon-image-login" src="img/login-lgold.png" alt=""> Login</a>
+                    </div>
+                    <div >
+                        <a  href="#"> <img class="medaillon-image" src="img/compt-lgold.png" alt=""> Créer un compte</a>
+                    </div>    
+                </div>
+
+                <form class="search-box">
+                    
+                    <input type="text" class="search" id="search" placeholder="Recherche"
+                        title="Rehercher la plateforme">
+                </form>
+
+            </div>
+        </div>
+
+        <!-- Navigation -->
+
+        <div class="menu ">
+
+            <nav class="navigation header-bottom">
+                <label class="label-toggle" for="toggle">&#9776;</label>
+                <input type="checkbox" id="toggle">
+                <div class="nav__main-menu menu-burger">
+                    <ul>
+                        <li class=" "><a href="/git/web1-anna/">Accueil</a></li>
+                        <li class="nav_submenu active_link">
+                            <a href="portail.html">Portail des Enchères  &#x23F7;</a>
+                            
+                            <ul>
+                                <li><a href="ficheproduit.html">Enchères en cours </a> </li>
+                                <li><a href="#">Enchères passées</a></li>
+                                <li><a href="#">Suivre une enchère</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav_submenu"><a href="#">Fonctionnement de la plateforme  &#x23F7;</a>
+                            <ul>
+                                <li><a href="#">Comment placer une offre </a></li>
+                                <li><a href="#">Procédures et politiques </a></li>
+                                <li><a href="#">Termes et conditions</a> </li>
+                                <li><a href="#">Contacter le webmestre</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href="#">À Propos Lord Stampee</a></li>
+
+                        <li class="nav_submenu"><a href="#">Contactez-Nous &#x23F7;</a>
+                            <ul>
+                                <li><a href="#">Angleterre</a></li>
+                                <li><a href="#">Canada</a></li>
+                                <li><a href="#">USA </a></li>
+                                <li><a href="#">Australie</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Devenir membre</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+  
 
   {{ include(templateMain) }}
 
-  </main>
+  <footer  class="footer">
+        <nav class="footer__nav">
+            <a class="footer__link"  href="#">Nouveaux timbres</a>
+            <a class="footer__link"  href="#">Livraison & Retours</a>
+            <a class="footer__link"  href="#">Service clienteles</a>
+            <a class="footer__link"  href="#">Termes et conditions</a>
+            <a class="footer__link"  href="#">Évaluations</a>
+            
+        </nav>
+        <div class="footer-container">
+    
+            <div class="grid  footer__cols">
+                <div class="grid-item">
+                    <div class=" fullwidth">
+                        <h2>Créer un compte </h2>
+                        <p>Créez un compte pour profiter de listes de souhaites, nouveauté et plus encore...</p>
+                        <p><a class="button" href="#">S'INSCRIRE</a></p>
+                        <p><a class="button" href="#">CONNECTE</a></p>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class=" fullwidth logo-footer">
+                        <span class="span-img"><img class="logo__img" src="./img/logo6.webp" alt="logo"></span>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class=" fullwidth">
+                        <h2>Contactez-Nous</h2>
+                        <p>08:30 am - 5:00 pm (Mon-Fri)</p>
+                        <p> +1 (514) 425 72 63</p>
+                        <p>encheresStampee@gmail.com </p>
+                        <p><a class="button" href="#">Contactez-Nous</a></p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="social">
+                <a class="social__link"  href="#">
+                    <img  src="img/facebook-gold-red.png" width="30" height="30" alt="Facebook">
+                </a>
+                <a class="social__link"  href="#">
+                    <img  src="img/twiter-goldred.png" width="34" height="34" alt="Twitter">
+                </a>
+                <a class="social__link"  href="#">
+                    <img  src="img/insta-golg-red.png" width="36" height="36" alt="Instagram">
+                </a>
+                <a class="social__link"  href="#">
+                    <img src="img/web-red-gold.png" width="30" height="30" alt="web">
+                </a>
+            </div>
+    
+            <div class="footer__sub-nav">
+                <a class="footer__sub-nav-item"  href="#">CONDITION GÉNÉRAL DE L'ACHETEUR</a>
+                <a class="footer__sub-nav-item" href="#">CONDITION GÉNÉRAL DU VENDEUR</a>
+               
+            </div>
+    
+            <p class="footer__copyright">&copy; 2022 Enchères Stampee. Tous les droit réservés.</p>
+        </div>
+        
+        
+    </footer>
 </body>
 </html>

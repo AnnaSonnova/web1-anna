@@ -14,8 +14,7 @@ class Utilisateur extends Entite
   protected $utilisateur_profil;
 
   const PROFIL_ADMINISTRATEUR = "administrateur";
-  const PROFIL_EDITEUR        = "editeur";
-  const PROFIL_UTILISATEUR    = "utilisateur";
+  const PROFIL_MEMBRE       = "membre";
 
   protected $erreurs = array();
   const ERR_COURRIEL_EXISTANT = "Courriel déjà utilisé.";
@@ -99,8 +98,7 @@ class Utilisateur extends Entite
   public function setUtilisateur_profil($utilisateur_profil) {
     unset($this->erreurs['utilisateur_profil']);
     if ($utilisateur_profil !== self::PROFIL_ADMINISTRATEUR &&
-        $utilisateur_profil !== self::PROFIL_EDITEUR &&
-        $utilisateur_profil !== self::PROFIL_UTILISATEUR) {
+        $utilisateur_profil !== self::PROFIL_MEMBRE ) {
       $this->erreurs['utilisateur_profil'] = 'Profil incorrect.';
     }
     $this->utilisateur_profil = $utilisateur_profil;
