@@ -1,6 +1,6 @@
 <?php
 
-class Pays
+class Pays extends Entite
 {
   private $pays_id;
   private $pays_nom;

@@ -71,15 +71,7 @@ class Frontend extends Routeur {
     if (!is_null($this->timbre_id)) {
       
       $timbre         = $this->oRequetesSQL->getTimbre($this->timbre_id);
-      // $realisateurs = $this->oRequetesSQL->getRealisateurstimbre($this->timbre_id);
-      // $pays         = $this->oRequetesSQL->getPaystimbre($this->timbre_id);
-      // $acteurs      = $this->oRequetesSQL->getActeurstimbre($this->timbre_id);
-      // $seancesTemp  = $this->oRequetesSQL->getSeancestimbre($this->timbre_id);
-      // $seances = [];
-      // foreach ($seancesTemp as $seance) {
-      //   $seances[$seance['seance_date']]['jour']     = $seance['seance_jour'];
-      //   $seances[$seance['seance_date']]['heures'][] = $seance['seance_heure'];
-      // }
+      
     }
     if (!$timbre) throw new Exception("Timbre inexistant.");
     $nom = $timbre['timbre_nom'];

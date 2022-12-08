@@ -49,11 +49,18 @@ class AdminTimbre extends Admin {
     if (count($_POST) !== 0){
       $timbre = $_POST;
       $oTimbre = new Timbre($timbre);
-      print_r($oTimbre);
+//       $img = $_POST;
+//       print_r($_FILES); '<br>';
+// print_r($_POST);
+//       $oImg = new Img($img);
+//       $nom_fichier = $_FILES['userfile']['name'];
+// $fichier = $_FILES['userfile']['tmp_name'];
+
+      //print_r($oTimbre);
       //var_dump("isi"); exit;
        $erreurs = $oTimbre->getErreurs();
       if (count($erreurs) === 0){
-        //print_r($_POST);
+        
         $timbre_id=$this->oRequetesSQL->ajouterTimbre([
          
           'timbre_nom'      => $oTimbre->getTimbre_nom() ,
@@ -64,8 +71,20 @@ class AdminTimbre extends Admin {
           'timbre_prix_plancher'   => $oTimbre->getTimbre_prix_plancher(),
           'timbre_dimension'   => $oTimbre->getTimbre_dimension(),
           'timbre_pays_id'   => $oTimbre->getTimbre_pays_id(),
-          'timbre_enchere_id' => $oTimbre->getTimbre_pays_id()
+          'timbre_enchere_id' => 
+          $oTimbre->getTimbre_enchere_id(),
+          // 'img_url' => $oImg->getImg_url()
+          
         ]);
+
+        
+      //   if(move_uploaded_file($fichier, "images/".$nom_fichier)){
+      //     echo "fichier copie";
+      
+      // }else{
+      //     echo "fichier non copie";
+      // }
+        
         if ( $timbre_id  > 0) { // test de la clé de timbre ajouté
           $this->messageRetourAction = "Ajout de l'utilisateur numéro $timbre_id  effectué.";
         } else {
@@ -95,8 +114,10 @@ class AdminTimbre extends Admin {
    * Modifier un timbre
    */
   public function modifierTimbre() {
-    $timbre = [];
-    $erreurs     = [];
+    
+    //  if (!preg_match('/^\d+$/', 
+    //  $this->timbre_id))
+    //    throw new Exception("Numéro de la timbre non renseigné pour une modification");
     if (count($_POST) !== 0){
       $timbre = $_POST;
       $oTimbre = new Timbre($timbre);
@@ -111,7 +132,7 @@ class AdminTimbre extends Admin {
           'timbre_prix_plancher'   => $oTimbre->getTimbre_prix_plancher(),
           'timbre_dimension'   => $oTimbre->getTimbre_dimension(),
           'timbre_pays_id'   => $oTimbre->getTimbre_pays_id(),
-          'timbre_enchere_id' => $oTimbre->getTimbre_pays_id()
+          'timbre_enchere_id' => $oTimbre->getTimbre_enchere_id()
         ]);
         
           if ($retour === true)  {
@@ -124,6 +145,9 @@ class AdminTimbre extends Admin {
           exit;
        
       }
+    } else {
+      $timbre = $this->oRequetesSQL->getTimbre($this->timbre_id);
+      $erreurs = [];
     } 
 
     (new Vue)->generer(
@@ -143,6 +167,13 @@ class AdminTimbre extends Admin {
    * Supprimer un timbre
    */
   public function supprimerTimbre() {
-    throw new Exception("Développement en cours.");
+    if (!preg_match('/^\d+$/', $this->timbre_id))
+      throw new Exception("Numéro du timbre incorrect pour une suppression.");
+
+    $retour =$this->oRequetesSQL->supprimerTimbre($this->timbre_id);
+    if ($retour === false) $this->classRetour = "erreur";
+    $this->messageRetourAction = "Suppression de timbre numéro $this->timbre_id ".($retour ? "" : "non ")."effectuée.";
+    $this->listerTimbres();
+    
   }
 }

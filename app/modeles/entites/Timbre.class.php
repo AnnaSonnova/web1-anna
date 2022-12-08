@@ -32,6 +32,7 @@ public function getTimbre_description()   { return $this->timbre_description; }
 public function getTimbre_prix_plancher()   { return $this->timbre_prix_plancher; }
 public function getTimbre_dimension()   { return $this->timbre_dimension; }
 public function getTimbre_pays_id()   { return $this->timbre_pays_id; }
+public function getTimbre_enchere_id()   { return $this->timbre_enchere_id; }
 public function getErreurs()              { return $this->erreurs; } 
 
  /**

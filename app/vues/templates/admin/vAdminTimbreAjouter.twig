@@ -1,7 +1,7 @@
 <section>
   <h1>{{ titre|upper }}</h1>
   
-  <form method="POST" action="admin?entite=timbre&action=a">
+  <form method="POST" action="admin?entite=timbre&action=a" enctype="multipart/form-data">
 
     <label>Titre</label>
     <input name="timbre_nom" value="{{ timbre.timbre_nom }}">
@@ -39,6 +39,11 @@
     <input name="timbre_enchere_id" value="{{ timbre.timbre_enchere_id }}">
     <span>&nbsp; {{ erreurs.timbre_enchere_id }}</span>
 
+     {# <label>Envoyer une image:</label>
+    
+    <input type="file" name="img_url" value="{{ img.img_id }}">
+    <span>&nbsp; {{ erreurs.timbre_enchere_id }}</span> #}
+
     {# <label>Enchere fin</label>
     <input name="enchere_date_fin" value="{{ timbre.enchere_date_fin }}">
     <span>&nbsp; {{ erreurs.enchere_date_fin }}</span> #}
@@ -50,5 +55,11 @@
   
     <input type="submit" value="Envoyer">
 </form>
+
+{# <form action="admin?entite=timbre&action=a" enctype="multipart/form-data" method = "post">
+   
+    Envoyer de fichier: <input type="file" name="userfile">
+    <input type="submit" value="envoyer le ficher">
+</form> #}
   </div>
 </section>

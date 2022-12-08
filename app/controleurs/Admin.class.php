@@ -25,7 +25,7 @@ class Admin extends Routeur {
   public function __construct() {
     self::$entite = $_GET['entite'] ?? 'timbre';
     // self::$entite = $_GET['entite'] ?? 'pays';
-     self::$entite = $_GET['entite'] ?? 'timbre';
+     
     self::$action = $_GET['action'] ?? 'l';
   }
 
@@ -42,9 +42,9 @@ class Admin extends Routeur {
       } else {
         throw new Exception("L'entité ".self::$entite." n'existe pas.");
       }
-    } else {
+     } else {
       (new AdminUtilisateur)->connecter();
-    }    
+     }    
   }
 
   /**

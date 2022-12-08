@@ -175,6 +175,11 @@ INSERT INTO timbre (timbre_id, timbre_nom, timbre_date, timbre_couleur, timbre_t
 -- (9,'Penny noir', 1880, 'noir', 10000, '-', '500.00', '12mm*12mm*1mm', 5)
 ;
 
+INSERT INTO img (img_id, img_url, img_timbre_id) VALUES (1, )
+      
+      '
+      ;
+
 
 
 -- CREATE TABLE modePayement (

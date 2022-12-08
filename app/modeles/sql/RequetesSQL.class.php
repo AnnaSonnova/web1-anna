@@ -170,9 +170,9 @@ class RequetesSQL extends RequetesPDO {
    * @return int|string clé primaire de la ligne ajoutée, message d'erreur sinon
    */ 
   public function ajouterTimbre($champs) {
-    echo 'isi';
+    // echo 'isi';
 
-    print_r($champs);
+    // print_r($champs);
     $this->sql = '
       INSERT INTO timbre SET
       timbre_nom   = :timbre_nom,
@@ -183,9 +183,34 @@ class RequetesSQL extends RequetesPDO {
       timbre_prix_plancher = :timbre_prix_plancher,
       timbre_dimension      = :timbre_dimension,
       timbre_pays_id   = :timbre_pays_id,
-      timbre_enchere_id = :timbre_enchere_id';
+      timbre_enchere_id = :timbre_enchere_id
+      
+      '
+      ;
     return $this->CUDLigne($champs);
   }
+
+  /**
+   * Ajouter une timbre
+   * @param array $champs tableau des champs de l'utilisateur 
+   * @return int|string clé primaire de la ligne ajoutée, message d'erreur sinon
+   */ 
+  public function ajouterImg($champs) {
+    // echo 'isi';
+
+    // print_r($champs);
+    $this->sql = '
+    INSERT INTO img SET
+     img_url = :img_url,
+     img_timbre_id = :img_timbre_id
+      
+      '
+      ;
+    return $this->CUDLigne($champs);
+  }
+
+  // INSERT INTO img SET
+      // img_url = :img_url
 
   /**
    * Modifier timbre
@@ -204,8 +229,20 @@ class RequetesSQL extends RequetesPDO {
       timbre_prix_plancher = :timbre_prix_plancher,
       timbre_dimension      = :timbre_dimension,
       timbre_pays_id   = :timbre_pays_id,
-      timbre_enchere_id = :timbre_enchere_id';
+      timbre_enchere_id = :timbre_enchere_id
+      WHERE timbre_id = :timbre_id';
     return $this->CUDLigne($champs);
+  }
+
+  /**
+   * Supprimer timbre
+   * @param int $timbre_id clé primaire
+   * @return boolean|string true si suppression effectuée, message d'erreur sinon
+   */ 
+  public function supprimerTimbre($timbre_id) {
+    $this->sql = '
+      DELETE FROM timbre WHERE timbre_id = :timbre_id';
+    return $this->CUDLigne(['timbre_id' => $timbre_id]);
   }
 
 
