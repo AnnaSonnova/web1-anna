@@ -11,8 +11,9 @@ class Routeur {
   // uri,             classe,     méthode
   // ------------------------------------
     ["admin",         "Admin",    "gererEntite"],
+    ["creer",         "AdminUtilisateur",    "ajouterUtilisateur"],
     
-    ["login",         "AdminUtilisateur",    "ajouterUtilisateur"],
+    ["login",         "Admin",    "connecter"],
     ["",              "Frontend", "listerTimbres"],
     // ["prochainement", "Frontend", "listerProchainement"],
     ["timbre",          "Frontend", "voirTimbre"]
@@ -21,7 +22,7 @@ class Routeur {
   protected $oRequetesSQL; // objet RequetesSQL utilisé par tous les contrôleurs
 
   
-  const BASE_URI = '/web1-anna/'; // pour le PHP Server de Visual Studio Code
+  const BASE_URI = '/git/web1-anna/'; // pour le PHP Server de Visual Studio Code
 
   const ERROR_FORBIDDEN = "HTTP 403";
   const ERROR_NOT_FOUND = "HTTP 404";

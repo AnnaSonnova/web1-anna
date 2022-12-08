@@ -5,10 +5,13 @@ class SingletonPDO extends PDO
     private static $instance = null;
 
     const DB_SERVEUR  = 'localhost';
-    const DB_NOM      = 'e2295591';
+    const DB_NOM      = 'stampee';
+    //const DB_NOM      = 'e2295591';
     const DB_DSN      = 'mysql:host='. self::DB_SERVEUR .';dbname='. self::DB_NOM.';charset=utf8'; 
-    const DB_LOGIN    = 'e2295591';
-    const DB_PASSWORD = 'Ns4v0i5mnxLjEiDD31kO';
+    const DB_LOGIN    = 'root';
+    //const DB_LOGIN    = 'e2295591';
+    const DB_PASSWORD = '';
+    //const DB_PASSWORD = 'Ns4v0i5mnxLjEiDD31kO';
 
     private function __construct() {
         
