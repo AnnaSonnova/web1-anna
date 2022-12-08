@@ -191,7 +191,23 @@ class RequetesSQL extends RequetesPDO {
   }
 
   /**
-   * Ajouter une timbre
+   * Récupération des img par id 
+   * @param  string $critere
+   * @return array tableau des lignes produites par la select   
+   */ 
+  public function getImgId() {
+    
+    $this->sql = "
+      SELECT timbre_id, timbre_nom
+      FROM timbre
+      INNER JOIN img ON timbre_id = img_timbre_id
+       ";
+       
+    return $this->getLignes();
+  }
+
+  /**
+   * Ajouter une img
    * @param array $champs tableau des champs de l'utilisateur 
    * @return int|string clé primaire de la ligne ajoutée, message d'erreur sinon
    */ 
@@ -208,6 +224,8 @@ class RequetesSQL extends RequetesPDO {
       ;
     return $this->CUDLigne($champs);
   }
+
+  
 
   // INSERT INTO img SET
       // img_url = :img_url

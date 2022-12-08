@@ -86,7 +86,7 @@ class AdminTimbre extends Admin {
       // }
         
         if ( $timbre_id  > 0) { // test de la clé de timbre ajouté
-          $this->messageRetourAction = "Ajout de l'utilisateur numéro $timbre_id  effectué.";
+          $this->messageRetourAction = "Ajout de timbre numéro $timbre_id  effectué.";
         } else {
           $this->classRetour = "erreur";
           $this->messageRetourAction = "Ajout de timbre non effectué.";

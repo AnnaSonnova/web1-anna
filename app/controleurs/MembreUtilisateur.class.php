@@ -4,17 +4,17 @@
  * Classe Contrôleur des requêtes sur l'entité Utilisateur de l'application admin
  */
 
-class AdminUtilisateur extends Admin {
+class MembreUtilisateur extends Membre {
 
   protected $methodes = [
-    'l'           => ['nom'    =>'listerUtilisateurs',  'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
+    // 'l'           => ['nom'    =>'listerUtilisateurs',  'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
     'a'           => ['nom'    =>'ajouterUtilisateur'
-    ,   'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]
+    // ,   'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]
   ],
-    'm'           => ['nom'    =>'modifierUtilisateur',  'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
-    's'           => ['nom'    =>'supprimerUtilisateur', 'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
-    'd'           => ['nom'    =>'deconnecter'],
-    'generer_mdp' => ['nom'    =>'genererMdp',           'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]]
+    // 'm'           => ['nom'    =>'modifierUtilisateur',  'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
+    // 's'           => ['nom'    =>'supprimerUtilisateur', 'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
+     'd'           => ['nom'    =>'deconnecter']
+   
   ];
 
   /**
@@ -40,7 +40,7 @@ class AdminUtilisateur extends Admin {
       
       if ($u !== false) {
         $_SESSION['oUtilConn'] = new Utilisateur($u);
-        parent::gererEntite();
+        parent::gererEntiteMembre();
         exit;         
       } else {
         $messageErreurConnexion = "Courriel ou mot de passe incorrect.";
@@ -48,12 +48,12 @@ class AdminUtilisateur extends Admin {
     }
 
     (new Vue)->generer(
-      'vAdminUtilisateurConnecter',
+      'vMembreConnecter',
       [
         'titre'                  => 'Connexion',
         'messageErreurConnexion' => $messageErreurConnexion
       ],
-      'gabarit-admin-min');
+      'gabarit-membre-min');
   }
 
   /**
@@ -61,32 +61,33 @@ class AdminUtilisateur extends Admin {
    */
   public function deconnecter() {
     unset ($_SESSION['oUtilConn']);
-    parent::gererEntite();
+    parent::gererEntiteMembre();
   }
 
-  /**
-   * Lister les utilisateurs
-   */
-  public function listerUtilisateurs() {
-    $utilisateurs = $this->oRequetesSQL->getUtilisateurs();
+  // /**
+  //  * Lister les utilisateurs
+  //  */
+  // public function listerUtilisateurs() {
+  //   $utilisateurs = $this->oRequetesSQL->getUtilisateurs();
 
-    (new Vue)->generer(
-      'vAdminUtilisateurs',
-      [
-        'oUtilConn'           => self::$oUtilConn,
-        'titre'               => 'Gestion des utilisateurs',
-        'utilisateurs'        => $utilisateurs,
-        'classRetour'         => $this->classRetour,  
-        'messageRetourAction' => $this->messageRetourAction
-      ],
-      'gabarit-admin');
-  }
+  //   (new Vue)->generer(
+  //     'vMembreUtilisateurs',
+  //     [
+  //       'oUtilConn'           => self::$oUtilConn,
+  //       'titre'               => 'Gestion des utilisateurs',
+  //       'utilisateurs'        => $utilisateurs,
+  //       'classRetour'         => $this->classRetour,  
+  //       'messageRetourAction' => $this->messageRetourAction
+  //     ],
+  //     'gabarit-admin');
+  // }
 
   /**
    * Ajouter un utilisateur
    */
   public function ajouterUtilisateur() {
     if (count($_POST) !== 0) {
+      echo("isi"); exit;
       $utilisateur = $_POST;
       $oUtilisateur = new Utilisateur($utilisateur);
       $oUtilisateur->courrielExiste();
@@ -112,7 +113,7 @@ class AdminUtilisateur extends Admin {
             $this->classRetour = "erreur";         
             $this->messageRetourAction = "Ajout de l'utilisateur non effectué.";
           }
-          $this->listerUtilisateurs();
+          // $this->listerUtilisateurs();
           exit;
         } else {
           $erreurs['utilisateur_courriel'] = $retour;
@@ -124,14 +125,14 @@ class AdminUtilisateur extends Admin {
     }
     
     (new Vue)->generer(
-      'vAdminUtilisateurAjouter',
+      'vMembreAjouter',
       [
         'oUtilConn'   => self::$oUtilConn,
         'titre'       => 'Ajouter un utilisateur',
         'utilisateur' => $utilisateur,
         'erreurs'     => $erreurs
       ],
-      'gabarit-admin');
+      'gabarit-membre');
   }
 
   /**
@@ -161,7 +162,7 @@ class AdminUtilisateur extends Admin {
           $this->classRetour = "erreur";
           $this->messageRetourAction = "Modification de l'utilisateur numéro $this->utilisateur_id non effectuée.";
         }
-        $this->listerUtilisateurs();
+        // $this->listerUtilisateurs();
         exit;
       } else {
         $erreurs['utilisateur_courriel'] = $retour;
@@ -183,18 +184,18 @@ class AdminUtilisateur extends Admin {
     'gabarit-admin');
   }
   
-  /**
-   * Supprimer un utilisateur
-   */
-  public function supprimerUtilisateur() {
-    if (!preg_match('/^\d+$/', $this->utilisateur_id))
-      throw new Exception("Numéro d'utilisateur incorrect pour une suppression.");
+  // /**
+  //  * Supprimer un utilisateur
+  //  */
+  // public function supprimerUtilisateur() {
+  //   if (!preg_match('/^\d+$/', $this->utilisateur_id))
+  //     throw new Exception("Numéro d'utilisateur incorrect pour une suppression.");
 
-    $retour = $this->oRequetesSQL->supprimerUtilisateur($this->utilisateur_id);
-    if ($retour === false) $this->classRetour = "erreur";
-    $this->messageRetourAction = "Suppression de l'utilisateur numéro $this->utilisateur_id ".($retour ? "" : "non ")."effectuée.";
-    $this->listerUtilisateurs();
-  }
+  //   $retour = $this->oRequetesSQL->supprimerUtilisateur($this->utilisateur_id);
+  //   if ($retour === false) $this->classRetour = "erreur";
+  //   $this->messageRetourAction = "Suppression de l'utilisateur numéro $this->utilisateur_id ".($retour ? "" : "non ")."effectuée.";
+  //   // $this->listerUtilisateurs();
+  // }
 
   /**
    * Générer un nouveau mot de passe
@@ -221,6 +222,6 @@ class AdminUtilisateur extends Admin {
       $this->classRetour = "erreur";
       $this->messageRetourAction = "Modification du mot de passe de l'utilisateur numéro $this->utilisateur_id non effectuée.";
     }
-    $this->listerUtilisateurs();
+    // $this->listerUtilisateurs();
   }
 }

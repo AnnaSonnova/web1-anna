@@ -14,6 +14,7 @@ class Img extends Entite
   public function getImg_id()       { return $this->img_id; }
   public function getImg_url()      { return $this->img_url; }
   public function getImg_timbre_id()   { return $this->img_timbre_id; }
+  public function getErreurs()              { return $this->erreurs; } 
 
  
   

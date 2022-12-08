@@ -20,9 +20,10 @@ class Vue {
     ]);
     $dossierVue =    stristr($gabarit, 'frontend') ? 'frontend'
                   : (stristr($gabarit, 'admin')    ? 'admin'
+                  : (stristr($gabarit, 'membre') ? 'membre'
                   : (stristr($gabarit, 'courriel') ? 'courriels'
                   : (stristr($gabarit, 'erreur')   ? 'erreurs'
-                  : '')));
+                  : ''))));
     $donnees['templateMain'] = "$dossierVue/$vue.twig";
     $html = $twig->render("gabarits/$gabarit.twig", $donnees);
     if ($courriel) return $html;

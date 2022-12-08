@@ -39,27 +39,18 @@
     <input name="timbre_enchere_id" value="{{ timbre.timbre_enchere_id }}">
     <span>&nbsp; {{ erreurs.timbre_enchere_id }}</span>
 
-     {# <label>Envoyer une image:</label>
-    
-    <input type="file" name="img_url" value="{{ img.img_id }}">
-    <span>&nbsp; {{ erreurs.timbre_enchere_id }}</span> #}
-
     {# <label>Enchere fin</label>
     <input name="enchere_date_fin" value="{{ timbre.enchere_date_fin }}">
     <span>&nbsp; {{ erreurs.enchere_date_fin }}</span> #}
-
-    
-    
-    
-
   
     <input type="submit" value="Envoyer">
 </form>
 
-{# <form action="admin?entite=timbre&action=a" enctype="multipart/form-data" method = "post">
+<form action="admin?entite=img&action=a" enctype="multipart/form-data" method = "post">
    
-    Envoyer de fichier: <input type="file" name="userfile">
+    Envoyer de fichier: <input type="file" name="img_url"value="{{ img.img_uri }}">
+    
     <input type="submit" value="envoyer le ficher">
-</form> #}
+</form>
   </div>
 </section>
