@@ -7,7 +7,7 @@
 class MembreUtilisateur extends Membre {
 
   protected $methodes = [
-    // 'l'           => ['nom'    =>'listerUtilisateurs',  'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
+    'l'           => ['nom'    =>'listerTimbres',  'droits' => [Utilisateur::PROFIL_MEMBRE]],
     'a'           => ['nom'    =>'ajouterUtilisateur'
     // ,   'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]
   ],
@@ -28,24 +28,43 @@ class MembreUtilisateur extends Membre {
   }
 
   /**
+   * Lister les timbres
+   */
+  public function listerTimbres() {
+    $timbres = $this->oRequetesSQL->getTimbres('admin');
+    (new Vue)->generer(
+      'vAdminTimbres',
+      [
+        'oUtilConn'           => self::$oUtilConn,
+        'titre'               => 'Gestion des timbres',
+        'timbres'               => $timbres,
+        'classRetour'         => $this->classRetour,  
+        'messageRetourAction' => $this->messageRetourAction        
+      ],
+      'gabarit-admin');
+  }
+
+  /**
    * Connecter un utilisateur
    */
   public function connecter() {
+    error_log("connecter");
     $this->oRequetesSQL = new RequetesSQL;
     
     $messageErreurConnexion = ""; 
     if (count($_POST) !== 0) {
-      
+      error_log("POST=". implode($_POST));
       $u = $this->oRequetesSQL->connecter($_POST);
       
       if ($u !== false) {
         $_SESSION['oUtilConn'] = new Utilisateur($u);
-        parent::gererEntiteMembre();
+        $this -> listerTimbres();
         exit;         
       } else {
         $messageErreurConnexion = "Courriel ou mot de passe incorrect.";
       }
     }
+    error_log("connecter1");
 
     (new Vue)->generer(
       'vMembreConnecter',
@@ -56,6 +75,17 @@ class MembreUtilisateur extends Membre {
       'gabarit-membre-min');
   }
 
+  /**
+   * Connecter un utilisateur
+   */
+  public function showLoginPage() {
+    (new Vue)->generer(
+      'vAdminUtilisateurConnecter',
+      [
+        'titre'                  => 'Connexion'
+      ],
+      'gabarit-admin-min');
+  }
   /**
    * Déconnecter un utilisateur
    */
@@ -86,14 +116,16 @@ class MembreUtilisateur extends Membre {
    * Ajouter un utilisateur
    */
   public function ajouterUtilisateur() {
+    error_log("POST=" . implode($_POST));
     if (count($_POST) !== 0) {
-      echo("isi"); exit;
+      
+  
       $utilisateur = $_POST;
       $oUtilisateur = new Utilisateur($utilisateur);
       $oUtilisateur->courrielExiste();
       $erreurs = $oUtilisateur->erreurs;
       if (count($erreurs) === 0) {
-        $oUtilisateur->genererMdp();
+       // $oUtilisateur->genererMdp();
         $retour = $this->oRequetesSQL->ajouterUtilisateur([
           'utilisateur_nom'      => $oUtilisateur->utilisateur_nom,
           'utilisateur_prenom'   => $oUtilisateur->utilisateur_prenom,
@@ -113,7 +145,7 @@ class MembreUtilisateur extends Membre {
             $this->classRetour = "erreur";         
             $this->messageRetourAction = "Ajout de l'utilisateur non effectué.";
           }
-          // $this->listerUtilisateurs();
+           $this->showLoginPage();
           exit;
         } else {
           $erreurs['utilisateur_courriel'] = $retour;

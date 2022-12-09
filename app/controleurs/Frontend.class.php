@@ -9,6 +9,7 @@ class Frontend extends Routeur {
 
   // private $timbre_id;
   private $timbre_id;
+  private $img_id;
   
   /**
    * Constructeur qui initialise des propriétés à partir du query string
@@ -18,6 +19,7 @@ class Frontend extends Routeur {
   public function __construct() {
     // $this->timbre_id = $_GET['timbre_id'] ?? null;
     $this->timbre_id = $_GET['timbre_id'] ?? null;
+    // $this->img_id = $_GET['img_id'] ?? null;
     // $this->oUser = $_SESSION['oUser'] ?? null;  
     $this->oRequetesSQL = new RequetesSQL;
   }
@@ -44,6 +46,14 @@ class Frontend extends Routeur {
     $donnees = ["titre" => $titre, "timbres"=> $timbres];
     (new Vue)->generer("vListeTimbres", $donnees, "gabarit-frontend");
   }
+
+  // public function listerImg(){
+  //   echo "lister img" ; 
+  //   $img =$this->oRequetesSQL->getImg();
+  //   $titre = "Catalogue d'enchères";
+  //   $donnees = ["titre" => $titre, "img"=> $img];
+  //   (new Vue)->generer("vListeTimbres", $donnees, "gabarit-frontend");
+  // }
 
   // /**
   //  * Lister les timbres diffusés prochainement

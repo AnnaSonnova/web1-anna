@@ -60,6 +60,8 @@ class AdminUtilisateur extends Admin {
    * Déconnecter un utilisateur
    */
   public function deconnecter() {
+    
+    error_log("deconecter");
     unset ($_SESSION['oUtilConn']);
     parent::gererEntite();
   }

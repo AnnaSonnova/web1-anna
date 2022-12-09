@@ -33,6 +33,7 @@ class Membre extends Routeur {
    * Gérer l'interface d'administration 
    */  
   public function gererEntiteMembre() {
+    error_log("gerer");
     if (isset($_SESSION['oUtilConn'])) {
       self::$oUtilConn = $_SESSION['oUtilConn'];
       $entite = ucwords(self::$entite);

@@ -24,12 +24,14 @@
              {% for timbre in timbres %}
                 <article class="card">
                     <header class="header-card">
-                     {% for img in img %}
+                     {# {% for img in img %} #}
                         <picture class="card-image ">
-                            <img src="./images/img-stamp/{{img.img}}" alt="stamp_Penny_red">
+                            <img src="./images/img-stamp/{{timbre.img_url}}" alt="stamp_Penny_red">
                         </picture>
-                        <picture class="modal"><img src="./images/img-stamp/Stamp_UK_Penny_Red_pl148.jpg" alt=""></picture>
-                     {% endfor %}   
+                        <picture class="modal"><img src="./images/img-stamp/{{timbre.img_url}}" alt=""></picture>
+                        {# {% else %}
+                            <div>Aucun img.</div>
+                     {% endfor %}    #}
                         <div class="card-info">
                             <div class="card-info__titre">
                                 <div  class="card-info__principal" >

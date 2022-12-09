@@ -175,9 +175,12 @@ INSERT INTO timbre (timbre_id, timbre_nom, timbre_date, timbre_couleur, timbre_t
 -- (9,'Penny noir', 1880, 'noir', 10000, '-', '500.00', '12mm*12mm*1mm', 5)
 ;
 
-INSERT INTO img (img_id, img_url, img_timbre_id) VALUES (1, )
+INSERT INTO img (img_id, img_url, img_timbre_id) VALUES (null,'Stamp_UK_Penny_Red_pl148', 1 ),
+(null,'timbre-poste-britannique-de-londres-lord-mayors-festival-85192708', 2 ),
+(null,'maUkraine', 3 ),
+(null,'GB_World_Cup_Overprint_Stamp', 4 )
       
-      '
+      
       ;
 
 

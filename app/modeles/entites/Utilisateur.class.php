@@ -105,6 +105,21 @@ class Utilisateur extends Entite
     return $this;
   }
 
+   /**
+   * Mutateur de la propriété utilisateur_profil
+   * @param string $utilisateur_profil
+   * @return $this
+   */    
+  public function setUtilisateur_mdp($utilisateur_mdp) {
+  //  unset($this->erreurs['utilisateur_mdp']);
+  //  if ($utilisateur_profil !== self::PROFIL_ADMINISTRATEUR &&
+  //      $utilisateur_profil !== self::PROFIL_MEMBRE ) {
+  //    $this->erreurs['utilisateur_profil'] = 'Profil incorrect.';
+  //  }
+    $this->utilisateur_mdp = $utilisateur_mdp;
+    return $this;
+  }
+
   /**
    * Controler l'existence du courriel 
    */    

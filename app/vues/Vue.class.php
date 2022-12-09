@@ -12,7 +12,7 @@ class Vue {
    * @return string si $courriel true, void sinon 
    */
   public function generer($vue, $donnees=array(), $gabarit="gabarit-frontend", $courriel = false) {
-
+    error_log("generer");
     require_once 'app/vues/vendor/autoload.php';
     $loader = new \Twig\Loader\FilesystemLoader('app/vues/templates');
     $twig = new \Twig\Environment($loader, [

@@ -18,7 +18,24 @@ class AdminImg extends Admin {
   public function __construct() {
     $this->img_id = $_GET['img_id'] ?? null;
     $this->oRequetesSQL = new RequetesSQL;
-  }  
+  } 
+  
+  /**
+   * Lister les timbres
+   */
+  public function listerImg() {
+    $img = $this->oRequetesSQL->getImg('admin');
+    (new Vue)->generer(
+      'vAdminImg',
+      [
+        'oUtilConn'           => self::$oUtilConn,
+        'titre'               => 'Gestion des images',
+        'img'               => $img,
+        'classRetour'         => $this->classRetour,  
+        'messageRetourAction' => $this->messageRetourAction        
+      ],
+      'gabarit-admin');
+  }
 
   /**
    * Ajouter un timbre
