@@ -65,7 +65,7 @@ class AdminTimbre extends Admin {
          
           'timbre_nom'      => $oTimbre->getTimbre_nom() ,
           'timbre_date'   => $oTimbre->getTimbre_date(),
-          'timbre_couleur' => $oTimbre->getTimbre_couleur(),
+          'timbre_utilisateur_id' => $oTimbre->getTimbre_utilisateur_id(),
           'timbre_tirage'      => $oTimbre->getTimbre_tirage(),
           'timbre_description'   => $oTimbre->getTimbre_description(),
           'timbre_prix_plancher'   => $oTimbre->getTimbre_prix_plancher(),
@@ -124,9 +124,10 @@ class AdminTimbre extends Admin {
       $erreurs = $oTimbre->getErreurs();
       if (count($erreurs) === 0) {
         $retour = $this->oRequetesSQL->modifierTimbre([
+          'timbre_id'      => $oTimbre->getTimbre_id() ,
           'timbre_nom'      => $oTimbre->getTimbre_nom() ,
           'timbre_date'   => $oTimbre->getTimbre_date(),
-          'timbre_couleur' => $oTimbre->getTimbre_couleur(),
+          'timbre_utilisateur_id' => $oTimbre->getTimbre_utilisateur_id(),
           'timbre_tirage'      => $oTimbre->getTimbre_tirage(),
           'timbre_description'   => $oTimbre->getTimbre_description(),
           'timbre_prix_plancher'   => $oTimbre->getTimbre_prix_plancher(),

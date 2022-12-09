@@ -18,12 +18,14 @@
   </div>
   <div id="page">
     <header class="admin_header">
-     
+     <p>
+       Gabarit Membre
+      </p>
       
-      <p>
+      {# <p>
         {{ oUtilConn.utilisateur_prenom }} {{ oUtilConn.utilisateur_nom }}
         <a href="membre?entite=utilisateur&action=d" class="a_admin">Déconnecter</a>
-      </p>
+      </p> #}
       <nav class="admin_nav">
         <ul >
           {% if oUtilConn.utilisateur_profil == constant('Utilisateur::PROFIL_MEMBRE') %}

@@ -67,11 +67,11 @@ CREATE TABLE timbre (
   timbre_id int UNSIGNED NOT NULL  AUTO_INCREMENT,
   timbre_nom varchar(255) NOT NULL,
   timbre_date smallint(5) NOT NULL,
-  timbre_couleur varchar(45) ,
   timbre_tirage int,
   timbre_description text(400),
   timbre_prix_plancher double NOT NULL,
   timbre_dimension varchar(255) NOT NULL,
+  timbre_utilisateur_id int UNSIGNED NOT NULL,
   timbre_pays_id int UNSIGNED NOT NULL,
   timbre_enchere_id int UNSIGNED NOT NULL,
 --   timbre_condition_id int UNSIGNED NOT NULL,
@@ -100,6 +100,15 @@ ALTER TABLE timbre
 --
 ALTER TABLE timbre
   ADD CONSTRAINT fk_timbre_enchere_id FOREIGN KEY (timbre_enchere_id) REFERENCES enchere (enchere_id) ON DELETE NO ACTION ON UPDATE NO ACTION;  
+
+ALTER TABLE timbre
+  ADD KEY fk_timbre_utilisateur_idx (timbre_utilisateur_id);
+
+--
+-- Contraintes pour la table timbre
+--
+ALTER TABLE timbre
+  ADD CONSTRAINT fk_timbre_utilisateur_id FOREIGN KEY (timbre_utilisateur_id) REFERENCES utilisateur (utilisateur_id) ON DELETE NO ACTION ON UPDATE NO ACTION;    
 
 
 
@@ -163,11 +172,11 @@ INSERT INTO pays (pays_id, pays_nom) VALUES
 (9, 'Allemagne'),
 (10, 'Belgique');
 
-INSERT INTO timbre (timbre_id, timbre_nom, timbre_date, timbre_couleur, timbre_tirage, timbre_description, timbre_prix_plancher, timbre_dimension, timbre_pays_id, timbre_enchere_id) VALUES
-(1, 'Penny rouge', '1871', 'rouge', 100, '«Penny rouge» ayant perforation, lettres aux quatre coins et numéro de plaque 148', '1000.00', '12mm*12mm*1mm', 5, 1),
-(2,'Lord-Maire de Londres', '1989', 'blanche', 1000, 'GRANDE-BRETAGNE - CIRCA 1989 : Un timbre-poste utilisé du Royaume-Uni, représentant une illustration célébrant le 800e anniversaire de l’exposition du Lord-Maire de Londres, vers 1989.', '800.00', '12mm*12mm*1mm', 5, 2),
-(3,'Navire de guerre russe Go F**k Yourself', '2022', 'blanche', 2000, 'Le timbre de la guerre dans Ukraine', '100.00', '12mm*12mm*1mm', 8, 3),
-(4, 'Victorieux', '1966', 'grise', 10000, 'timbre[en] avec la silhouette d’Elizabeth II par Mary Gillick[en] et la surimpression en l’honneur de la victoire de l’équipe nationale d’Angleterre à la Coupe du Monde de la FIFA', '300.00', '12mm*12mm*1mm', 8, 4),
+INSERT INTO timbre (timbre_id, timbre_nom, timbre_date, timbre_utilisateur_id, timbre_tirage, timbre_description, timbre_prix_plancher, timbre_dimension, timbre_pays_id, timbre_enchere_id) VALUES
+(1, 'Penny rouge', '1871', '1', 100, '«Penny rouge» ayant perforation, lettres aux quatre coins et numéro de plaque 148', '1000.00', '12mm*12mm*1mm', 5, 1),
+(2,'Lord-Maire de Londres', '1989', '2', 1000, 'GRANDE-BRETAGNE - CIRCA 1989 : Un timbre-poste utilisé du Royaume-Uni, représentant une illustration célébrant le 800e anniversaire de l’exposition du Lord-Maire de Londres, vers 1989.', '800.00', '12mm*12mm*1mm', 5, 2),
+(3,'Navire de guerre russe Go F**k Yourself', '2022', '2', 2000, 'Le timbre de la guerre dans Ukraine', '100.00', '12mm*12mm*1mm', 8, 3),
+(4, 'Victorieux', '1966', '1', 10000, 'timbre[en] avec la silhouette d’Elizabeth II par Mary Gillick[en] et la surimpression en l’honneur de la victoire de l’équipe nationale d’Angleterre à la Coupe du Monde de la FIFA', '300.00', '12mm*12mm*1mm', 8, 4),
 -- (5,'Timbre militaire', 1936, 'grise', 5000, 'L’armée britannique en Egypte pour la correspondance écrite en 1932-1936', '800.00', '12mm*12mm*1mm', 5),
 -- (6,'Wilding', 1952, 'blanche', 2000, 'Timbre standard avec portrait d’Elizabeth II', '500.00', '12mm*12mm*1mm', 5),
 -- (7,'France', 1871, 'grise', 500000, '-', '20.00', '12mm*12mm*1mm', 4),

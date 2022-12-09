@@ -160,7 +160,7 @@ class MembreUtilisateur extends Membre {
       'vMembreAjouter',
       [
         'oUtilConn'   => self::$oUtilConn,
-        'titre'       => 'Ajouter un utilisateur',
+        'titre'       => 'Creer un compte',
         'utilisateur' => $utilisateur,
         'erreurs'     => $erreurs
       ],

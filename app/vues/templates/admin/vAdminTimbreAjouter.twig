@@ -1,6 +1,8 @@
 <section>
   <h1>{{ titre|upper }}</h1>
-  
+  <p>
+       vAdminTimbreAjouter
+      </p>
   <form method="POST" action="admin?entite=timbre&action=a" enctype="multipart/form-data">
 
     <label>Titre</label>
@@ -12,8 +14,8 @@
     <span>&nbsp;{{ erreurs.timbre_date }}</span>
 
     <label>Couleur</label>
-    <input name="timbre_couleur" value="{{ timbre.timbre_couleur }}">
-    <span>&nbsp; {{ erreurs.timbre_couleur }}</span>
+    <input name="timbre_utilisateur_id" value="{{ timbre.timbre_utilisateur_id }}">
+    <span>&nbsp; {{ erreurs.timbre_utilisateur_id }}</span>
 
     <label>Tirage</label>
     <input name="timbre_tirage" value="{{ timbre.timbre_tirage }}">

@@ -1,6 +1,9 @@
 <script>history.pushState({}, '', 'admin?entite=timbre')</script>
 <script type="module" src="js/filtrer.js"></script>
 <section>
+<p>
+       vAdminUtilisateurTimbre
+      </p>
   <h1>{{ titre|upper }}</h1>
   <input id="filtrer" data-filtre="filtreFilms" value="" placeholder="Filtrage des lignes contenant cette chaîne">
   <a href="admin?entite=timbre&action=a">Ajouter une timbre</a>
@@ -23,7 +26,7 @@
       <div class="c dr">{{ timbre.timbre_id }}</div>
       <div class="c   ">{{ timbre.timbre_nom }}</div>
       <div class="c mi">{{ timbre.timbre_date }}</div>
-      <div class="c dr">{{ timbre.timbre_couleur }}</div>
+      <div class="c dr">{{ timbre.utilisateur_nom }}</div>
       <div class="c   ">{{ timbre.timbre_tirage }}</div>
       <div class="c   ">{{ timbre.timbre_description }}</div>
       <div class="c dr">{{ timbre.timbre_prix_plancher }}</div>

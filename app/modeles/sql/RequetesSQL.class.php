@@ -137,11 +137,13 @@ class RequetesSQL extends RequetesPDO {
     // $aujourdhui  = $oAujourdhui->format('Y-m-d');
     // $dernierJour = $oAujourdhui->modify('+6 day')->format('Y-m-d');
     $this->sql = "
-      SELECT timbre_id, timbre_nom, timbre_date, timbre_couleur, timbre_tirage,
+      SELECT timbre_id, timbre_nom, timbre_date, utilisateur_nom , timbre_tirage,
       timbre_description, timbre_prix_plancher, timbre_dimension, pays_nom, enchere_date_debut, enchere_date_fin 
       FROM timbre
       INNER JOIN pays ON pays_id = timbre_pays_id
-      INNER JOIN enchere ON enchere_id = timbre_enchere_id 
+      INNER JOIN enchere ON enchere_id = timbre_enchere_id
+      INNER JOIN utilisateur ON utilisateur_id = timbre_utilisateur_id 
+      INNER JOIN img ON img_id = img_timbre_id
       GROUP BY timbre_id ";
        
     return $this->getLignes();
@@ -154,11 +156,12 @@ class RequetesSQL extends RequetesPDO {
    */ 
   public function getTimbre($timbre_id) {
     $this->sql = "
-      SELECT timbre_id, timbre_nom, timbre_date, timbre_couleur, timbre_tirage,
+      SELECT timbre_id, timbre_nom, timbre_date, utilisateur_nom, timbre_tirage,
       timbre_description, timbre_prix_plancher, timbre_dimension, pays_nom, enchere_date_debut, enchere_date_fin, img_url 
       FROM timbre
       INNER JOIN pays ON pays_id = timbre_pays_id
       INNER JOIN enchere ON enchere_id = timbre_enchere_id
+      INNER JOIN utilisateur ON utilisateur_id = timbre_utilisateur_id
       INNER JOIN img ON img_id = img_timbre_id 
       WHERE timbre_id = :timbre_id";
 
@@ -178,7 +181,7 @@ class RequetesSQL extends RequetesPDO {
       INSERT INTO timbre SET
       timbre_nom   = :timbre_nom,
       timbre_date   = :timbre_date,
-      timbre_couleur   = :timbre_couleur,
+      timbre_utilisateur_id   = :timbre_utilisateur_id,
       timbre_tirage   = :timbre_tirage,
       timbre_description   = :timbre_description,
       timbre_prix_plancher = :timbre_prix_plancher,
@@ -242,7 +245,7 @@ class RequetesSQL extends RequetesPDO {
       UPDATE timbre SET
       timbre_nom   = :timbre_nom,
       timbre_date   = :timbre_date,
-      timbre_couleur   = :timbre_couleur,
+      timbre_utilisateur_id   = :timbre_utilisateur_id,
       timbre_tirage   = :timbre_tirage,
       timbre_description   = :timbre_description,
       timbre_prix_plancher = :timbre_prix_plancher,

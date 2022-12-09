@@ -1,6 +1,9 @@
 <script>history.pushState({}, '', 'membre?entite=utilisateur')</script>
 <script type="module" src="js/filtrer.js"></script>
 <section>
+<p>
+       vMembreUtilisateur
+      </p>
   <h1>{{ titre|upper }}</h1>
   <input id="filtrer" data-filtre="filtreUtilisateurs" value="" placeholder="Filtrage des lignes contenant cette chaîne">
   <a href="membre?entite=utilisateur&action=a">Ajouter un utilisateur</a>
@@ -20,8 +23,8 @@
       {# <div class="c   ">
         <a href="membre?entite=utilisateur&action=m&utilisateur_id={{ utilisateur.utilisateur_id }}">modifier</a>
         <span class="confirmer" data-href="membre?entite=utilisateur&action=s&utilisateur_id={{ utilisateur.utilisateur_id }}">supprimer</span>
-        <a href="membre?entite=utilisateur&action=generer_mdp&utilisateur_id={{ utilisateur.utilisateur_id }}">générer mdp</a> #}
-      </div>
+        <a href="membre?entite=utilisateur&action=generer_mdp&utilisateur_id={{ utilisateur.utilisateur_id }}">générer mdp</a>
+      </div> #}
     </div>
   {% endfor %} 
   </div>

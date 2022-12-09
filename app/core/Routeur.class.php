@@ -14,7 +14,7 @@ class Routeur {
     ["creer",         "MembreUtilisateur",    "ajouterUtilisateur"],
     ["membre",         "Membre",    "gererEntiteMembre"],
    // ["membreLogin",         "MembreUtilisateur",    "showLoginPage"],
-    ["membreConnecter",         "MembreUtilisateur",    "connecter"], 
+     ["membreConnecter",         "MembreUtilisateur",    "connecter"], 
     ["login",         "AdminUtilisateur",    "connecter"],
     ["deconnecter",         "AdminUtilisateur",    "deconnecter"],
     ["",              "Frontend", "listerTimbres"],

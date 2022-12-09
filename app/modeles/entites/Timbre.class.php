@@ -5,7 +5,7 @@ class Timbre extends Entite
   private $timbre_id;
   private $timbre_nom;
   private $timbre_date;
-  private $timbre_couleur;
+  private $timbre_utilisateur_id;
   private $timbre_tirage;
   private $timbre_description;
   private $timbre_prix_plancher;
@@ -26,7 +26,7 @@ class Timbre extends Entite
 public function getTimbre_id()       { return $this->timbre_id; }
 public function getTimbre_nom()      { return $this->timbre_nom; }
 public function getTimbre_date()   { return $this->timbre_date; }
-public function getTimbre_couleur() { return $this->timbre_couleur; }
+public function getTimbre_utilisateur_id() { return $this->timbre_utilisateur_id; }
 public function getTimbre_tirage()      { return $this->timbre_tirage; }
 public function getTimbre_description()   { return $this->timbre_description; }
 public function getTimbre_prix_plancher()   { return $this->timbre_prix_plancher; }
@@ -100,21 +100,7 @@ public function getErreurs()              { return $this->erreurs; }
     return $this;
   }
 
-  /**
-   * Mutateur de la propriété  timbre_couleur
-   * @param string $timbre_couleur
-   * @return $this
-   */    
-  public function setTimbre_couleur($timbre_couleur) {
-    unset($this->erreurs['timbre_couleur']);
-    $timbre_couleur = trim($timbre_couleur);
-    $regExp = '/^.+$/';
-    if (!preg_match($regExp, $timbre_couleur)) {
-      $this->erreurs['timbre_couleur'] = 'Au moins 1 charactere.';
-    }
-    $this->timbre_couleur = $timbre_couleur;
-    return $this;
-  }
+  
 
 
   /**
@@ -162,7 +148,21 @@ public function getErreurs()              { return $this->erreurs; }
     return $this;
   }  
 
-   
+  /**
+   * Mutateur de la propriété  timbre_utilisateur_id
+   * @param string $timbre_utilisateur_id
+   * @return $this
+   */    
+  public function setTimbre_utilisateur_id($timbre_utilisateur_id) {
+    unset($this->erreurs['timbre_utilisateur_id']);
+    $timbre_utilisateur_id = trim($timbre_utilisateur_id);
+    $regExp = '/^[1-9]\d*$/';
+    if (!preg_match($regExp, $timbre_utilisateur_id)) {
+      $this->erreurs['timbre_utilisateur_id'] = 'Numéro de utilisateur incorrect.';
+    }
+    $this->timbre_utilisateur_id = $timbre_utilisateur_id;
+    return $this;
+  } 
 
   /**
    * Mutateur de la propriété timbre_pays_id 
