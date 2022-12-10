@@ -42,8 +42,15 @@ class Frontend extends Routeur {
   public function listerTimbres(){
     //echo "lister timbres" ; 
     $timbres =$this->oRequetesSQL->getTimbres();
+    $timbre = $this->oRequetesSQL->getTimbre($this->timbre_id);
+    $imgTimbre = $this->oRequetesSQL->getImgTimbre($timbre);
+    $images = [];
+      foreach ($imgTimbre as $img) {
+        $images[$img['img_url']];
+        
+      }
     $titre = "Catalogue d'enchères";
-    $donnees = ["titre" => $titre, "timbres"=> $timbres];
+    $donnees = ["titre" => $titre, "timbres"=> $timbres, "images" => $images];
     (new Vue)->generer("vListeTimbres", $donnees, "gabarit-frontend");
   }
 

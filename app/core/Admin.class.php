@@ -36,18 +36,23 @@ class Admin extends Routeur {
     error_log("Admin.gererEntite");
     if (isset($_SESSION['oUtilConn'])) {
       self::$oUtilConn = $_SESSION['oUtilConn'];
+
       error_log(self::$oUtilConn -> utilisateur_courriel);
       error_log(self::$oUtilConn -> utilisateur_profil);
       if (self::$oUtilConn -> utilisateur_profil == Utilisateur::PROFIL_ADMINISTRATEUR) {
         $entite = ucwords(self::$entite);
+        
         $classe = "Admin$entite";
         if (class_exists($classe)) {
-         (new $classe())->gererAction();
+          (new $classe())->gererAction();
         } else {
           throw new Exception("L'entité ".self::$entite." n'existe pas.");
+          // print_r(self::$oUtilConn);
+          // exit;
         }
       } else {
-        (new MembreUtilisateur) -> listerTimbres();
+        
+        (new MembreUtilisateur) -> listerTimbreParIdUtilisateur(self::$oUtilConn);
       }
      } else {
       (new AdminUtilisateur)->connecter();

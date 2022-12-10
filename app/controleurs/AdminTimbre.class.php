@@ -65,14 +65,14 @@ class AdminTimbre extends Admin {
          
           'timbre_nom'      => $oTimbre->getTimbre_nom() ,
           'timbre_date'   => $oTimbre->getTimbre_date(),
-          'timbre_utilisateur_id' => $oTimbre->getTimbre_utilisateur_id(),
+          'timbre_utilisateur_nom' => $oTimbre->getTimbre_utilisateur_nom(),
           'timbre_tirage'      => $oTimbre->getTimbre_tirage(),
           'timbre_description'   => $oTimbre->getTimbre_description(),
           'timbre_prix_plancher'   => $oTimbre->getTimbre_prix_plancher(),
           'timbre_dimension'   => $oTimbre->getTimbre_dimension(),
-          'timbre_pays_id'   => $oTimbre->getTimbre_pays_id(),
-          'timbre_enchere_id' => 
-          $oTimbre->getTimbre_enchere_id(),
+          'timbre_pays_nom'   => $oTimbre->getTimbre_pays_nom(),
+          'timbre_enchere_debut' => 
+          $oTimbre->getTimbre_enchere_debut(),
           // 'img_url' => $oImg->getImg_url()
           
         ]);
@@ -127,13 +127,13 @@ class AdminTimbre extends Admin {
           'timbre_id'      => $oTimbre->getTimbre_id() ,
           'timbre_nom'      => $oTimbre->getTimbre_nom() ,
           'timbre_date'   => $oTimbre->getTimbre_date(),
-          'timbre_utilisateur_id' => $oTimbre->getTimbre_utilisateur_id(),
+          'timbre_utilisateur_nom' => $oTimbre->getTimbre_utilisateur_nom(),
           'timbre_tirage'      => $oTimbre->getTimbre_tirage(),
           'timbre_description'   => $oTimbre->getTimbre_description(),
           'timbre_prix_plancher'   => $oTimbre->getTimbre_prix_plancher(),
           'timbre_dimension'   => $oTimbre->getTimbre_dimension(),
-          'timbre_pays_id'   => $oTimbre->getTimbre_pays_id(),
-          'timbre_enchere_id' => $oTimbre->getTimbre_enchere_id()
+          'timbre_pays_id'   => $oTimbre->getTimbre_pays_nom(),
+          'timbre_enchere_id' => $oTimbre->getTimbre_enchere_debut()
         ]);
         
           if ($retour === true)  {

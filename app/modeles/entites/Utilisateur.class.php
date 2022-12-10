@@ -6,7 +6,7 @@
  */
 class Utilisateur extends Entite
 {
-  protected $utilisateur_id = 0;
+  protected $utilisateur_id ;
   protected $utilisateur_nom;
   protected $utilisateur_prenom;
   protected $utilisateur_courriel;

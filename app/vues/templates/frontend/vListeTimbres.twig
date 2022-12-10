@@ -25,13 +25,16 @@
                 <article class="card">
                     <header class="header-card">
                      {# {% for img in img %} #}
+                     {% if images %}
+                     {% for img in images %}
                         <picture class="card-image ">
-                            <img src="./images/img-stamp/{{timbre.img_url}}" alt="stamp_Penny_red">
+                            <img src="./images/img-stamp/{{img.img_url}}" alt="stamp_Penny_red">
                         </picture>
-                        <picture class="modal"><img src="./images/img-stamp/{{timbre.img_url}}" alt=""></picture>
-                        {# {% else %}
-                            <div>Aucun img.</div>
-                     {% endfor %}    #}
+                        <picture class="modal"><img src="./images/img-stamp/{{img.img_url}}" alt=""></picture>
+                        
+                           
+                     {% endfor %} 
+                     {% endif %}   
                         <div class="card-info">
                             <div class="card-info__titre">
                                 <div  class="card-info__principal" >

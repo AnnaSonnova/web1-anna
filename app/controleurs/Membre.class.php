@@ -29,24 +29,24 @@ class Membre extends Routeur {
     self::$action = $_GET['action'] ?? 'l';
   }
 
-  /**
-   * Gérer l'interface d'administration 
-   */  
-  public function gererEntiteMembre() {
-    error_log("gerer");
-    if (isset($_SESSION['oUtilConn'])) {
-      self::$oUtilConn = $_SESSION['oUtilConn'];
-      $entite = ucwords(self::$entite);
-      $classe = "Membre$entite";
-      if (class_exists($classe)) {
-        (new $classe())->gererAction();
-      } else {
-        throw new Exception("L'entité ".self::$entite." n'existe pas.");
-      }
-     } else {
-      (new MembreUtilisateur)->connecter();
-     }    
-  }
+  // /**
+  //  * Gérer l'interface d'administration 
+  //  */  
+  // public function gererEntiteMembre() {
+  //   error_log("gerer");
+  //   if (isset($_SESSION['oUtilConn'])) {
+  //     self::$oUtilConn = $_SESSION['oUtilConn'];
+  //     $entite = ucwords(self::$entite);
+  //     $classe = "Membre$entite";
+  //     if (class_exists($classe)) {
+  //       (new $classe())->gererAction();
+  //     } else {
+  //       throw new Exception("L'entité ".self::$entite." n'existe pas.");
+  //     }
+  //    } else {
+  //     (new MembreUtilisateur)->connecter();
+  //    }    
+  // }
 
   /**
    * Gérer l'interface d'administration d'une entité
