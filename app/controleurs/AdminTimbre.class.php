@@ -27,7 +27,7 @@ class AdminTimbre extends Admin {
    * Lister les timbres
    */
   public function listerTimbres() {
-    $timbres = $this->oRequetesSQL->getTimbres('admin');
+    $timbres = $this->oRequetesSQL->getTimbres();
     (new Vue)->generer(
       'vAdminTimbres',
       [

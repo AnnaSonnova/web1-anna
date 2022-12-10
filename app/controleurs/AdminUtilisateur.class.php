@@ -37,10 +37,11 @@ class AdminUtilisateur extends Admin {
     if (count($_POST) !== 0) {
       
       $u = $this->oRequetesSQL->connecter($_POST);
-      print_r($u);
-      echo('dans la fonction connecter');
+      //echo('dans la fonction connecter');
       if ($u !== false) {
         $_SESSION['oUtilConn'] = new Utilisateur($u);
+        // $utilisateur_prenom = $_SESSION["oUtilConn"]->utilisateur_prenom;
+        // print_r($utilisateur_prenom);
         parent::gererEntite();
         exit;         
       } else {
@@ -53,7 +54,7 @@ class AdminUtilisateur extends Admin {
       [
         'titre'                  => 'Connexion',
         'messageErreurConnexion' => $messageErreurConnexion,
-        'seccion' => $_SESSION
+        'session' => $_SESSION
       ],
       'gabarit-admin-min');
   }

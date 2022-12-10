@@ -11,10 +11,10 @@ class Routeur {
   // uri,             classe,     méthode
   // ------------------------------------
     ["admin",         "Admin",    "gererEntite"],
-    ["creer",         "MembreUtilisateur",    "ajouterUtilisateur"],
-    ["membre",         "Membre",    "gererEntiteMembre"],
+    ["creer",         "Membre",    "ajouterUtilisateur"],
+    ["modifier",         "Membre",    "modifierUtilisateur"],
    // ["membreLogin",         "MembreUtilisateur",    "showLoginPage"],
-     ["membreConnecter",         "MembreUtilisateur",    "connecter"], 
+    //  ["membreConnecter",         "MembreUtilisateur",    "connecter"], 
     ["login",         "AdminUtilisateur",    "connecter"],
     ["deconnecter",         "AdminUtilisateur",    "deconnecter"],
     ["",              "Frontend", "listerTimbres"],

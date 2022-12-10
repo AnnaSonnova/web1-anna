@@ -189,7 +189,7 @@ class RequetesSQL extends RequetesPDO {
    */ 
   public function getTimbreParIdUtilisateur($champs) {
 
-    // echo "<pre>".  print_r($champs, true) . "<pre>"; exit;
+    // echo "<pre>".  print_r($champs) . "<pre>"; exit;
     $this->sql = "
       SELECT timbre_id, timbre_nom, timbre_date, timbre_utilisateur_id, timbre_tirage,
       timbre_description, timbre_prix_plancher, timbre_dimension, timbre_pays_id, timbre_enchere_id
@@ -215,7 +215,7 @@ class RequetesSQL extends RequetesPDO {
   public function ajouterTimbre($champs) {
     // echo 'isi';
 
-     print_r($champs);
+    // print_r($champs);
     $this->sql = '
       INSERT INTO timbre SET
       timbre_nom   = :timbre_nom,

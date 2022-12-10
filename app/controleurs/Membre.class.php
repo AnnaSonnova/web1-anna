@@ -1,12 +1,14 @@
 <?php
 
 /**
- * Classe Contrôleur des requêtes de l'application admin
+ * Classe Contrôleur des requêtes sur l'entité Utilisateur de l'application admin
  */
 
 class Membre extends Routeur {
 
   protected $utilisateur_id;
+  protected $utilisateur_nom;
+  protected $utilisateur_premon;
   // protected $timbre_id;
   //protected $timbre_id;
    //protected $pays_id;
@@ -22,52 +24,218 @@ class Membre extends Routeur {
    * Constructeur qui initialise des propriétés à partir du query string
    * 
    */
+  
+
+  protected $methodes = [
+    'l'           => ['nom'    =>'listerTimbres',  'droits' => [Utilisateur::PROFIL_MEMBRE]],
+    'a'           => ['nom'    =>'ajouterUtilisateur'
+    // ,   'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]
+  ],
+    // 'm'           => ['nom'    =>'modifierUtilisateur',  'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
+    // 's'           => ['nom'    =>'supprimerUtilisateur', 'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
+     'd'           => ['nom'    =>'deconnecter'],
+     'aa'           => ['nom'    =>'ajouterTimbreParId', 'droits' => [Utilisateur::PROFIL_MEMBRE]]
+   
+  ];
+
+  /**
+   * Constructeur qui initialise des propriétés à partir du query string
+   * et la propriété oRequetesSQL déclarée dans la classe Routeur
+   * 
+   */
   public function __construct() {
-    //self::$entite = $_GET['entite'] ?? 'timbre';
-    // self::$entite = $_GET['entite'] ?? 'pays';
-     
+    $this->utilisateur_id = $_GET['utilisateur_id'] ?? null; 
+    $this->utilisateur_nom = $_GET['utilisateur_nom'] ?? null; 
+    $this->utilisateur_prenom = $_GET['utilisateur_prenom'] ?? null; 
+    $this->oRequetesSQL = new RequetesSQL;
     self::$action = $_GET['action'] ?? 'l';
   }
 
-  // /**
-  //  * Gérer l'interface d'administration 
-  //  */  
-  // public function gererEntiteMembre() {
-  //   error_log("gerer");
-  //   if (isset($_SESSION['oUtilConn'])) {
-  //     self::$oUtilConn = $_SESSION['oUtilConn'];
-  //     $entite = ucwords(self::$entite);
-  //     $classe = "Membre$entite";
-  //     if (class_exists($classe)) {
-  //       (new $classe())->gererAction();
-  //     } else {
-  //       throw new Exception("L'entité ".self::$entite." n'existe pas.");
-  //     }
-  //    } else {
-  //     (new MembreUtilisateur)->connecter();
-  //    }    
-  // }
+  /**
+   * Lister les timbres
+   */
+  public function listerTimbreParIdUtilisateur() {
+// print_r('listerTimbreParIdUtilisateur');
+    // $timbre = [];
+    // $oTimbre = new Timbre($timbre);
+    $utilId = $_SESSION["oUtilConn"]->utilisateur_id;
+    // echo "<pre>".  print_r($_SESSION["oUtilConn"]->utilisateur_id, true) . "<pre>"; exit;
+    $timbres = $this->oRequetesSQL->getTimbreParIdUtilisateur($utilId
+    
+  );
+
+    // print_r('listerTimbreParIdUtilisateur-function');
+    // var_dump($timbres);
+    // exit;
+    (new Vue)->generer(
+      'vListeTimbres',
+      [
+        'oUtilConn'           => self::$oUtilConn,
+        'titre'               => 'Gestion des timbres',
+        'timbres'               => $timbres,
+        'classRetour'         => $this->classRetour,  
+        'messageRetourAction' => $this->messageRetourAction        
+      ],
+      'gabarit-frontend-membre');
+  }
 
   /**
-   * Gérer l'interface d'administration d'une entité
-   */  
-  public function gererAction() {
+   * Connecter un utilisateur
+   */
+  public function connecter() {
+    print_r('connecter sur Membre');
+    error_log("connecter");
+    $this->oRequetesSQL = new RequetesSQL;
     
-    if (isset($this->methodes[self::$action])) {
-      $methode = $this->methodes[self::$action]['nom'];
-      if (isset($this->methodes[self::$action])) {
-        
-        
-            $this->$methode();
-            exit;
-         
-        throw new Exception(self::ERROR_FORBIDDEN);
+    $messageErreurConnexion = ""; 
+    if (count($_POST) !== 0) {
+      error_log("POST=". implode($_POST));
+      $u = $this->oRequetesSQL->connecter($_POST);
+      print_r($u);
+      echo('dans la fonction connecter');
+      if ($u !== false) {
+        $_SESSION['oUtilConn'] = new Utilisateur($u);
+        $this -> listerTimbreParIdUtilisateur();
+        print_r('listerTimbreParIdUtilisateur()');
+        exit;         
       } else {
-        $this->$methode();
+        $messageErreurConnexion = "Courriel ou mot de passe incorrect.";
+      }
+    }
+    error_log("connecter1");
+
+    (new Vue)->generer(
+      'vMembreConnecter',
+      [
+        'titre'                  => 'Connexion',
+        'messageErreurConnexion' => $messageErreurConnexion, 
+           'seccion' => $_SESSION
+
+      ],
+      'gabarit-membre-min');
+  }
+
+  /**
+   * Connecter un utilisateur
+   */
+  public function showLoginPage() {
+    print_r('showLoginPage');
+    (new Vue)->generer(
+      'vAdminUtilisateurConnecter',
+      [
+        'titre'                  => 'Connexion'
+      ],
+      'gabarit-admin-min');
+  }
+  
+  
+
+  /**
+   * Ajouter un utilisateur
+   */
+  public function ajouterUtilisateur() {
+    print_r('ajouter utilisateur membre');
+    error_log("POST=" . implode($_POST));
+    if (count($_POST) !== 0) {
+      
+  
+      $utilisateur = $_POST;
+      $oUtilisateur = new Utilisateur($utilisateur);
+      $oUtilisateur->courrielExiste();
+      $erreurs = $oUtilisateur->erreurs;
+      if (count($erreurs) === 0) {
+       // $oUtilisateur->genererMdp();
+        $retour = $this->oRequetesSQL->ajouterUtilisateur([
+          'utilisateur_nom'      => $oUtilisateur->utilisateur_nom,
+          'utilisateur_prenom'   => $oUtilisateur->utilisateur_prenom,
+          'utilisateur_courriel' => $oUtilisateur->utilisateur_courriel,
+          'utilisateur_mdp'      => $oUtilisateur->utilisateur_mdp,
+          'utilisateur_profil'   => $oUtilisateur->utilisateur_profil
+        ]);
+        if ($retour !== Utilisateur::ERR_COURRIEL_EXISTANT) {
+          if (preg_match('/^[1-9]\d*$/', $retour)) {
+            $this->messageRetourAction = "Ajout de l'utilisateur numéro $retour effectué.";
+            $retour = (new GestionCourriel)->envoyerMdp($oUtilisateur); 
+            $this->messageRetourAction .= $retour ?  " Courriel envoyé à l'utilisateur." : " Erreur d'envoi d'un courriel à l'utilisateur.";
+            if (ENV === "DEV") {
+              $this->messageRetourAction .= "<br>Message dans le fichier <a href='$retour' target='_blank'>$retour</a>";
+            }   
+          } else {
+            $this->classRetour = "erreur";         
+            $this->messageRetourAction = "Ajout de l'utilisateur non effectué.";
+          }
+           $this->showLoginPage();
+          exit;
+        } else {
+          $erreurs['utilisateur_courriel'] = $retour;
+        }
       }
     } else {
-      throw new Exception("L'action ".self::$action." de l'entité ".self::$entite." n'existe pas.");
+      $utilisateur = [];
+      $erreurs     = [];
     }
-
+    
+    (new Vue)->generer(
+      'vMembreAjouter',
+      [
+        'oUtilConn'   => self::$oUtilConn,
+        'titre'       => 'Creer un compte',
+        'utilisateur' => $utilisateur,
+        'erreurs'     => $erreurs
+      ],
+      'gabarit-membre');
   }
+
+  /**
+   * Modifier un utilisateur
+   */
+  public function modifierUtilisateur() {
+    print_r('modifier utilisateur');
+    if (!preg_match('/^\d+$/', $this->utilisateur_id))
+      throw new Exception("Numéro d'utilisateur non renseigné pour une modification");
+
+    if (count($_POST) !== 0) {
+    $utilisateur = $_POST;
+    $oUtilisateur = new Utilisateur($utilisateur);
+    $oUtilisateur->courrielExiste();
+    $erreurs = $oUtilisateur->erreurs;
+    if (count($erreurs) === 0) {
+      $retour = $this->oRequetesSQL->modifierUtilisateur([
+        'utilisateur_id'       => $oUtilisateur->utilisateur_id, 
+        'utilisateur_courriel' => $oUtilisateur->utilisateur_courriel,
+        'utilisateur_nom'      => $oUtilisateur->utilisateur_nom,
+        'utilisateur_prenom'   => $oUtilisateur->utilisateur_prenom,
+        'utilisateur_profil'   => $oUtilisateur->utilisateur_profil
+      ]);
+      if ($retour !== Utilisateur::ERR_COURRIEL_EXISTANT) {
+        if ($retour === true)  {
+          $this->messageRetourAction = "Modification de l'utilisateur numéro $this->utilisateur_id effectuée.";    
+        } else {  
+          $this->classRetour = "erreur";
+          $this->messageRetourAction = "Modification de l'utilisateur numéro $this->utilisateur_id non effectuée.";
+        }
+        // $this->listerUtilisateurs();
+        exit;
+      } else {
+        $erreurs['utilisateur_courriel'] = $retour;
+      }
+    }
+  } else {
+    $utilisateur = $this->oRequetesSQL->getUtilisateur($this->utilisateur_id);
+    $erreurs = [];
+  }
+  
+  (new Vue)->generer(
+    'vAdminUtilisateurModifier',
+    [
+      'oUtilConn'   => self::$oUtilConn,
+      'titre'       => "Modifier l'utilisateur numéro $this->utilisateur_id",
+      'utilisateur' => $utilisateur,
+      'erreurs'     => $erreurs
+    ],
+    'gabarit-admin');
+  }
+  
+  
+  
 }

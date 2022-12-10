@@ -33,15 +33,13 @@ class Admin extends Routeur {
    * Gérer l'interface d'administration 
    */  
   public function gererEntite() {
-    error_log("Admin.gererEntite");
+    // error_log("Admin.gererEntite");
     if (isset($_SESSION['oUtilConn'])) {
       self::$oUtilConn = $_SESSION['oUtilConn'];
-
-      error_log(self::$oUtilConn -> utilisateur_courriel);
-      error_log(self::$oUtilConn -> utilisateur_profil);
+      // error_log(self::$oUtilConn -> utilisateur_courriel);
+      // error_log(self::$oUtilConn -> utilisateur_profil);
       if (self::$oUtilConn -> utilisateur_profil == Utilisateur::PROFIL_ADMINISTRATEUR) {
         $entite = ucwords(self::$entite);
-        
         $classe = "Admin$entite";
         if (class_exists($classe)) {
           (new $classe())->gererAction();
@@ -51,8 +49,12 @@ class Admin extends Routeur {
           // exit;
         }
       } else {
-        
-        (new MembreUtilisateur) -> listerTimbreParIdUtilisateur(self::$oUtilConn);
+        $entite = ucwords(self::$entite);
+        //print_r( $entite);
+        //self::$oUtilConn -> utilisateur_profil == Utilisateur::PROFIL_MEMBRE;
+         $_SESSION["oUtilConn"]->utilisateur_id;
+         
+        (new Membre) -> listerTimbreParIdUtilisateur();
       }
      } else {
       (new AdminUtilisateur)->connecter();
