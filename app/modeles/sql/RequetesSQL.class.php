@@ -190,7 +190,9 @@ class RequetesSQL extends RequetesPDO {
      
       '
       ;
-    return $this->CUDLigne($champs);
+      return $this->CUDLigne($champs);
+      $this->sql ='SELECT enchere_id FROM enchere ORDER BY enchere_id DESC ' ;
+      return $this->getLignes();
   }
 
   /* GESTION DES TIMBRES 
@@ -283,7 +285,7 @@ class RequetesSQL extends RequetesPDO {
    */ 
   public function ajouterTimbre($champs) {
     // echo 'isi';
-
+    //echo "<pre>".  print_r($champs , true) . "<pre>"; exit;
     // print_r($champs);
     $this->sql = '
       INSERT INTO timbre SET
@@ -300,6 +302,9 @@ class RequetesSQL extends RequetesPDO {
       '
       ;
     return $this->CUDLigne($champs);
+
+    $this->sql ='SELECT timbre_id FROM timbre ORDER BY timbre_id DESC ' ;
+      return $this->getLignes();
   }
 
   // /**
@@ -325,7 +330,7 @@ class RequetesSQL extends RequetesPDO {
    */ 
   public function ajouterImg($champs) {
     // echo 'isi';
-
+ //echo "<pre>".  print_r($champs , true) . "<pre>"; exit;
     // print_r($champs);
     $this->sql = '
     INSERT INTO img SET

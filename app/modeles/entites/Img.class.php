@@ -35,12 +35,12 @@ class Img extends Entite
   }  
   
   public function setImg_url($img_url) {
-    unset($this->erreurs['img_url']);
-    $img_url = trim($img_url);
-    $regExp = '/^.+\.jpg$/';
-    if (!preg_match($regExp, $img_url)) {
-      $this->erreurs['img_url'] = "Vous devez téléverser un fichier de type jpg.";
-    }
+    // unset($this->erreurs['img_url']);
+    // $img_url = trim($img_url);
+    // $regExp = '/^.+\$/';
+    // if (!preg_match($regExp, $img_url)) {
+    //   $this->erreurs['img_url'] = "Vous devez téléverser un fichier de type jpg.";
+    // }
     $this->img_url = $img_url;
     return $this;
   }

@@ -12,8 +12,10 @@ class Timbre extends Entite
   private $timbre_dimension;
   private $timbre_pays_id;
   private $timbre_enchere_id;
-  // private $img_timbre_id ;
-  // private $img_id ;
+  private $timbre_enchere_date_debut;
+  private $img_timbre_id ;
+  private $img_url;
+  private $img_id ;
 
   
   private $erreurs = [];
@@ -37,7 +39,11 @@ public function getTimbre_pays_id()   { return $this->timbre_pays_id; }
 public function getTimbre_enchere_id()   { return $this->timbre_enchere_id; }
 // public function getImg_timbre_id() { return $this->img_timbre_id; }
 // public function getTimbre_pays_id() { return $this->timbre_pays_id; }
-// public function getTimbre_enchere_id() { return $this->timbre_enchere_id; }
+ public function getTimbre_enchere_date_debut() { return $this->timbre_enchere_date_debut; }
+ public function getImg_id()       { return $this->img_id; }
+  public function getImg_url()      { return $this->img_url; }
+  public function getImg_timbre_id()   { return $this->img_timbre_id; }
+ 
 
 
 //img_url
@@ -201,6 +207,64 @@ public function getErreurs()              { return $this->erreurs; }
     $this->timbre_enchere_id = $timbre_enchere_id;
     return $this;
   }  
+
+  /**
+   * Mutateur de la propriété timbre_enchere_id
+   * @param int $timbre_enchere_id
+   * @return $this
+   */    
+  public function setTimbre_enchere_date_debut($timbre_enchere_id) {
+    unset($this->erreurs['timbre_enchere_id']);
+    $regExp = '/^[1-9]\d*$/';
+    if (!preg_match($regExp, $timbre_enchere_id)) {
+      $this->erreurs['timbre_enchere_id'] = 'Numéro de enchere incorrect.';
+    }
+    $this->timbre_enchere_id = $timbre_enchere_id;
+    return $this;
+  }  
+
+  /**
+   * Mutateur de la propriété timbre_id 
+   * @param int $timbre_id
+   * @return $this
+   */    
+  public function setImg_id($img_id) {
+    unset($this->erreurs['img_id']);
+    $regExp = '/^[1-9]\d*$/';
+    if (!preg_match($regExp, $img_id)) {
+      $this->erreurs['img_id'] = 'Numéro de image incorrect.';
+    }
+    $this->img_id = $img_id;
+    return $this;
+  }  
+  
+  public function setImg_url($img_url) {
+    // unset($this->erreurs['img_url']);
+    // $img_url = trim($img_url);
+    // $regExp = '/^.+\$/';
+    // if (!preg_match($regExp, $img_url)) {
+    //   $this->erreurs['img_url'] = "Vous devez téléverser un fichier de type jpg.";
+    // }
+    $this->img_url = $img_url;
+    return $this;
+  }
+
+   /**
+   * Mutateur de la propriété timbre_enchere_id
+   * @param int $timbre_enchere_id
+   * @return $this
+   */    
+  public function setImg_timbre_id($img_timbre_id) {
+    unset($this->erreurs['img_timbre_id']);
+    $regExp = '/^[1-9]\d*$/';
+    if (!preg_match($regExp, $img_timbre_id)) {
+      $this->erreurs['img_timbre_id'] = 'Numéro de timbre incorrect.';
+    }
+    $this->img_timbre_id = $img_timbre_id;
+    return $this;
+  }  
+
+  
 
   
 }

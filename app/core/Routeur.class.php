@@ -22,9 +22,9 @@ class Routeur {
     // ["prochainement", "Frontend", "listerProchainement"],
     ["timbre",          "Frontend", "voirTimbre"],
     ["mesTimbres",          "MembreTimbre", "listerTimbreParIdUtilisateur"],
-    ["ajouteTimbre",          "MembreTimbre", "ajouterTimbre"],
+    // ["ajouteTimbre",          "MembreTimbre", "ajouterTimbre"],
     ["ajouteEnchere",          "MembreEnchere", "ajouterEnchere"],
-    ["membre",          "MembreTimbre", "ajouterTimbre"]
+     ["membre",          "MembreEnchere", "ajouterEnchere"]
     
   ];
 

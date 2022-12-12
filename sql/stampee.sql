@@ -189,10 +189,10 @@ INSERT INTO timbre (timbre_id, timbre_nom, timbre_date, timbre_utilisateur_id, t
 (3,'Navire de guerre russe Go F**k Yourself', '2022', '2', 2000, 'Le timbre de la guerre dans Ukraine', '100.00', '12mm*12mm*1mm', 8, 3),
 (4, 'Victorieux', '1966', '1', 10000, 'timbre[en] avec la silhouette d’Elizabeth II par Mary Gillick[en] et la surimpression en l’honneur de la victoire de l’équipe nationale d’Angleterre à la Coupe du Monde de la FIFA', '300.00', '12mm*12mm*1mm', 8, 4),
 -- (5,'Timbre militaire', 1936, 'grise', 5000, 'L’armée britannique en Egypte pour la correspondance écrite en 1932-1936', '800.00', '12mm*12mm*1mm', 5),
--- (6,'Wilding', 1952, 'blanche', 2000, 'Timbre standard avec portrait d’Elizabeth II', '500.00', '12mm*12mm*1mm', 5),
--- (7,'France', 1871, 'grise', 500000, '-', '20.00', '12mm*12mm*1mm', 4),
--- (8, '25ème anniversaire du mariage impérial', 1894, 'rouge', 10000, '-', '500.00', '12mm*12mm*1mm', 3),
--- (9,'Penny noir', 1880, 'noir', 10000, '-', '500.00', '12mm*12mm*1mm', 5)
+-- (6,'Wilding', 1952, 2000, 'Timbre standard avec portrait d’Elizabeth II', '500.00', '12mm*12mm*1mm', 5),
+-- (7,'France', 1871, 500000, '-', '20.00', '12mm*12mm*1mm', 4),
+-- (8, '25ème anniversaire du mariage impérial', 1894, 10000, '-', '500.00', '12mm*12mm*1mm', 3),
+-- (9,'Penny noir', 1880, 10000, '-', '500.00', '12mm*12mm*1mm', 5)
 ;
 
 INSERT INTO img (img_id, img_url, img_timbre_id) VALUES (null,'Stamp_UK_Penny_Red_pl148.jpg', 1 ),

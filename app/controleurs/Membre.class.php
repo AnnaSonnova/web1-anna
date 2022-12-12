@@ -9,9 +9,7 @@ class Membre extends Routeur {
   protected $utilisateur_id;
   protected $utilisateur_nom;
   protected $utilisateur_premon;
-  // protected $timbre_id;
-  //protected $timbre_id;
-   //protected $pays_id;
+ 
 
   protected static $entite;
   protected static $action;
@@ -42,7 +40,7 @@ class Membre extends Routeur {
   /**
    * Constructeur qui initialise des propriétés à partir du query string
    * et la propriété oRequetesSQL déclarée dans la classe Routeur
-   * 
+    
    */
   public function __construct() {
     $this->utilisateur_id = $_GET['utilisateur_id'] ?? null; 

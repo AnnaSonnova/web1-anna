@@ -6,8 +6,6 @@
  */
 
 class Frontend extends Routeur {
-
-  // private $timbre_id;
   private $timbre_id;
   private $img_id;
   
@@ -17,7 +15,6 @@ class Frontend extends Routeur {
    * 
    */
   public function __construct() {
-    // $this->timbre_id = $_GET['timbre_id'] ?? null;
     $this->timbre_id = $_GET['timbre_id'] ?? null;
      $this->img_id = $_GET['img_id'] ?? null;
     // $this->oUser = $_SESSION['oUser'] ?? null;  
@@ -27,7 +24,6 @@ class Frontend extends Routeur {
 
   /**
    * Lister les timbres à l'affiche
-   * 
    */  
   public function listerFavorit() {
     $timbres = $this->oRequetesSQL->gettimbres();
@@ -42,15 +38,6 @@ class Frontend extends Routeur {
   public function listerTimbres(){
     //echo "lister timbres" ; 
     $timbres =$this->oRequetesSQL->getTimbres();
-    //echo "<pre>".  print_r( $timbres, true) . "<pre>"; exit;
-    // $timbre = $this->oRequetesSQL->getTimbre($this->timbre_id);
-    // $imgTimbre = $this->oRequetesSQL->getImgTimbre($timbre);
-    // echo "<pre>".  print_r( $imgTimbre, true) . "<pre>"; exit;
-    // $images = [];
-    //   foreach ($imgTimbre as $img) {
-    //     $images[$img['img_url']];
-    //    // echo "<pre>".  print_r(  $images[$img['img_url']], true) . "<pre>"; exit;
-    //   }
     $titre = "Catalogue d'enchères";
     $donnees = ["titre" => $titre, 
     "timbres"=> $timbres, 
@@ -58,14 +45,6 @@ class Frontend extends Routeur {
   ];
     (new Vue)->generer("vListeTimbres", $donnees, "gabarit-frontend");
   }
-
-  // public function listerImg(){
-  //   echo "lister img" ; 
-  //   $img =$this->oRequetesSQL->getImg();
-  //   $titre = "Catalogue d'enchères";
-  //   $donnees = ["titre" => $titre, "img"=> $img];
-  //   (new Vue)->generer("vListeTimbres", $donnees, "gabarit-frontend");
-  // }
 
   // /**
   //  * Lister les timbres diffusés prochainement
@@ -82,11 +61,8 @@ class Frontend extends Routeur {
   // }
 
   /**
-   * Voir les informations d'une timbre
-   * 
+   * Voir les informations d'une timbre 
    */  
- 
-
   public function voirTimbre(){
     //echo "voir timbre" ; 
     $timbre = false;

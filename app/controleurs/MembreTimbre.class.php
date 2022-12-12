@@ -10,8 +10,8 @@ class MembreTimbre extends Membre {
 
   protected $methodes = [
    
-     'aa'           => ['nom'    =>'ajouterTimbreParId', 'droits' => [Utilisateur::PROFIL_MEMBRE]],
-     'at' => ['nom'    => 'ajouterTimbre']
+    //  'aa'           => ['nom'    =>'ajouterTimbreParId', 'droits' => [Utilisateur::PROFIL_MEMBRE]],
+    //  'at' => ['nom'    => 'ajouterTimbre']
    
   ];
 
@@ -58,7 +58,7 @@ class MembreTimbre extends Membre {
   }
 
   /**
-   * Lister les timbres
+   * Lister les timbres par id Utilisateur
    */
   public function listerTimbreParIdUtilisateur() {
 
@@ -100,7 +100,7 @@ print_r('listerTimbreParIdUtilisateur dans MembreTimbre');
     $erreurs     = [];
     if (count($_POST) !== 0){
       $timbre = $_POST;
-      echo "<pre>".  print_r($timbre) . "<pre>";
+      // echo "<pre>".  print_r($timbre) . "<pre>";
        // $img = $_POST;
        //echo "<pre>". print_r($img) . "<pre>";
       $oTimbre = new Timbre($timbre);         
@@ -127,7 +127,9 @@ print_r('listerTimbreParIdUtilisateur dans MembreTimbre');
           'timbre_dimension'   => $oTimbre->getTimbre_dimension(),
           'timbre_pays_id'   => $oTimbre->getTimbre_pays_id(),
           'timbre_enchere_id' => 
-          $oTimbre->getTimbre_enchere_id()
+          $oTimbre->getTimbre_enchere_id(),
+          // 'timbre_enchere_date_debut' => 
+          // $oTimbre->getTimbre_enchere_date_debut()
           
         ]);
         // $img_id=$this->oRequetesSQL->ajouterImg(
