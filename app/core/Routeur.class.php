@@ -17,9 +17,15 @@ class Routeur {
     //  ["membreConnecter",         "MembreUtilisateur",    "connecter"], 
     ["login",         "AdminUtilisateur",    "connecter"],
     ["deconnecter",         "AdminUtilisateur",    "deconnecter"],
-    ["",              "Frontend", "listerTimbres"],
+    ["",              "Frontend", "listerFavorit"],
+    ["liste",              "Frontend", "listerTimbres"],
     // ["prochainement", "Frontend", "listerProchainement"],
-    ["timbre",          "Frontend", "voirTimbre"]
+    ["timbre",          "Frontend", "voirTimbre"],
+    ["mesTimbres",          "MembreTimbre", "listerTimbreParIdUtilisateur"],
+    ["ajouteTimbre",          "MembreTimbre", "ajouterTimbre"],
+    ["ajouteEnchere",          "MembreEnchere", "ajouterEnchere"],
+    ["membre",          "MembreTimbre", "ajouterTimbre"]
+    
   ];
 
   protected $oRequetesSQL; // objet RequetesSQL utilisé par tous les contrôleurs

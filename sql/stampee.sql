@@ -41,15 +41,26 @@ CREATE TABLE enchere (
   enchere_id int UNSIGNED NOT NULL  AUTO_INCREMENT,
   enchere_date_debut date NOT NULL,
   enchere_date_fin date NOT NULL,
+  enchere_utilisateur_id int UNSIGNED NOT NULL,
   PRIMARY KEY (enchere_id)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+ALTER TABLE enchere
+  ADD KEY fk_enchere_utilisateur_idx (enchere_utilisateur_id);
+
+--
+-- Contraintes pour la table timbre
+--
+ALTER TABLE enchere
+  ADD CONSTRAINT fk_enchere_utilisateur_id FOREIGN KEY (enchere_utilisateur_id) REFERENCES utilisateur (utilisateur_id) ON DELETE NO ACTION ON UPDATE NO ACTION;    
+
+
 INSERT INTO enchere VALUES
-(1, "2022-11-10", "2022-11-30" ),
-(2, "2022-11-10", "2022-11-30" ),
-(3, "2022-11-10", "2022-11-30" ),
-(4, "2022-10-10", "2022-10-30" );  
+(1, "2022-10-10", "2022-10-30", 1 ),
+(2, "2022-11-10", "2022-11-30", 2 ),
+(3, "2022-11-10", "2022-11-30", 2 ),
+(4, "2022-10-10", "2022-10-30", 1 );  
 
 
 --
@@ -184,10 +195,10 @@ INSERT INTO timbre (timbre_id, timbre_nom, timbre_date, timbre_utilisateur_id, t
 -- (9,'Penny noir', 1880, 'noir', 10000, '-', '500.00', '12mm*12mm*1mm', 5)
 ;
 
-INSERT INTO img (img_id, img_url, img_timbre_id) VALUES (null,'Stamp_UK_Penny_Red_pl148', 1 ),
-(null,'timbre-poste-britannique-de-londres-lord-mayors-festival-85192708', 2 ),
-(null,'maUkraine', 3 ),
-(null,'GB_World_Cup_Overprint_Stamp', 4 )
+INSERT INTO img (img_id, img_url, img_timbre_id) VALUES (null,'Stamp_UK_Penny_Red_pl148.jpg', 1 ),
+(null,'timbre-poste-britannique-de-londres-lord-mayors-festival-85192708.webp', 2 ),
+(null,'maUkraine.webp', 3 ),
+(null,'GB_World_Cup_Overprint_Stamp.webp', 4 )
       
       
       ;

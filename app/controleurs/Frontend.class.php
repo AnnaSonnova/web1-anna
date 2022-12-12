@@ -19,38 +19,43 @@ class Frontend extends Routeur {
   public function __construct() {
     // $this->timbre_id = $_GET['timbre_id'] ?? null;
     $this->timbre_id = $_GET['timbre_id'] ?? null;
-    // $this->img_id = $_GET['img_id'] ?? null;
+     $this->img_id = $_GET['img_id'] ?? null;
     // $this->oUser = $_SESSION['oUser'] ?? null;  
     $this->oRequetesSQL = new RequetesSQL;
   }
 
 
-  // /**
-  //  * Lister les timbres à l'affiche
-  //  * 
-  //  */  
-  // public function listerAlaffiche() {
-  //   $timbres = $this->oRequetesSQL->gettimbres('enSalle');
-  //   (new Vue)->generer("vListetimbres",
-  //           array(
-  //             'titre'  => "À l'affiche",
-  //             'timbres' => $timbres
-  //           ),
-  //           "gabarit-frontend");
-  // }
+  /**
+   * Lister les timbres à l'affiche
+   * 
+   */  
+  public function listerFavorit() {
+    $timbres = $this->oRequetesSQL->gettimbres();
+    (new Vue)->generer("vListeTimbres",
+            array(
+              'titre'  => "Favorit",
+              'timbres' => $timbres
+            ),
+            "gabarit-frontend-accueil");
+  }
 
   public function listerTimbres(){
     //echo "lister timbres" ; 
     $timbres =$this->oRequetesSQL->getTimbres();
-    $timbre = $this->oRequetesSQL->getTimbre($this->timbre_id);
-    $imgTimbre = $this->oRequetesSQL->getImgTimbre($timbre);
-    $images = [];
-      foreach ($imgTimbre as $img) {
-        $images[$img['img_url']];
-        
-      }
+    //echo "<pre>".  print_r( $timbres, true) . "<pre>"; exit;
+    // $timbre = $this->oRequetesSQL->getTimbre($this->timbre_id);
+    // $imgTimbre = $this->oRequetesSQL->getImgTimbre($timbre);
+    // echo "<pre>".  print_r( $imgTimbre, true) . "<pre>"; exit;
+    // $images = [];
+    //   foreach ($imgTimbre as $img) {
+    //     $images[$img['img_url']];
+    //    // echo "<pre>".  print_r(  $images[$img['img_url']], true) . "<pre>"; exit;
+    //   }
     $titre = "Catalogue d'enchères";
-    $donnees = ["titre" => $titre, "timbres"=> $timbres, "images" => $images];
+    $donnees = ["titre" => $titre, 
+    "timbres"=> $timbres, 
+    // "images" => $images
+  ];
     (new Vue)->generer("vListeTimbres", $donnees, "gabarit-frontend");
   }
 

@@ -34,7 +34,8 @@ class Membre extends Routeur {
     // 'm'           => ['nom'    =>'modifierUtilisateur',  'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
     // 's'           => ['nom'    =>'supprimerUtilisateur', 'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR]],
      'd'           => ['nom'    =>'deconnecter'],
-     'aa'           => ['nom'    =>'ajouterTimbreParId', 'droits' => [Utilisateur::PROFIL_MEMBRE]]
+     'aa'           => ['nom'    =>'ajouterTimbreParId', 'droits' => [Utilisateur::PROFIL_MEMBRE]],
+     'at' => ['nom'    => 'ajouterTimbre']
    
   ];
 
@@ -51,69 +52,7 @@ class Membre extends Routeur {
     self::$action = $_GET['action'] ?? 'l';
   }
 
-  /**
-   * Lister les timbres
-   */
-  public function listerTimbreParIdUtilisateur() {
-// print_r('listerTimbreParIdUtilisateur');
-    // $timbre = [];
-    // $oTimbre = new Timbre($timbre);
-    $utilId = $_SESSION["oUtilConn"]->utilisateur_id;
-    // echo "<pre>".  print_r($_SESSION["oUtilConn"]->utilisateur_id, true) . "<pre>"; exit;
-    $timbres = $this->oRequetesSQL->getTimbreParIdUtilisateur($utilId
-    
-  );
-
-    // print_r('listerTimbreParIdUtilisateur-function');
-    // var_dump($timbres);
-    // exit;
-    (new Vue)->generer(
-      'vListeTimbres',
-      [
-        'oUtilConn'           => self::$oUtilConn,
-        'titre'               => 'Gestion des timbres',
-        'timbres'               => $timbres,
-        'classRetour'         => $this->classRetour,  
-        'messageRetourAction' => $this->messageRetourAction        
-      ],
-      'gabarit-frontend-membre');
-  }
-
-  /**
-   * Connecter un utilisateur
-   */
-  public function connecter() {
-    print_r('connecter sur Membre');
-    error_log("connecter");
-    $this->oRequetesSQL = new RequetesSQL;
-    
-    $messageErreurConnexion = ""; 
-    if (count($_POST) !== 0) {
-      error_log("POST=". implode($_POST));
-      $u = $this->oRequetesSQL->connecter($_POST);
-      print_r($u);
-      echo('dans la fonction connecter');
-      if ($u !== false) {
-        $_SESSION['oUtilConn'] = new Utilisateur($u);
-        $this -> listerTimbreParIdUtilisateur();
-        print_r('listerTimbreParIdUtilisateur()');
-        exit;         
-      } else {
-        $messageErreurConnexion = "Courriel ou mot de passe incorrect.";
-      }
-    }
-    error_log("connecter1");
-
-    (new Vue)->generer(
-      'vMembreConnecter',
-      [
-        'titre'                  => 'Connexion',
-        'messageErreurConnexion' => $messageErreurConnexion, 
-           'seccion' => $_SESSION
-
-      ],
-      'gabarit-membre-min');
-  }
+  
 
   /**
    * Connecter un utilisateur
@@ -186,6 +125,7 @@ class Membre extends Routeur {
       'gabarit-membre');
   }
 
+  
   /**
    * Modifier un utilisateur
    */

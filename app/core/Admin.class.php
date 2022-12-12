@@ -54,7 +54,7 @@ class Admin extends Routeur {
         //self::$oUtilConn -> utilisateur_profil == Utilisateur::PROFIL_MEMBRE;
          $_SESSION["oUtilConn"]->utilisateur_id;
          
-        (new Membre) -> listerTimbreParIdUtilisateur();
+        (new MembreTimbre) -> listerTimbres();
       }
      } else {
       (new AdminUtilisateur)->connecter();

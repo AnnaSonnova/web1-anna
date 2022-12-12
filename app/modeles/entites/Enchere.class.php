@@ -1,44 +1,23 @@
 <?php
 
-class Enchere{
-    private $enchere_id;
-    private $enchere_date_debut;
-    private $enchere_date_fin;
+class Enchere extends Entite{
+    protected $enchere_id;
+    protected $enchere_date_debut;
+    protected $enchere_date_fin;
+    protected $enchere_utilisateur_id;
 
 
 
 
     private $erreurs = [];
 
-  //   /**
-  //  * Constructeur de la classe 
-  //  * @param array $proprietes, tableau associatif des propriétés 
-  //  */ 
-  // public function __construct($proprietes = []) {
-  //   $t = array_keys($proprietes);
-  //   foreach ($t as $nom_propriete) {
-  //     $this->__set($nom_propriete, $proprietes[$nom_propriete]);
-  //   } 
-  // }
+    public function getEnchere_id()       { return $this->enchere_id; }
+    public function getEnchere_date_debut()      { return $this->enchere_date_debut; }
+    public function getEnchere_date_fin()      { return $this->enchere_date_fin; }
+    public function getEnchere_utilisateur_id()   { return $this->enchere_utilisateur_id; }
+    public function getErreurs()              { return $this->erreurs; } 
 
-  // /**
-  //  * Accesseur magique d'une propriété de l'objet
-  //  * @param string $prop, nom de la propriété
-  //  * @return property value
-  //  */     
-  // public function __get($prop) {
-  //   return $this->$prop;
-  // }
-
-  //  /**
-  //  * Mutateur magique qui exécute le mutateur de la propriété en paramètre 
-  //  * @param string $prop, nom de la propriété
-  //  * @param $val, contenu de la propriété à mettre à jour
-  //  */   
-  // public function __set($prop, $val) {
-  //   $setProperty = 'set'.ucfirst($prop);
-  //   $this->$setProperty($val);
-  // }
+  
 
   /**
    * Mutateur de la propriété enchere_id 
@@ -83,4 +62,18 @@ class Enchere{
     return $this;
   }
   
+   /**
+   * Mutateur de la propriété timbre_enchere_id
+   * @param int $timbre_enchere_id
+   * @return $this
+   */    
+  public function setEnchere_utilisateur_id($enchere_utilisateur_id) {
+    unset($this->erreurs['enchere_utilisateur_id']);
+    $regExp = '/^[1-9]\d*$/';
+    if (!preg_match($regExp, $enchere_utilisateur_id)) {
+      $this->erreurs['enchere_utilisateur_id'] = 'Numéro de utilisateur incorrect.';
+    }
+    $this->enchere_utilisateur_id = $enchere_utilisateur_id;
+    return $this;
+  }  
 }

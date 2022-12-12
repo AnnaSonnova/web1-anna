@@ -5,13 +5,15 @@ class Timbre extends Entite
   private $timbre_id;
   private $timbre_nom;
   private $timbre_date;
-  private $timbre_utilisateur_nom;
+  private $timbre_utilisateur_id;
   private $timbre_tirage;
   private $timbre_description;
   private $timbre_prix_plancher;
   private $timbre_dimension;
-  private $timbre_pays_nom;
-  private $timbre_enchere_debut;
+  private $timbre_pays_id;
+  private $timbre_enchere_id;
+  // private $img_timbre_id ;
+  // private $img_id ;
 
   
   private $erreurs = [];
@@ -26,14 +28,14 @@ class Timbre extends Entite
 public function getTimbre_id()       { return $this->timbre_id; }
 public function getTimbre_nom()      { return $this->timbre_nom; }
 public function getTimbre_date()   { return $this->timbre_date; }
-public function getTimbre_utilisateur_nom() { return $this->timbre_utilisateur_nom; }
+public function getTimbre_utilisateur_id() { return $this->timbre_utilisateur_id; }
 public function getTimbre_tirage()      { return $this->timbre_tirage; }
 public function getTimbre_description()   { return $this->timbre_description; }
 public function getTimbre_prix_plancher()   { return $this->timbre_prix_plancher; }
 public function getTimbre_dimension()   { return $this->timbre_dimension; }
-public function getTimbre_pays_nom()   { return $this->timbre_pays_nom; }
-public function getTimbre_enchere_debut()   { return $this->timbre_enchere_debut; }
-// public function getTimbre_utilisateur_id() { return $this->timbre_utilisateur_id; }
+public function getTimbre_pays_id()   { return $this->timbre_pays_id; }
+public function getTimbre_enchere_id()   { return $this->timbre_enchere_id; }
+// public function getImg_timbre_id() { return $this->img_timbre_id; }
 // public function getTimbre_pays_id() { return $this->timbre_pays_id; }
 // public function getTimbre_enchere_id() { return $this->timbre_enchere_id; }
 
@@ -199,4 +201,6 @@ public function getErreurs()              { return $this->erreurs; }
     $this->timbre_enchere_id = $timbre_enchere_id;
     return $this;
   }  
+
+  
 }

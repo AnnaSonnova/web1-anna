@@ -31,6 +31,7 @@ class AdminUtilisateur extends Admin {
    * Connecter un utilisateur
    */
   public function connecter() {
+    print_r('connecter sur AdminUtilisateur');
     $this->oRequetesSQL = new RequetesSQL;
     
     $messageErreurConnexion = ""; 

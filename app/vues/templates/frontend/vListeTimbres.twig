@@ -24,24 +24,20 @@
              {% for timbre in timbres %}
                 <article class="card">
                     <header class="header-card">
-                     {# {% for img in img %} #}
-                     {% if images %}
-                     {% for img in images %}
+                     
                         <picture class="card-image ">
-                            <img src="./images/img-stamp/{{img.img_url}}" alt="stamp_Penny_red">
+                            <img src="./images/img-stamp/{{timbre.img_url}}" alt="stamp_Penny_red">
                         </picture>
-                        <picture class="modal"><img src="./images/img-stamp/{{img.img_url}}" alt=""></picture>
+                        <picture class="modal"><img src="./images/img-stamp/{{timbre.img_url}}" alt=""></picture>
                         
-                           
-                     {% endfor %} 
-                     {% endif %}   
+
                         <div class="card-info">
                             <div class="card-info__titre">
                                 <div  class="card-info__principal" >
-                                    <h3 >Lot: <a href="timbre?timbre_id={{timbre.timbre_id }}">{{timbre.timbre_id }}</a></h3>
+                                    <h3 >Lot: {{timbre.timbre_id }}</h3>
                                     <a class="social__link favorit"  href="#">&#9819;</a>
                                 </div>
-                                <h3>{{ timbre.timbre_nom }}   ({{timbre.timbre_date}})</h3>
+                                <h3><a href="timbre?timbre_id={{timbre.timbre_id }}">{{ timbre.timbre_nom }}   ({{timbre.timbre_date}})</a></h3>
                                 <span>{{ timbre.pays_nom }}</span>
                             </div>
                             <div class="card-info__actuel">

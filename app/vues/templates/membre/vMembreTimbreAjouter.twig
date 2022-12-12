@@ -3,7 +3,30 @@
   <p>
        vMembreTimbreAjouter
       </p>
-  <form method="POST" action="admin?entite=timbre&action=a" enctype="multipart/form-data">
+  
+  <form method="POST" action="membre">
+     <label>Date de debut</label>
+    <input type="date" name="enchere_date_debut" value="{{ enchere.enchere_date_debut }}">
+    <span>&nbsp;{{ erreurs.enchere_date_debut }}</span>
+
+    <label>Date de fin</label>
+    <input type="date" name="enchere_date_fin" value="{{ enchere.enchere_date_fin }}">
+    <span>&nbsp;{{ erreurs.enchere_date_fin }}</span>
+
+    <label>Utilisateur id</label>
+    <input type="text" name="enchere_utilisateur_id" value="{{ enchere.enchere_utilisateur_id }}">
+    <span>&nbsp; {{ erreurs.enchere_utilisateur_id }}</span>
+  </form>
+
+  <form method="POST" action="membre" enctype="multipart/form-data">
+
+    <label>Choisir enchere</label>
+    <select name="timbre_enchere_id">
+    {% for enchere in encheres %}
+       <option value="{{ enchere.enchere_id }}">{{ enchere.enchere_date_debut }}</option>
+        {% endfor %} 
+    </select>
+    <span>&nbsp; {{ erreurs.timbre_enchere_id }}</span>
 
     <label>Titre</label>
     <input name="timbre_nom" value="{{ timbre.timbre_nom }}">
@@ -34,21 +57,41 @@
     <span>&nbsp; {{ erreurs.timbre_dimension }}</span>
 
     <label>Pays</label>
-    <input name="timbre_pays_id" value="{{ timbre.timbre_pays_id }}">
+    <select name="timbre_pays_id">
+    {% for pays in pays %}
+       <option value="{{ pays.pays_id }}">{{ pays.pays_nom }}</option>
+        {% endfor %}
+     
+    </select>
+    
     <span>&nbsp; {{ erreurs.timbre_pays_id }}</span>
 
-    <label>Enchere debut</label>
+    {# <label>Enchere debut</label>
     <input name="timbre_enchere_id" value="{{ timbre.timbre_enchere_id }}">
-    <span>&nbsp; {{ erreurs.timbre_enchere_id }}</span>
+    <span>&nbsp; {{ erreurs.timbre_enchere_id }}</span> #}
 
     {# <label>Enchere fin</label>
     <input name="enchere_date_fin" value="{{ timbre.enchere_date_fin }}">
     <span>&nbsp; {{ erreurs.enchere_date_fin }}</span> #}
-  
+
+     <label>img</label>
+    <input type="file" name="img_url"  >
+    
+    
     <input type="submit" value="Envoyer">
 </form>
 
 <form action="admin?entite=img&action=a" enctype="multipart/form-data" method = "post">
+
+   <label>Choisir timbre</label>
+    <select name="img_timbre_id">
+    {% for timbre in timbres %}
+       <option value="{{ timbre.timbre_id }}">{{ timbre.timbre_nom }}</option>
+        {% endfor %}
+     
+    </select>
+    
+    <span>&nbsp; {{ erreurs.img_timbre_id }}</span>
    
     Envoyer de fichier: <input type="file" name="img_url"value="{{ img.img_uri }}">
     
