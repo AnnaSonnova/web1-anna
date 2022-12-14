@@ -7,9 +7,7 @@
 class Admin extends Routeur {
 
   protected $utilisateur_id;
-  // protected $timbre_id;
   protected $timbre_id;
-   //protected $pays_id;
 
   protected static $entite;
   protected static $action;
@@ -24,7 +22,6 @@ class Admin extends Routeur {
    */
   public function __construct() {
     self::$entite = $_GET['entite'] ?? 'timbre';
-    // self::$entite = $_GET['entite'] ?? 'pays';
      
     self::$action = $_GET['action'] ?? 'l';
   }
@@ -54,7 +51,7 @@ class Admin extends Routeur {
         //self::$oUtilConn -> utilisateur_profil == Utilisateur::PROFIL_MEMBRE;
          $_SESSION["oUtilConn"]->utilisateur_id;
          
-        (new MembreTimbre) -> listerTimbres();
+        (new MembreEnchere) -> listerEncheres();
       }
      } else {
       (new AdminUtilisateur)->connecter();

@@ -146,6 +146,11 @@ header #puce #triangle {
     .c span:hover {
       color:rgb(0, 73, 207);
     }
+
+    .connecter{
+      margin-left: auto;
+      margin-right: auto;
+    }
   
 
 
@@ -160,7 +165,7 @@ header #puce #triangle {
       label {
         margin-top: 10px;
       }
-      input, select, button, textarea, form img {
+      input,  textarea, form img {
         padding: 5px;
         width: 400px;
         font-size: 16px;

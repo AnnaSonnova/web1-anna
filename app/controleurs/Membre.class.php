@@ -71,11 +71,10 @@ class Membre extends Routeur {
    * Ajouter un utilisateur
    */
   public function ajouterUtilisateur() {
-    print_r('ajouter utilisateur membre');
-    error_log("POST=" . implode($_POST));
+    //print_r('ajouter utilisateur membre');
+    //error_log("POST=" . implode($_POST));
     if (count($_POST) !== 0) {
       
-  
       $utilisateur = $_POST;
       $oUtilisateur = new Utilisateur($utilisateur);
       $oUtilisateur->courrielExiste();
@@ -128,7 +127,7 @@ class Membre extends Routeur {
    * Modifier un utilisateur
    */
   public function modifierUtilisateur() {
-    print_r('modifier utilisateur');
+    //print_r('modifier utilisateur');
     if (!preg_match('/^\d+$/', $this->utilisateur_id))
       throw new Exception("Numéro d'utilisateur non renseigné pour une modification");
 

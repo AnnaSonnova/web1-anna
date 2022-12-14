@@ -12,7 +12,7 @@
         <div>
             <nav class="nav-fiche">
                 <a href="#"><span>&#x23F4; Precedan</span></a>
-                <a href="liste">Revenir au catalogue</a>
+                <a href="listeEncheres">Revenir au catalogue</a>
                 <a href="#">Suivant &#x23F5;</a>
             </nav>   
         </div>
@@ -72,8 +72,14 @@
                             </div>
                         </div>    
                         <div class="card-button fiche__card-button">
-                            <button class="btn"><a  href="">Miser</button>        
-                            <button class="btn">Suivre</button>
+                             <form method="POST" action="miser?enchere_id = {{ enchere.enchere_id }}">
+                            <label for="mise_prix"  >Mon offre:
+                            <input  name="mise_prix" placeholder="($)" value="{{ mise.mise_prix }}"></label>
+                            <span>{{ erreurs.mise_prix }}</span>
+
+                            <input type="submit" value="Miser" class="btn">
+                        </form>      
+                            
                         </div> 
                     </div>             
                 

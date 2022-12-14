@@ -5,9 +5,6 @@ class Img extends Entite
   private $img_id;
   private $img_url;
   private $img_timbre_id;
-  
-
-  
   private $erreurs = [];
 
 

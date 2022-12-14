@@ -5,20 +5,34 @@
     /* min-width: 240px; */
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1); 
 }
-
 .card{
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: space-between;
-    text-align: center;     
+    text-align: center; 
+    flex-basis: calc(100% / 3 - 20px);    
+    flex-grow: 0;      
 }  
+
+ .card.list {
+    flex-basis: 100%;
+    overflow: unset;
+    width: 60%;
+   
+   
+} 
 .card>* {
     flex-direction: column;
     box-sizing: border-box;
     max-width: 100%; 
     display: flex;
+}
+
+.header-card>*.list{
+    display: flex;
+    flex-direction: row;
 }
 .card h3{
     font-size: var(--M);
@@ -75,6 +89,8 @@
     font-size:14px ;
     font-weight: 600;
 }
+
+
 .expired{
     color: rgb(152, 36, 36);
     

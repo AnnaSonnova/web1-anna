@@ -1,6 +1,6 @@
 
    
-
+<P>vListeTimbreMembre</p>
    
             <!-- Cartes -->
             <div class="grid">
@@ -20,12 +20,12 @@
                                     <h3 >Lot: {{enchere.timbre_id }}</h3>
                                     <a class="social__link favorit"  href="#">&#9819;</a>
                                 </div>
-                                <h3><a href="enchere?enchere_id={{enchere.enchere_id }}">{{ enchere.timbre_nom }}   ({{enchere.timbre_date}})</a></h3>
+                                <h3><a href="enchereMembre?enchere_id={{enchere.enchere_id }}">{{ enchere.timbre_nom }}   ({{enchere.timbre_date}})</a></h3>
                                 <span>{{ enchere.pays_nom }}</span>
                             </div>
                             <div class="card-info__actuel">
                                 <p><small>Date de début: </small>{{ enchere.enchere_date_debut }}</p> 
-                                <p><small>Date de fin: </small>{{ enchere.enchere_date_fin }}</p> 
+                                 <p><small>Date de fin: </small>{{ enchere.enchere_date_fin }}</p>  
                             </div>    
                         </div>       
                     </header>
@@ -35,16 +35,22 @@
                        
                     </div>
                     <div class="card-button">
-                        <a  href="ficheproduit.html" class="btn">Detail</a>
-                        <button class="btn">Miser</button> 
                         
+                        {# <a href="" class="btn">Miser</a> #}
+                        <form method="POST" action="miser?enchere_id = {{ enchere.enchere_id }}">
+                            <label for="mise_prix" >Mon offre:
+                            <input class="btn" name="mise_prix" placeholder="($)" value="{{ mise.mise_prix }}"></label>
+                            <span>{{ erreurs.mise_prix }}</span>
+
+                            <input type="submit" value="Mise Rapide" class="btn">
+                        </form> 
+                        <a href="enchereMembre?enchere_id={{enchere.enchere_id }}" class="btn">Detail</a>   
                         
                     </div>
-                      
+                      <!-- <p>  «Penny rouge» ayant perforation, lettres aux quatre coins et numéro de plaque 148</p>  -->
                 </article>
                  {% else %}
         <div>Aucun enchere.</div>
         {% endfor %}
                 
-   
   

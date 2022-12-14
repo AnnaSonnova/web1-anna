@@ -7,6 +7,7 @@
   <title>{{ titre }}</title>
   <link rel="stylesheet" type="text/css" href="css/main.css?v=1.2">
   <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap" rel="stylesheet">
+  <script type="module" src="js/main.js"></script>
 </head>
 
 <body>
@@ -48,9 +49,11 @@
                 <input type="checkbox" id="toggle">
                 <div class="nav__main-menu menu-burger">
                     <ul>
-                        <li class=" "><a href="/git/web1-anna/">Accueil</a></li>
+
+                        
+                        {# <li class=" "><a href="/git/web1-anna/">Accueil</a></li> #}
                         <li class="nav_submenu active_link">
-                            <a href="liste">Portail des Enchères  &#x23F7;</a>
+                            <a href="listeEncheres">Portail des Enchères  &#x23F7;</a>
                             
                             <ul>
                                 <li><a href="ficheproduit.html">Enchères en cours </a> </li>
@@ -58,6 +61,8 @@
                                 <li><a href="#">Suivre une enchère</a></li>
                             </ul>
                         </li>
+                         <li><a href="mesEncheres">Voir mes encheres</a></li>
+                        {# <li><a href="modifierMesEncheres">Modifier mes encheres</a></li> #}
                         <li class="nav_submenu"><a href="#">Fonctionnement de la plateforme  &#x23F7;</a>
                             <ul>
                                 <li><a href="#">Comment placer une offre </a></li>
@@ -67,7 +72,7 @@
                             </ul>
                         </li>
                         
-                        <li><a href="mesTimbres">Voir mes timbres</a></li>
+                       
 
                         <li class="nav_submenu"><a href="#">Contactez-Nous &#x23F7;</a>
                             <ul>
@@ -85,7 +90,112 @@
     </header>
   
 
-  {{ include(templateMain) }}
+   <main>
+        
+    
+        <!-- Filtre -->
+        <aside class="sidebar">            
+            <div class="filter_wrapper">
+                <span class="material-icons">tune</span>
+                <h2>Recherche</h2>
+                
+                <form class="filter-form" method="GET">
+                    <div class="liste-categorie">
+                        
+                        <details >
+                            <summary class="title-filter">Annee</summary>
+                            <select class="box-filter" id="annee">
+                                <option selected="selected" >1900-1930</option>
+                                <option>1931-1945</option>
+                                <option>1946-1970</option>
+                                <option>1971-1990</option>
+                                <option>1991-2010</option>
+                                <option>2011-2022 </option>
+                            </select>
+                        </details>
+                        <span class="title-filter">Pays d'origine</span>
+                        <select multiple name="pays" id="champ_pays" class = " box-filter-multiple">
+                            
+                                <option>Allemagne</option>
+                                <option>Canada</option>
+                                <option>États-Unis</option>
+                                <option>France</option>
+                                <option >Royaume-Uni</option>
+                                <option>Japon </option>
+                                <option>Ukraine</option>
+                                <option>Allemagne</option>
+                                <option>Canada</option>
+                                <option>États-Unis</option>
+                                <option>France</option>
+                                <option >Royaume-Uni</option>
+                                <option>Japon </option>
+                        </select>
+                       
+                        <details >
+                            <summary class="title-filter">Type</summary>
+                            <select class="box-filter" id="type">
+                                <option selected="selected">Bloque</option>
+                                <option>List</option>
+                                <option>Timbre</option>
+                                <option>Serie</option>
+                            </select>
+                        </details>
+                        <details >
+                            <summary class="title-filter">Themes</summary>
+                            <select class="box-filter" id="themes">
+                                <option selected="selected">Histoire</option>
+                                <option>Architecture</option>
+                                <option>Guerre</option>
+                                <option>Nature</option>
+                                <option>Art</option>
+                                <option>Animaux</option>
+                            </select>
+                        </details>
+
+                        <details >
+                            <summary class="title-filter">Trier</summary>
+                            <select class="box-filter" id="trier" >
+                                <option>Prix:min->max </option>
+                                <option>Prix:max->min</option>
+                                <option>Date création: asc </option>
+                                <option>Date création: dess</option>
+                            </select>
+                        </details>
+                        <div>
+                            <label class="checkbox-filter" >
+                                <input type="checkbox">
+                                <span>Certifié</span>
+                            </label>
+                        </div>
+                       <div>
+                        <label class="checkbox-filter" >
+                            <input type="checkbox">
+                            <span>Favoris du Lord</span>
+                        </label>
+                       </div>
+                        
+                        
+                    </div>
+                    <div class="filtre-button">
+                        <button class="btn" type="submit">Trouver</button>
+                        <button class="btn" type="reset">Annuler</button>
+                    </div>
+                    
+                </form>
+            </div>    
+        
+        </aside>
+        <section class="catalogue">
+            <h2>{{ titre|upper }}</h2>
+            <div class="btn_container">
+                <button class="btn_view" data-js-list-btn=""><i class="fa fa-th-list" aria-hidden="true"></i> Liste</button>
+                <button class="btn_view active" data-js-grid-btn=""><i class="fa fa-th-large" aria-hidden="true"></i> Grille</button>
+            </div>
+  
+
+             {{ include(templateMain) }}
+        </section>
+    </main>
 
   <footer  class="footer">
         <nav class="footer__nav">

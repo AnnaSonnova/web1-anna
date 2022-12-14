@@ -10,21 +10,23 @@ class Routeur {
   private $routes = [
   // uri,             classe,     méthode
   // ------------------------------------
-    ["admin",         "Admin",    "gererEntite"],
-    ["creer",         "Membre",    "ajouterUtilisateur"],
-    ["modifier",         "Membre",    "modifierUtilisateur"],
-   // ["membreLogin",         "MembreUtilisateur",    "showLoginPage"],
-    //  ["membreConnecter",         "MembreUtilisateur",    "connecter"], 
-    ["login",         "AdminUtilisateur",    "connecter"],
-    ["deconnecter",         "AdminUtilisateur",    "deconnecter"],
-    ["",              "Frontend", "listerFavorit"],
-    ["liste",              "Frontend", "listerTimbres"],
+    ["",                    "Frontend",           "listerFavorit"],
+    ["admin",               "Admin",              "gererEntite"],
+    ["login",               "AdminUtilisateur",   "connecter"],
+    ["deconnecter",         "AdminUtilisateur",   "deconnecter"],
+    ["creer",               "Membre",             "ajouterUtilisateur"],
+    ["modifier",            "Membre",             "modifierUtilisateur"],
+    ["liste",               "Frontend",           "listerEncheres"],
+    ["enchere",             "Frontend",           "voirEnchere"],
+    ["enchereMembre",       "MembreEnchere",      "voirEnchere"],
+    ["enchereModifier",     "MembreEnchere",      "modifierEnchere"],
+    ["mesEncheres",         "MembreEnchere",      "listerEnchereParIdUtilisateur"],
+    ["listeEncheres",       "MembreEnchere",      "listerEncheres"],
+    ["ajouteEnchere",       "MembreEnchere",      "ajouterEnchere"],
+    ["membre",              "MembreEnchere",      "ajouterEnchere"]
+    // ["membreLogin",         "MembreUtilisateur",    "showLoginPage"],
+    // ["membreConnecter",         "MembreUtilisateur",    "connecter"], 
     // ["prochainement", "Frontend", "listerProchainement"],
-    ["timbre",          "Frontend", "voirTimbre"],
-    ["mesTimbres",          "MembreTimbre", "listerTimbreParIdUtilisateur"],
-    // ["ajouteTimbre",          "MembreTimbre", "ajouterTimbre"],
-    ["ajouteEnchere",          "MembreEnchere", "ajouterEnchere"],
-     ["membre",          "MembreEnchere", "ajouterEnchere"]
     
   ];
 
@@ -32,14 +34,12 @@ class Routeur {
 
   
   const BASE_URI = '/git/web1-anna/'; // pour le PHP Server de Visual Studio Code
-
   const ERROR_FORBIDDEN = "HTTP 403";
   const ERROR_NOT_FOUND = "HTTP 404";
   
   /**
    * Valider l'URI
    * et instancier la méthode du contrôleur correspondante
-   *
    */
   public function router() {
     try {

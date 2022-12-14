@@ -20,9 +20,7 @@ class Timbre extends Entite
   
   private $erreurs = [];
 
-  const ANNEE_PREMIER_TIMBRE = 1860;
-//   const DUREE_MIN = 1;
-//   const DUREE_MAX = 600;     
+  const ANNEE_PREMIER_TIMBRE = 1860; 
 //   const STATUT_INVISIBLE = 0;
 //   const STATUT_VISIBLE   = 1;
 //   const STATUT_ARCHIVE   = 2;
@@ -37,16 +35,11 @@ public function getTimbre_prix_plancher()   { return $this->timbre_prix_plancher
 public function getTimbre_dimension()   { return $this->timbre_dimension; }
 public function getTimbre_pays_id()   { return $this->timbre_pays_id; }
 public function getTimbre_enchere_id()   { return $this->timbre_enchere_id; }
-// public function getImg_timbre_id() { return $this->img_timbre_id; }
-// public function getTimbre_pays_id() { return $this->timbre_pays_id; }
- public function getTimbre_enchere_date_debut() { return $this->timbre_enchere_date_debut; }
- public function getImg_id()       { return $this->img_id; }
-  public function getImg_url()      { return $this->img_url; }
-  public function getImg_timbre_id()   { return $this->img_timbre_id; }
+public function getTimbre_enchere_date_debut() { return $this->timbre_enchere_date_debut; }
+public function getImg_id()       { return $this->img_id; }
+public function getImg_url()      { return $this->img_url; }
+public function getImg_timbre_id()   { return $this->img_timbre_id; }
  
-
-
-//img_url
 public function getErreurs()              { return $this->erreurs; } 
 
  /**

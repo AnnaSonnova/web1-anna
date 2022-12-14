@@ -6,8 +6,8 @@
  */
 
 class Frontend extends Routeur {
-  private $timbre_id;
-  private $img_id;
+  private $enchere_id;
+  
   
   /**
    * Constructeur qui initialise des propriétés à partir du query string
@@ -15,9 +15,8 @@ class Frontend extends Routeur {
    * 
    */
   public function __construct() {
-    $this->timbre_id = $_GET['timbre_id'] ?? null;
-     $this->img_id = $_GET['img_id'] ?? null;
-    // $this->oUser = $_SESSION['oUser'] ?? null;  
+    $this->enchere_id = $_GET['enchere_id'] ?? null;
+   
     $this->oRequetesSQL = new RequetesSQL;
   }
 
@@ -26,11 +25,11 @@ class Frontend extends Routeur {
    * Lister les timbres à l'affiche
    */  
   public function listerFavorit() {
-    $timbres = $this->oRequetesSQL->gettimbres();
+    $encheres = $this->oRequetesSQL->getEncheres();
     (new Vue)->generer("vListeTimbres",
             array(
               'titre'  => "Favorit",
-              'timbres' => $timbres
+              'encheres'               => $encheres,
             ),
             "gabarit-frontend-accueil");
   }
@@ -41,9 +40,25 @@ class Frontend extends Routeur {
     $titre = "Catalogue d'enchères";
     $donnees = ["titre" => $titre, 
     "timbres"=> $timbres, 
-    // "images" => $images
   ];
     (new Vue)->generer("vListeTimbres", $donnees, "gabarit-frontend");
+  }
+
+  /**
+   * Lister les encheres
+   */
+  public function listerEncheres() {
+    // print_r('listerEncheres dans Frontend');
+    $encheres = $this->oRequetesSQL->getEncheres();
+       //echo "<pre>".  print_r( $encheres) . "<pre>";
+       //exit;
+    (new Vue)->generer(
+      'vListeTimbres',
+      [
+        'titre'               => 'Encheres',
+        'encheres'               => $encheres,      
+      ],
+      'gabarit-frontend');
   }
 
   // /**
@@ -61,19 +76,24 @@ class Frontend extends Routeur {
   // }
 
   /**
-   * Voir les informations d'une timbre 
+   * Voir les informations d'une enchere 
    */  
-  public function voirTimbre(){
-    //echo "voir timbre" ; 
-    $timbre = false;
-    if (!is_null($this->timbre_id)) {
+  public function voirEnchere(){
+    //print_r( "voir enchere" ); 
+    $enchere = false;
+    
+     if (!is_null($this->enchere_id)) {
       
-      $timbre         = $this->oRequetesSQL->getTimbre($this->timbre_id);
-      
-    }
-    if (!$timbre) throw new Exception("Timbre inexistant.");
-    $nom = $timbre['timbre_nom'];
-    $donnees = ["nom" => $nom, "timbre"=> $timbre];
-    (new Vue)->generer("vTimbre", $donnees, "gabarit-frontend");
+      $enchere = $this->oRequetesSQL->getEnchere($this->enchere_id);
+      //echo "<pre>".  print_r( $enchere) . "<pre>"; exit;
+       
+     }
+    if (!$enchere) throw new Exception("Enchere inexistant.");
+    // $nom = $timbre['timbre_nom'];
+    $donnees = [
+      //"nom" => $nom,
+       "enchere"=> $enchere
+      ];
+    (new Vue)->generer("vTimbre", $donnees, "gabarit-frontend-1enchere");
 }
 }

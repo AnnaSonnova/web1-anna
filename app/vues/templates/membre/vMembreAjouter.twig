@@ -18,8 +18,6 @@
     <input name="utilisateur_courriel" value="{{ utilisateur.utilisateur_courriel }}">
     <span>&nbsp;{{ errCourriel }} {{ erreurs.utilisateur_courriel }}</span>
 
-
-
    <label>Mdp</label>
     <input name="utilisateur_mdp" value="{{ utilisateur.utilisateur_mdp }}">
     <span>&nbsp;{{ errCourriel }} {{ erreurs.utilisateur_mdp }}</span>
@@ -27,7 +25,7 @@
     <label>Profil</label>
     <select name="utilisateur_profil">
       
-      <option value="{{ constant('utilisateur::PROFIL_MEMBRE')        }}" {{ utilisateur.utilisateur_profil == constant('utilisateur::PROFIL_MEMBRE')        ? 'selected' : '' }}>Membre</option>
+      <option value="{{ constant('utilisateur::PROFIL_MEMBRE') }}" {{ utilisateur.utilisateur_profil == constant('utilisateur::PROFIL_MEMBRE')    ? 'selected' : '' }}>Membre</option>
       
     </select>
     <span>&nbsp;{{ erreurs.utilisateur_profil }}</span>

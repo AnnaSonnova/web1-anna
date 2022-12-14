@@ -1,0 +1,58 @@
+<section>
+  <h1>{{ titre|upper }}</h1>
+  <p>
+       vMembreEnchereModifier
+      </p>
+  <form method="POST" action="membre?entite=enchere&action=me&enchere_id={{  enchere.enchere_id }}" enctype="multipart/form-data">
+
+    {# <label>Date de debut</label>
+    <input type="date" name="enchere_date_debut" value="{{ enchere.enchere_date_debut }}">
+    <span>&nbsp;{{ erreurs.enchere_date_debut }}</span>
+
+    <label>Date de fin</label>
+    <input type="date" name="enchere_date_fin" value="{{ enchere.enchere_date_fin }}">
+    <span>&nbsp;{{ erreurs.enchere_date_fin }}</span> #}
+
+
+    <label>Titre</label>
+    <input name="timbre_nom" value="{{ timbre.timbre_nom }}">
+    <span>&nbsp;{{ erreurs.timbre_nom }}</span>
+
+    <label>Date</label>
+    <input name="timbre_date" value="{{ timbre.timbre_date }}">
+    <span>&nbsp;{{ erreurs.timbre_date }}</span>
+
+    <label>Tirage</label>
+    <input name="timbre_tirage" value="{{ timbre.timbre_tirage }}">
+    <span>&nbsp; {{ erreurs.timbre_tirage }}</span>
+
+    <label>Description</label>
+    <input name="timbre_description" value="{{ timbre.timbre_description }}">
+    <span>&nbsp; {{ erreurs.timbre_description }}</span>
+
+    <label>Prix Plancher</label>
+    <input name="timbre_prix_plancher" value="{{ timbre.timbre_prix_plancher }}">
+    <span>&nbsp; {{ erreurs.timbre_prix_plancher }}</span>
+
+    <label>Dimension</label>
+    <input name="timbre_dimension" value="{{ timbre.timbre_dimension }}">
+    <span>&nbsp; {{ erreurs.timbre_dimension }}</span>
+
+     <label>Pays</label>
+    {# <select name="timbre_pays_id">
+    {% for pays in pays %}
+       <option value="{{ pays.pays_id }}">{{ pays.pays_nom }}</option>
+        {% endfor %} 
+    </select> #}
+     <input name="timbre_pays_id" value="{{ timbre.timbre_pays_id }}">
+    <span>&nbsp; {{ erreurs.timbre_pays_id }}</span>
+
+
+     Envoyer le fichier: <input type="file" name="userfile" value="userfile">
+
+    <input type="hidden" name="enchere_id" value="{{ enchere.enchere_id }}">
+
+    <input type="submit" value="Envoyer">
+</form>
+  </div>
+</section>
