@@ -31,7 +31,7 @@ class AdminUtilisateur extends Admin {
    * Connecter un utilisateur
    */
   public function connecter() {
-    print_r('connecter sur AdminUtilisateur');
+    //print_r('connecter sur AdminUtilisateur');
     $this->oRequetesSQL = new RequetesSQL;
     
     $messageErreurConnexion = ""; 
@@ -41,7 +41,7 @@ class AdminUtilisateur extends Admin {
       //echo('dans la fonction connecter');
       if ($u !== false) {
         $_SESSION['oUtilConn'] = new Utilisateur($u);
-        // $utilisateur_prenom = $_SESSION["oUtilConn"]->utilisateur_prenom;
+         $utilisateur_prenom = $_SESSION["oUtilConn"]->utilisateur_prenom;
         // print_r($utilisateur_prenom);
         parent::gererEntite();
         exit;         
@@ -92,6 +92,7 @@ class AdminUtilisateur extends Admin {
    * Ajouter un utilisateur
    */
   public function ajouterUtilisateur() {
+    print_r('ajouterUtilisateur sur AdminUtilis');
     if (count($_POST) !== 0) {
       $utilisateur = $_POST;
       $oUtilisateur = new Utilisateur($utilisateur);
@@ -144,6 +145,7 @@ class AdminUtilisateur extends Admin {
    * Modifier un utilisateur
    */
   public function modifierUtilisateur() {
+    print_r('modifierUtilisateur sur AdminUtilis');
     if (!preg_match('/^\d+$/', $this->utilisateur_id))
       throw new Exception("Numéro d'utilisateur non renseigné pour une modification");
 
@@ -193,6 +195,7 @@ class AdminUtilisateur extends Admin {
    * Supprimer un utilisateur
    */
   public function supprimerUtilisateur() {
+    print_r('supprimUtilisateur sur AdminUtilis');
     if (!preg_match('/^\d+$/', $this->utilisateur_id))
       throw new Exception("Numéro d'utilisateur incorrect pour une suppression.");
 

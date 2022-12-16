@@ -1,4 +1,7 @@
 <main class="ficheproduct">
+{# <p>
+     vTimbreMembre
+      </p>  #}
    <div class="hero">
             <img class="bannier" src="./images/img-stamp/banner5.webp" alt="image orignal">
         
@@ -6,7 +9,7 @@
         <div class="text-over-image">
             <h1>Bienvenue sur Enchères Stampee</h1>
             
-            <a href="#" class="button"> Voir les enchères</a>
+            <a href="listeEncheres" class="button"> Voir les enchères</a>
         </div>
     </div>
         <div>
@@ -63,22 +66,25 @@
                             <div>
                                 <p>Date de début: <span>{{ enchere.enchere_date_debut }}</span></p>
                                 <p>Date de fin: <span>{{ enchere.enchere_date_fin }}</span></p>
-                                <p> &#x23F1;Reste: <span> 10j 12:00:33</span></p>    
+                                {# <p> &#x23F1;Reste: <span> 10j 12:00:33</span></p>     #}
                             </div>
                             <div >
-                                <p>Depart: <span>{{ enchere.timbre_prix_plancher }}</span> </p>
-                                <p>Actuel: <span>1200$</span> </p>
-                                <p>Quantité de mises: <span>2</span></p>
+                                <p>Prix de depart: <span>{{ enchere.timbre_prix_plancher }}</span> </p>
+                                <p>Prix actuel: <span>{{ enchere.mise_prix }}</span> </p>
+                                {# <p>Quantité de mises: <span>2</span></p> #}
                             </div>
                         </div>    
                         <div class="card-button fiche__card-button">
-                             <form method="POST" action="miser?enchere_id = {{ enchere.enchere_id }}">
-                            <label for="mise_prix"  >Mon offre:
-                            <input  name="mise_prix" placeholder="($)" value="{{ mise.mise_prix }}"></label>
-                            <span>{{ erreurs.mise_prix }}</span>
+                             <form method="POST" action="miser">
+                                <input type="hidden" name="mise_utilisateur_id"  value="{{ mise.mise_utilisateur_id }}">
+                                <input type="hidden" name="mise_enchere_id"  value="{{ enchere.enchere_id }}">
+                         
+                                <label for="mise_prix"  >Mon offre:
+                                <input  name="mise_prix" placeholder="($)" value="{{ mise.mise_prix }}"></label>
+                                <span>{{ erreurs.mise_prix }}</span>
 
-                            <input type="submit" value="Miser" class="btn">
-                        </form>      
+                                <input type="submit" value="Miser" class="btn">
+                            </form>      
                             
                         </div> 
                     </div>             

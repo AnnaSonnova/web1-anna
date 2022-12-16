@@ -46,7 +46,7 @@ class Admin extends Routeur {
           // exit;
         }
       } else {
-        $entite = ucwords(self::$entite);
+        //$entite = ucwords(self::$entite);
         //print_r( $entite);
         //self::$oUtilConn -> utilisateur_profil == Utilisateur::PROFIL_MEMBRE;
          $_SESSION["oUtilConn"]->utilisateur_id;

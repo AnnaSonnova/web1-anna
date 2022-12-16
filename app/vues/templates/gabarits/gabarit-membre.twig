@@ -22,9 +22,7 @@
                     <div >
                         <a  href="modifier"> Modifier</a>
                     </div>  
-                    <div >
-                        <a  href="mesTimbres"> Voir mes Encheres</a>
-                    </div>    
+                     
                 </div>
 
                 
@@ -33,19 +31,18 @@
 
             
   </div>
-  <div id="page">
-    <header class="admin_header">
-     <p>
+  <div  class="connecter">
+    {# <header class="admin_header"> #}
+     {# <p>
        Gabarit Membre
-      </p>
-      
+      </p> #}
       {# <p>
         {{ oUtilConn.utilisateur_prenom }} {{ oUtilConn.utilisateur_nom }}
         <a href="membre?entite=utilisateur&action=d" class="a_admin">Déconnecter</a>
       </p> #}
-      <nav class="admin_nav">
-        <ul >
-          {% if oUtilConn.utilisateur_profil == constant('Utilisateur::PROFIL_MEMBRE') %}
+      {# <nav class="admin_nav"> #}
+        {# <ul > #}
+          {# {% if oUtilConn.utilisateur_profil == constant('Utilisateur::PROFIL_MEMBRE') %} #}
           {# <li>
             <hr>
             <a href="admin" class="a_admin">Timbres</a>
@@ -54,12 +51,12 @@
             <a href="admin?entite=pays" class="a_admin">Pays</a>
           </li> #}
           
-          {% endif %}
+          {# {% endif %} #}
           
-        </ul>
+        {# </ul>
       </nav>
-    </header>
-    <main>
+    </header> #}
+    <main >
 
     {{ include(templateMain) }}
 

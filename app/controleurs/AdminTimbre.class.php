@@ -27,6 +27,7 @@ class AdminTimbre extends Admin {
    * Lister les timbres
    */
   public function listerTimbres() {
+    print_r('listerTimbre sur AdminTimbre');
     $timbres = $this->oRequetesSQL->getTimbres();
     (new Vue)->generer(
       'vAdminTimbres',
@@ -44,6 +45,7 @@ class AdminTimbre extends Admin {
    * Ajouter un timbre
    */
   public function ajouterTimbre() {
+    print_r('ajouterTimbre sur AdminTimbre');
     $timbre = [];
     $erreurs     = [];
     if (count($_POST) !== 0){
@@ -114,7 +116,7 @@ class AdminTimbre extends Admin {
    * Modifier un timbre
    */
   public function modifierTimbre() {
-    
+    print_r('modifierTimbre sur AdminTimbre');
     //  if (!preg_match('/^\d+$/', 
     //  $this->timbre_id))
     //    throw new Exception("Numéro de la timbre non renseigné pour une modification");
@@ -168,6 +170,7 @@ class AdminTimbre extends Admin {
    * Supprimer un timbre
    */
   public function supprimerTimbre() {
+    print_r('supprimerTimbre sur AdminTimbre');
     if (!preg_match('/^\d+$/', $this->timbre_id))
       throw new Exception("Numéro du timbre incorrect pour une suppression.");
 

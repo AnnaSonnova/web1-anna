@@ -1,7 +1,9 @@
 
    
 
-   
+   {# <p>
+     vListeTimbres
+      </p>  #}
             <!-- Cartes -->
             <div class="grid">
              {% for enchere in encheres %}
@@ -31,12 +33,13 @@
                     </header>
                     <div class="card-main">
                         <p><small>Depart:</small>{{ enchere.timbre_prix_plancher }}</p>
-                        <p><small>Actuel:</small>1200$</p>
+                        <p><small>Actuel:</small>{{ enchere.mise_prix }}</p>
                        
                     </div>
                     <div class="card-button">
-                        <a  href="ficheproduit.html" class="btn">Detail</a>
-                        <button class="btn">Miser</button> 
+                        <a  href="enchere?enchere_id={{enchere.enchere_id }}" class="btn">Detail</a>
+                         <a  href="login" class="btn">Miser</a>
+                       
                         
                         
                     </div>

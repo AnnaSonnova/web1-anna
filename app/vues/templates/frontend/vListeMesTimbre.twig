@@ -1,6 +1,6 @@
 
    
-{# <P>vListeTimbreMembre</p> #}
+ {# <P>vListeMesTimbre</p>  #}
    
             <!-- Cartes -->
             <div class="grid">
@@ -30,12 +30,12 @@
                     </header>
                     <div class="card-main">
                         <p><small>Depart:</small>{{ enchere.timbre_prix_plancher }}</p>
-                        <p><small>Actuel:</small>1200$</p>
+                        <p><small>Actuel:</small>{{ enchere.mise_prix }}</p>
                        
                     </div>
                     <div class="card-button">
-                        <a href="enchereMembre?enchere_id={{enchere.enchere_id }}" class="btn">Detail</a>
-                        <a href="enchereModifier?enchere_id={{enchere.enchere_id }}" class="btn">Modifier</a> 
+                        <a href="supprimerEnchere?enchere_id={{ enchere.enchere_id }}" class="btn">Supprimer</a>
+                        <a href="" class="btn">Modifier</a> 
                         
                     </div>
                       <!-- <p>  «Penny rouge» ayant perforation, lettres aux quatre coins et numéro de plaque 148</p>  -->

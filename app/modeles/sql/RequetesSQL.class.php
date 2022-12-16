@@ -136,15 +136,17 @@ class RequetesSQL extends RequetesPDO {
     // $aujourdhui  = $oAujourdhui->format('Y-m-d');
     // $dernierJour = $oAujourdhui->modify('+6 day')->format('Y-m-d');
     $this->sql ="
-    SELECT enchere_id, enchere_date_debut, enchere_date_fin, enchere_utilisateur_id, timbre_id, timbre_nom, timbre_date, utilisateur_nom , timbre_tirage,
-    timbre_description, timbre_prix_plancher, timbre_dimension, pays_nom, img_url
+    SELECT enchere_id, min(enchere_date_debut) as enchere_date_debut, min(enchere_date_fin) as enchere_date_fin , min(enchere_utilisateur_id) as enchere_utilisateur_id, min(timbre_id) as timbre_id , min(timbre_nom) as timbre_nom, max(timbre_date) as timbre_date , min(utilisateur_nom) as utilisateur_nom , min(timbre_tirage) as timbre_tirage, max(mise_prix) as mise_prix,
+    min(timbre_description) as timbre_description , min(timbre_prix_plancher) as timbre_prix_plancher, min(timbre_dimension) as timbre_dimension, min(pays_nom) as pays_nom, min(img_url) as img_url, min(mise_date) as mise_date
+    
     FROM enchere
     INNER JOIN  utilisateur ON utilisateur.utilisateur_id = enchere.enchere_utilisateur_id 
-    
+    LEFT OUTER JOIN mise on mise.mise_enchere_id = enchere.enchere_id
     INNER JOIN  timbre ON timbre.timbre_enchere_id = enchere.enchere_id 
     INNER JOIN img ON img.img_timbre_id  = timbre.timbre_id 
     INNER JOIN pays ON pays.pays_id = timbre.timbre_pays_id
-    GROUP BY enchere_id";
+    GROUP BY enchere_id
+    ";
     // echo "<pre>".  print_r($this->sql, true) . "<pre>"; exit;
     return $this->getLignes();
   }
@@ -156,14 +158,16 @@ class RequetesSQL extends RequetesPDO {
    */ 
   public function getEnchere($enchere_id) {
     $this->sql = "
-      SELECT enchere_id, enchere_date_debut, enchere_date_fin, enchere_utilisateur_id, timbre_id, timbre_nom, timbre_date, utilisateur_nom, timbre_tirage,
-      timbre_description, timbre_prix_plancher, timbre_dimension, pays_nom, img_url
+      SELECT enchere_id, enchere_date_debut, enchere_date_fin, enchere_utilisateur_id, timbre_id, timbre_nom, timbre_date, mise_prix, utilisateur_nom, timbre_tirage,
+      timbre_description, timbre_prix_plancher, timbre_dimension, pays_nom, img_url, mise_date
       FROM enchere
       INNER JOIN  utilisateur ON utilisateur.utilisateur_id = enchere.enchere_utilisateur_id 
       INNER JOIN  timbre ON timbre.timbre_enchere_id = enchere.enchere_id 
       INNER JOIN pays ON pays_id = timbre_pays_id
       INNER JOIN img ON img.img_timbre_id  = timbre.timbre_id
-      WHERE enchere_id = :enchere_id";
+      LEFT OUTER JOIN mise on mise.mise_enchere_id = enchere.enchere_id
+      WHERE enchere_id = :enchere_id
+      ORDER BY mise_date DESC";
 
     return $this->getLignes(['enchere_id' => $enchere_id], RequetesPDO::UNE_SEULE_LIGNE);
   }
@@ -225,14 +229,39 @@ class RequetesSQL extends RequetesPDO {
   }
 
   /**
-   * Supprimer un utilisateur
-   * @param int $utilisateur_id clé primaire
+   * Supprimer une enchere
+   * @param int $enchere_id clé primaire
    * @return boolean|string true si suppression effectuée, message d'erreur sinon
    */ 
   public function supprimerEnchere($enchere_id) {
+    // echo "<pre>".  print_r($enchere_id , true) . "<pre>"; exit;
     $this->sql = '
       DELETE FROM enchere WHERE enchere_id = :enchere_id';
     return $this->CUDLigne(['enchere_id' => $enchere_id]);
+  }
+
+  
+
+   /**
+   * Supprimer timbre
+   * @param int $timbre_id clé primaire
+   * @return boolean|string true si suppression effectuée, message d'erreur sinon
+   */ 
+  public function supprimerTimbre($timbre_id) {
+    $this->sql = '
+      DELETE FROM timbre WHERE timbre_id = :timbre_id';
+    return $this->CUDLigne(['timbre_id' => $timbre_id]);
+  }
+
+   /**
+   * Supprimer timbre
+   * @param int $timbre_id clé primaire
+   * @return boolean|string true si suppression effectuée, message d'erreur sinon
+   */ 
+  public function supprimerImg($img_id) {
+    $this->sql = '
+      DELETE FROM img WHERE img_id = :img_id';
+    return $this->CUDLigne(['img_id' => $img_id]);
   }
 
 
@@ -421,16 +450,7 @@ class RequetesSQL extends RequetesPDO {
        return $this->CUDLigne($champs);
      }
 
-  /**
-   * Supprimer timbre
-   * @param int $timbre_id clé primaire
-   * @return boolean|string true si suppression effectuée, message d'erreur sinon
-   */ 
-  public function supprimerTimbre($timbre_id) {
-    $this->sql = '
-      DELETE FROM timbre WHERE timbre_id = :timbre_id';
-    return $this->CUDLigne(['timbre_id' => $timbre_id]);
-  }
+ 
 
 
   /* GESTION DES PAYS 
@@ -457,7 +477,7 @@ class RequetesSQL extends RequetesPDO {
   /* GESTION DES MISES 
      ================== */
 
-public function mise($mise_id) {
+public function getMise($mise_id) {
     $this->sql = "
       SELECT  mise_id, mise_prix, mise_date, mise_utilisateur_id, mise_enchere_id
       FROM mise
@@ -470,4 +490,28 @@ public function mise($mise_id) {
     return $this->getLignes(['mise_id' => $mise_id], RequetesPDO::UNE_SEULE_LIGNE);
   }
 
+  public function getMaxMise($enchere_id) {
+    $this->sql = "
+      SELECT  max(mise_prix) as max_mise_prix
+      FROM mise
+      
+     where mise_enchere_id = :mise_enchere_id";
+
+    return $this->getLignes(['mise_enchere_id' => $enchere_id], RequetesPDO::UNE_SEULE_LIGNE);
+  }
+
+
+  public function addMise($champs) {
+    $this->sql = "
+    INSERT INTO  mise SET 
+     mise_prix = :mise_prix,
+      mise_date = :mise_date,
+       mise_utilisateur_id = :mise_utilisateur_id,
+        mise_enchere_id = :mise_enchere_id
+      ";
+
+      return $this->CUDLigne($champs);
+  }
+
+  
 }

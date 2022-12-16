@@ -24,6 +24,7 @@ class AdminPays extends Admin {
    * Lister les payss
    */
   public function listerPays() {
+    print_r('listerPays sur AdminPays');
      $pays = $this->oRequetesSQL->getPays('admin');
 
     (new Vue)->generer(

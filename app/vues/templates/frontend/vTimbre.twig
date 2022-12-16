@@ -1,4 +1,7 @@
 <main class="ficheproduct">
+{# <p>
+     vTimbre
+      </p>  #}
    <div class="hero">
             <img class="bannier" src="./images/img-stamp/banner5.webp" alt="image orignal">
         
@@ -6,7 +9,7 @@
         <div class="text-over-image">
             <h1>Bienvenue sur Enchères Stampee</h1>
             
-            <a href="#" class="button"> Voir les enchères</a>
+            {# <a href="#" class="button"> Voir les enchères</a> #}
         </div>
     </div>
         <div>
@@ -63,16 +66,16 @@
                             <div>
                                 <p>Date de début: <span>{{ enchere.enchere_date_debut }}</span></p>
                                 <p>Date de fin: <span>{{ enchere.enchere_date_fin }}</span></p>
-                                <p> &#x23F1;Reste: <span> 10j 12:00:33</span></p>    
+                                {# <p> &#x23F1;Reste: <span> 10j 12:00:33</span></p>     #}
                             </div>
                             <div >
-                                <p>Depart: <span>{{ enchere.timbre_prix_plancher }}</span> </p>
-                                <p>Actuel: <span>1200$</span> </p>
-                                <p>Quantité de mises: <span>2</span></p>
+                                <p>Prix de depart: <span>{{ enchere.timbre_prix_plancher }}</span> </p>
+                                <p>Prix actuel: <span>{{ enchere.mise_prix }}</span> </p>
+                                {# <p>Quantité de mises: <span>2</span></p> #}
                             </div>
                         </div>    
                         <div class="card-button fiche__card-button">
-                            <button class="btn"><a  href="">Miser</button>        
+                            <button class="btn"><a  href="login">Miser</button>        
                             <button class="btn">Suivre</button>
                         </div> 
                     </div>             

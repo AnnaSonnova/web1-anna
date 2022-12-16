@@ -9,8 +9,8 @@ class Pays extends Entite
   
   private $erreurs = [];
 
- 
-  
+  public function getPays_id()       { return $this->pays_id; }
+  public function getPays_nom()       { return $this->pays_nom; }
 
  /**
    * Mutateur de la propriété timbre_id 

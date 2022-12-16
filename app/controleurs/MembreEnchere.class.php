@@ -12,7 +12,8 @@ class MembreEnchere extends Membre {
    
      'aa'           => ['nom'    =>'ajouterTimbreParId', 'droits' => [Utilisateur::PROFIL_MEMBRE]],
      'ae' => ['nom'    => 'ajouterEnchere'],
-     'me' => ['nom'    => 'modifierEnchere']
+     'me' => ['nom'    => 'modifierEnchere'],
+     's' => ['nom'    => 'supprimerEnchere']
    
   ];
 
@@ -67,7 +68,7 @@ class MembreEnchere extends Membre {
    */
   public function listerEnchereParIdUtilisateur() {
 
-    //print_r('listerEnchereParIdUtilisateur dans MembreEnchere');
+    // print_r('listerEnchereParIdUtilisateur dans MembreEnchere');
     $utilId = $_SESSION["oUtilConn"]->utilisateur_id;
     // echo "<pre>".  print_r($_SESSION["oUtilConn"]->utilisateur_id, true) . "<pre>"; exit;
     $encheres = $this->oRequetesSQL->getEnchereParIdUtilisateur($utilId
@@ -102,17 +103,17 @@ class MembreEnchere extends Membre {
       // echo "<pre>".  print_r($enchere) . "<pre>";
       $oEnchere = new Enchere($enchere);         
       $erreurs = $oEnchere->getErreurs();
-      $aujourdui = date('Y-m-d');
-      echo($aujourdui);
-      $dateFin = date('Y-m-d',strtotime($aujourdui."+14 day"));
-      echo($dateFin);
+      // $aujourdui = date('Y-m-d');
+      // echo($aujourdui);
+      // $dateFin = date('Y-m-d',strtotime($aujourdui."+14 day"));
+      // echo($dateFin);
       
       if (count($erreurs) === 0 ) {
         
         $utilId = $_SESSION["oUtilConn"]->utilisateur_id;
         $retour=$this->oRequetesSQL->ajouterEnchere([
-          'enchere_date_debut'      => $aujourdui,   
-          'enchere_date_fin'   => $dateFin,
+          'enchere_date_debut'      => $oEnchere->enchere_date_debut ,   
+          'enchere_date_fin'   => $oEnchere->enchere_date_fin ,
           'enchere_utilisateur_id' => $utilId
         ]); 
         //  echo "<pre>".  print_r($retour, true) . "<pre>"; exit;
@@ -132,8 +133,7 @@ class MembreEnchere extends Membre {
         $fichier = $_FILES['userfile']['tmp_name'];
          //echo "<pre>".  print_r($_FILES , true) . "<pre>"; exit;
         move_uploaded_file($fichier, "images/".$nom_fichier);
-        // $dernierTimbreId = $enchere_id[0]["timbre_id"];
-        // echo "<pre>".  print_r($nom_fichier, true) . "<pre>"; exit;
+        
         $retour=$this->oRequetesSQL->ajouterImg(
           ['img_url'      => $nom_fichier,
           'img_timbre_id'=> $retour] 
@@ -145,8 +145,8 @@ class MembreEnchere extends Membre {
           $this->classRetour = "erreur";
           $this->messageRetourAction = "Ajout d'enchere non effectué.";
         }
-         // $this->listerTimbreParIdUtilisateur(); // retour sur la page de liste des timbres
-          // exit;
+          $this->listerEnchereParIdUtilisateur(); // retour sur la page de liste des timbres
+           exit;
        } 
     }
 
@@ -176,6 +176,7 @@ class MembreEnchere extends Membre {
      $enchere = false;
      if (!is_null($this->enchere_id)) {
        $enchere         = $this->oRequetesSQL->getEnchere($this->enchere_id);
+       //echo "<pre>".  print_r($enchere) . "<pre>";  
      }
      if (!$enchere) throw new Exception("Enchere inexistant.");
      // $nom = $enchere['timbre_nom'];
@@ -267,9 +268,15 @@ class MembreEnchere extends Membre {
    * Supprimer un utilisateur
    */
   public function supprimerEnchere() {
-    if (!preg_match('/^\d+$/', $this->enchere_id))
-      throw new Exception("Numéro d'enchere incorrect pour une suppression.");
+    //echo "<pre>".  print_r("supprimer enchere") . "<pre>"; 
+    // $enchere         = $this->oRequetesSQL->getEnchere($this->enchere_id);
+    //    echo "<pre>".  print_r($enchere) . "<pre>";  exit;
 
+      // throw new Exception("Numéro d'enchere incorrect pour une suppression.");
+      //   //echo "<pre>".  print_r($this->enchere_id, true) . "<pre>"; exit; 
+       $retour = $this->oRequetesSQL->supprimerImg($this->img_id );
+       $retour = $this->oRequetesSQL->supprimerTimbre($this->timbre_id);
+      
     $retour = $this->oRequetesSQL->supprimerEnchere($this->enchere_id);
     if ($retour === false) $this->classRetour = "erreur";
     $this->messageRetourAction = "Suppression de l'enchere numéro $this->enchere_id ".($retour ? "" : "non ")."effectuée.";

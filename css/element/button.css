@@ -69,7 +69,7 @@ form .btn{
 }
 
 .button {
-    color:var(--gold);
+    color:var(--darkgold);
     padding: 10px 10px 8px;
     margin-top: 10px;
 }
@@ -81,8 +81,17 @@ form .btn{
     color: var(--red);
 }
 
+.buttonAdmin {
+    border: 1px solid rgba(23, 19, 19, 0.877);
+}
+
 .fiche__card-button{
     gap: 15px;
+}
+
+.admin-button{
+    display: flex;
+    justify-content: space-between;
 }
 
 @media (max-width: 980px){

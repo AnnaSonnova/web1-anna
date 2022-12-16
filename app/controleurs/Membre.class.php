@@ -56,7 +56,7 @@ class Membre extends Routeur {
    * Connecter un utilisateur
    */
   public function showLoginPage() {
-    print_r('showLoginPage');
+    //print_r('showLoginPage');
     (new Vue)->generer(
       'vAdminUtilisateurConnecter',
       [
@@ -71,7 +71,7 @@ class Membre extends Routeur {
    * Ajouter un utilisateur
    */
   public function ajouterUtilisateur() {
-    //print_r('ajouter utilisateur membre');
+    //print_r('ajouter utilisateur sur Membre');
     //error_log("POST=" . implode($_POST));
     if (count($_POST) !== 0) {
       
@@ -127,7 +127,7 @@ class Membre extends Routeur {
    * Modifier un utilisateur
    */
   public function modifierUtilisateur() {
-    //print_r('modifier utilisateur');
+    print_r('modifier utilisateur sur Membre');
     if (!preg_match('/^\d+$/', $this->utilisateur_id))
       throw new Exception("Numéro d'utilisateur non renseigné pour une modification");
 

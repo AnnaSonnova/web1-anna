@@ -16,7 +16,7 @@ class Frontend extends Routeur {
    */
   public function __construct() {
     $this->enchere_id = $_GET['enchere_id'] ?? null;
-   
+    $this->utilisateur_id = $_GET['utilisateur_id'] ?? null; 
     $this->oRequetesSQL = new RequetesSQL;
   }
 
@@ -25,16 +25,24 @@ class Frontend extends Routeur {
    * Lister les timbres à l'affiche
    */  
   public function listerFavorit() {
+    // print_r('listerFavorit sur Frontend');
+    if(isset($_SESSION['oUtilConn'])){
+      $session = $_SESSION['oUtilConn'];
+    }else{
+      $session = null;
+    }
     $encheres = $this->oRequetesSQL->getEncheres();
     (new Vue)->generer("vListeTimbres",
             array(
               'titre'  => "Favorit",
+              'session'           => $session,
               'encheres'               => $encheres,
             ),
             "gabarit-frontend-accueil");
   }
 
   public function listerTimbres(){
+    print_r('listerTimbres dans Frontend');
     //echo "lister timbres" ; 
     $timbres =$this->oRequetesSQL->getTimbres();
     $titre = "Catalogue d'enchères";
@@ -48,7 +56,7 @@ class Frontend extends Routeur {
    * Lister les encheres
    */
   public function listerEncheres() {
-    // print_r('listerEncheres dans Frontend');
+    //  print_r('listerEncheres dans Frontend');
     $encheres = $this->oRequetesSQL->getEncheres();
        //echo "<pre>".  print_r( $encheres) . "<pre>";
        //exit;
@@ -61,25 +69,13 @@ class Frontend extends Routeur {
       'gabarit-frontend');
   }
 
-  // /**
-  //  * Lister les timbres diffusés prochainement
-  //  * 
-  //  */  
-  // public function listerProchainement() {
-  //   $timbres = $this->oRequetesSQL->gettimbres('prochainement');
-  //   (new Vue)->generer("vListetimbres",
-  //           array(
-  //             'titre'  => "Prochainement",
-  //             'timbres' => $timbres
-  //           ),
-  //           "gabarit-frontend");
-  // }
+  
 
   /**
    * Voir les informations d'une enchere 
    */  
   public function voirEnchere(){
-    //print_r( "voir enchere" ); 
+    // print_r( "voir enchere sur Frontend" ); 
     $enchere = false;
     
      if (!is_null($this->enchere_id)) {

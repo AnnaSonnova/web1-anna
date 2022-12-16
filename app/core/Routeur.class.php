@@ -23,10 +23,12 @@ class Routeur {
     ["mesEncheres",         "MembreEnchere",      "listerEnchereParIdUtilisateur"],
     ["listeEncheres",       "MembreEnchere",      "listerEncheres"],
     ["ajouteEnchere",       "MembreEnchere",      "ajouterEnchere"],
-    ["membre",              "MembreEnchere",      "ajouterEnchere"]
+    ["supprimerEnchere",       "MembreEnchere",      "supprimerEnchere"],
+    
+    ["miser",              "MembreMise",      "ajouterMise"]
     // ["membreLogin",         "MembreUtilisateur",    "showLoginPage"],
-    // ["membreConnecter",         "MembreUtilisateur",    "connecter"], 
-    // ["prochainement", "Frontend", "listerProchainement"],
+    
+    
     
   ];
 

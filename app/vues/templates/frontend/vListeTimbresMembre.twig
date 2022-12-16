@@ -1,6 +1,6 @@
 
    
-<P>vListeTimbreMembre</p>
+{# <P>vListeTimbreMembre</p> #}
    
             <!-- Cartes -->
             <div class="grid">
@@ -31,15 +31,22 @@
                     </header>
                     <div class="card-main">
                         <p><small>Depart:</small>{{ enchere.timbre_prix_plancher }}</p>
-                        <p><small>Actuel:</small>1200$</p>
+                        <p><small>Actuel:</small>{{ enchere.mise_prix }}</p>
                        
                     </div>
                     <div class="card-button">
                         
                         {# <a href="" class="btn">Miser</a> #}
-                        <form method="POST" action="miser?enchere_id = {{ enchere.enchere_id }}">
+                        <form method="POST" action="miser">
+                         <input type="hidden" name="mise_utilisateur_id"  value="{{ mise.mise_utilisateur_id }}">
+                         <input type="hidden" name="mise_enchere_id"  value="{{ enchere.enchere_id }}">
+                        
                             <label for="mise_prix" >Mon offre:
-                            <input class="btn" name="mise_prix" placeholder="($)" value="{{ mise.mise_prix }}"></label>
+                            {% if  enchere.mise_prix == null %}
+                            <input type="number" min="{{  enchere.timbre_prix_plancher +1 }}" class="btn" name="mise_prix" placeholder="($)" value="{{ mise.mise_prix }}"></label>
+                            {% else   %}
+                            <input type="number" min="{{ enchere.mise_prix +1 }}" class="btn" name="mise_prix" placeholder="($)" value="{{ mise.mise_prix }}"></label>
+                             {% endif %}
                             <span>{{ erreurs.mise_prix }}</span>
 
                             <input type="submit" value="Mise Rapide" class="btn">

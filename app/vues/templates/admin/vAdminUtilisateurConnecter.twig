@@ -1,9 +1,9 @@
 <section class="connecter">
   <h1>{{ titre|upper }}</h1>
-  <p>
+  {# <p>
        vAdminUtilisateurConnecter
-      </p>
-  <form method="POST" action="admin">
+      </p> #}
+  <form method="POST" action="login">
 
     <br><span>&nbsp;{{ messageErreurConnexion }}</span>
 
@@ -16,5 +16,9 @@
     <input type="submit" value="Envoyer">
 
 </form>
+<div class="admin-button">
+<a  href="creer" class="button buttonAdmin">Creer un compte</a>
+<a href="/git/web1-anna/" class="button buttonAdmin"> Revenir sur accueil</a>
+</div>
   </div>
 </section>

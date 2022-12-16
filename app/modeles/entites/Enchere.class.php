@@ -15,9 +15,11 @@ class Enchere extends Entite{
     protected $timbre_dimension;
     protected $timbre_pays_id;
     protected $img_timbre_id;
-    
+
     protected $img_url;
     protected $img_id;
+
+    protected $mise_prix;
   
     protected $erreurs = [];
 
@@ -38,6 +40,7 @@ class Enchere extends Entite{
     public function getImg_id()       { return $this->img_id; }
     public function getImg_url()      { return $this->img_url; }
     public function getImg_timbre_id()   { return $this->img_timbre_id; }
+    public function getMise_prix()      { return $this->mise_prix; }
    
     public function getErreurs()              { return $this->erreurs; } 
 
