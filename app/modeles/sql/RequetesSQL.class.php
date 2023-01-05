@@ -159,7 +159,7 @@ class RequetesSQL extends RequetesPDO {
   public function getEnchere($enchere_id) {
     $this->sql = "
       SELECT enchere_id, enchere_date_debut, enchere_date_fin, enchere_utilisateur_id, timbre_id, timbre_nom, timbre_date, mise_prix, utilisateur_nom, timbre_tirage,
-      timbre_description, timbre_prix_plancher, timbre_dimension, pays_nom, img_url, mise_date
+      timbre_description, timbre_prix_plancher, timbre_dimension, pays_nom, img_id, img_url, mise_date
       FROM enchere
       INNER JOIN  utilisateur ON utilisateur.utilisateur_id = enchere.enchere_utilisateur_id 
       INNER JOIN  timbre ON timbre.timbre_enchere_id = enchere.enchere_id 
@@ -181,7 +181,7 @@ class RequetesSQL extends RequetesPDO {
     // echo "<pre>".  print_r($champs) . "<pre>"; exit;
     $this->sql = "
       SELECT enchere_id, enchere_date_debut, enchere_date_fin, enchere_utilisateur_id, timbre_id, timbre_nom, timbre_date, timbre_utilisateur_id, timbre_tirage,
-      timbre_description, timbre_prix_plancher, timbre_dimension, pays_nom, img_url
+      timbre_description, timbre_prix_plancher, timbre_dimension, pays_nom, img_id, img_url
       FROM enchere
       INNER JOIN  utilisateur ON utilisateur.utilisateur_id = enchere.enchere_utilisateur_id 
       INNER JOIN timbre ON timbre.timbre_enchere_id  = enchere.enchere_id 
@@ -240,6 +240,14 @@ class RequetesSQL extends RequetesPDO {
     return $this->CUDLigne(['enchere_id' => $enchere_id]);
   }
 
+  /**
+   * Recherche  encheres
+   * 
+   */ 
+  public function rechercheEnchere($valeurRecherchee){
+
+  }
+
   
 
    /**
@@ -254,8 +262,8 @@ class RequetesSQL extends RequetesPDO {
   }
 
    /**
-   * Supprimer timbre
-   * @param int $timbre_id clé primaire
+   * Supprimer img
+   * @param int $img_id clé primaire
    * @return boolean|string true si suppression effectuée, message d'erreur sinon
    */ 
   public function supprimerImg($img_id) {

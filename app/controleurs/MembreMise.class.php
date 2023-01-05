@@ -46,7 +46,7 @@ class MembreMise extends Membre {
         }
 
         $oMise->mise_utilisateur_id = $utilId;
-        $aujourdui = date('Y-m-d h:i:sa');
+        $aujourdui = date('Y-m-d H:i:s');
         //echo($aujourdui);
   
         //$erreurs = $oMise->getErreurs();

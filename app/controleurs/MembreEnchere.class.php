@@ -135,7 +135,8 @@ class MembreEnchere extends Membre {
         move_uploaded_file($fichier, "images/".$nom_fichier);
         
         $retour=$this->oRequetesSQL->ajouterImg(
-          ['img_url'      => $nom_fichier,
+          [
+            'img_url'      => $nom_fichier,
           'img_timbre_id'=> $retour] 
       
         );
@@ -265,22 +266,46 @@ class MembreEnchere extends Membre {
   }
 
   /**
-   * Supprimer un utilisateur
+   * Supprimer enchere
    */
   public function supprimerEnchere() {
-    //echo "<pre>".  print_r("supprimer enchere") . "<pre>"; 
-    // $enchere         = $this->oRequetesSQL->getEnchere($this->enchere_id);
-    //    echo "<pre>".  print_r($enchere) . "<pre>";  exit;
+
+      if(!is_null($this->enchere_id)){
+      $enchere = $this->oRequetesSQL->getEnchere($this->enchere_id);
+      //echo "<pre>".  print_r($enchere, true) . "<pre>";  exit;
+      $enchere_id = $enchere["enchere_id"];
+      //echo "<pre>".  print_r($enchere_id, true) . "<pre>";  exit;
+      $timbre_id = $enchere["timbre_id"];
+      //echo "<pre>".  print_r($timbre_id, true) . "<pre>";  exit;
+      $img_id = $enchere["img_id"];
+      //echo "<pre>".  print_r($img_id, true) . "<pre>";  exit;
+      $retour = $this->oRequetesSQL->supprimerImg($img_id );
+      $retour = $this->oRequetesSQL->supprimerTimbre($timbre_id);
+      $retour = $this->oRequetesSQL->supprimerEnchere($enchere_id);
+      if ($retour === false) $this->classRetour = "erreur";
+      $this->messageRetourAction = "Suppression de l'enchere numéro $this->enchere_id ".($retour ? "" : "non ")."effectuée.";
+      $this->listerEnchereParIdUtilisateur();
+    }
+    
+   
+    
 
       // throw new Exception("Numéro d'enchere incorrect pour une suppression.");
       //   //echo "<pre>".  print_r($this->enchere_id, true) . "<pre>"; exit; 
-       $retour = $this->oRequetesSQL->supprimerImg($this->img_id );
-       $retour = $this->oRequetesSQL->supprimerTimbre($this->timbre_id);
-      
-    $retour = $this->oRequetesSQL->supprimerEnchere($this->enchere_id);
-    if ($retour === false) $this->classRetour = "erreur";
-    $this->messageRetourAction = "Suppression de l'enchere numéro $this->enchere_id ".($retour ? "" : "non ")."effectuée.";
-    $this->listerEncheres();
+  }
+
+  public function rechercheEnchere(){
+    if(count($_POST)!==0){
+      $valeurRecherchee = $_POST["enchere_recherchee"];
+
+      $retour = $this->oRequetesSQL->rechercheEnchere($valeurRecherchee);
+      if($retour){
+        $this->listerEncheres($retour);
+      }else{
+        $retour = $this->oRequetesSQL->getEncheres();
+        $this->listerEncheres($retour);
+      }
+    }
   }
   
   
