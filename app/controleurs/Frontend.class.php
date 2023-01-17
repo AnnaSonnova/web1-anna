@@ -7,7 +7,7 @@
 
 class Frontend extends Routeur {
   private $enchere_id;
-  
+  private $utilisateur_id;
   
   /**
    * Constructeur qui initialise des propriétés à partir du query string

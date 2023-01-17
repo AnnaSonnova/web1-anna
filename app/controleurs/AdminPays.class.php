@@ -6,6 +6,7 @@
 
 class AdminPays extends Admin {
 
+  private $pays_id;
   protected $methodes = [
     'l' => ['nom'    => 'listerPays', 'droits' => [Utilisateur::PROFIL_ADMINISTRATEUR, Utilisateur::PROFIL_MEMBRE]]
   ];

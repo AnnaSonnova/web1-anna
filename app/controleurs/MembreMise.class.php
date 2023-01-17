@@ -6,6 +6,8 @@
 
 class MembreMise extends Membre {
 
+  private $mise_id;
+
   protected $methodes = [
     
     'am' => ['nom'    => 'ajouterMise']

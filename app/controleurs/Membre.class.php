@@ -6,9 +6,10 @@
 
 class Membre extends Routeur {
 
+  
   protected $utilisateur_id;
   protected $utilisateur_nom;
-  protected $utilisateur_premon;
+  protected $utilisateur_prenom;
  
 
   protected static $entite;

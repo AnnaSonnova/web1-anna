@@ -7,6 +7,8 @@
 class MembreEnchere extends Membre {
 
   private $enchere_id;
+  // private $utilisateur_prenom;
+  // private $timbre_id;
 
   protected $methodes = [
    
